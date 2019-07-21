@@ -1,7 +1,8 @@
 import React from "react";
-import { Col, Row } from "reactstrap";
+import { Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import InfoCard from "../common/InfoCard";
 import LeaderBoard from "../common/LeaderBoard";
+import QuickLinks from "../common/QuickLinks";
 
 export default props => {
   return (
@@ -18,7 +19,17 @@ export default props => {
         </Col>
       </Row>
       <Row>
-        <Col />
+        <Col>
+          <Card>
+            <CardHeader>Quick Links</CardHeader>
+            <CardBody>
+              <Row>
+                <QuickLinks data={[{ name: "Take Attendance", to: "/attendance/take" }]} />
+                <QuickLinks data={[{ name: "Take Attendance", to: "/attendance/take" }]} />
+              </Row>
+            </CardBody>
+          </Card>
+        </Col>
         <Col>
           <LeaderBoard name="Student Leaderboard" />
         </Col>

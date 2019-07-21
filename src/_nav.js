@@ -27,18 +27,18 @@ export default {
       ]
     },
     {
-      name: "Organization",
-      url: "/organization",
+      name: "Attendance",
+      url: "/attendance",
       icon: "icon-people",
       children: [
         {
-          name: "Registration",
-          url: "/organization/registration",
+          name: "Take Attendance",
+          url: "/attendance/take",
           icon: "icon-people"
         },
         {
-          name: "Organization List",
-          url: "/organization/all",
+          name: "Attendance Report",
+          url: "/attendance/report",
           icon: "icon-people"
         }
       ]

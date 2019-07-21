@@ -4,6 +4,8 @@ import OrganizationForm from "./components/organization/OrganizationForm";
 import OrganizationList from "./components/organization/OrganizationList";
 import StudentForm from "./components/student/StudentForm";
 import StudentList from "./components/student/StudentList";
+import AttendanceTake from "./components/common/AttendanceTake";
+import AttendanceReport from "./components/common/AttendanceReport";
 
 const Dashboard = React.lazy(() => import("./components/organization/OrganizationDashboard"));
 
@@ -24,16 +26,16 @@ const routes = [
     component: StudentList
   },
   {
-    path: "/organization/registration",
+    path: "/attendance/take",
     exact: true,
-    name: "Organization Registration Form",
-    component: OrganizationForm
+    name: "Take Attendance",
+    component: AttendanceTake
   },
   {
-    path: "/organization/all",
+    path: "/attendance/report",
     exact: true,
-    name: "Organization List",
-    component: OrganizationList
+    name: "Attendance Report",
+    component: AttendanceReport
   }
 ];
 

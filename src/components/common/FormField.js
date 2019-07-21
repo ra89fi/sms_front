@@ -58,8 +58,8 @@ export default props => {
             onChange={changeHandler}
             value={props.value}
           >
-            {props.values.map(val => (
-              <option value={val}>{val}</option>
+            {props.values.map((val,i) => (
+              <option value={val} key={i}>{val}</option>
             ))}
           </Input>
         </FormGroup>

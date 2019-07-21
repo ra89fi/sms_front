@@ -9,10 +9,10 @@ export default props => {
         <Table responsive>
           <thead>
             <tr>
-              <th>Username</th>
-              <th>Date registered</th>
+              <th>Student</th>
+              <th>Session</th>
               <th>Role</th>
-              <th>Status</th>
+              <th>Percentage</th>
             </tr>
           </thead>
           <tbody>
