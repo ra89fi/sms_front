@@ -6,7 +6,7 @@ export default props => {
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
         Attendance Report
-        <Button color="primary" onClick={props.onClick}>
+        <Button color="primary" outline onClick={props.onClick}>
           Go Back
         </Button>
       </CardHeader>
@@ -36,6 +36,7 @@ export default props => {
                   <th>Roll No</th>
                   <th>Student Name</th>
                   <th>Percentage</th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,13 +47,18 @@ export default props => {
                     <Badge color="success">%P</Badge> <Badge color="danger">%A</Badge>{" "}
                     <Badge color="warning">%L</Badge>
                   </td>
-                </tr>
-                <tr>
-                  <td>123456</td>
-                  <td>Sampa Noori</td>
                   <td>
-                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
-                    <Badge color="warning">0%</Badge>
+                    <Row>
+                      <Col>1</Col>
+                      <Col>2</Col>
+                      <Col>3</Col>
+                      <Col>4</Col>
+                      <Col>5</Col>
+                      <Col>6</Col>
+                      <Col>7</Col>
+                      <Col>8</Col>
+                      <Col>9</Col>
+                    </Row>
                   </td>
                 </tr>
                 <tr>
@@ -62,13 +68,36 @@ export default props => {
                     <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
                     <Badge color="warning">0%</Badge>
                   </td>
-                </tr>
-                <tr>
-                  <td>123456</td>
-                  <td>Sampa Noori</td>
                   <td>
-                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
-                    <Badge color="warning">0%</Badge>
+                    <Row>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                    </Row>
                   </td>
                 </tr>
                 <tr>
@@ -78,6 +107,37 @@ export default props => {
                     <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
                     <Badge color="warning">0%</Badge>
                   </td>
+                  <td>
+                    <Row>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                    </Row>
+                  </td>
                 </tr>
                 <tr>
                   <td>123456</td>
@@ -85,6 +145,115 @@ export default props => {
                   <td>
                     <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
                     <Badge color="warning">0%</Badge>
+                  </td>
+                  <td>
+                    <Row>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td>123456</td>
+                  <td>Sampa Noori</td>
+                  <td>
+                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
+                    <Badge color="warning">0%</Badge>
+                  </td>
+                  <td>
+                    <Row>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td>123456</td>
+                  <td>Sampa Noori</td>
+                  <td>
+                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
+                    <Badge color="warning">0%</Badge>
+                  </td>
+                  <td>
+                    <Row>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="success">P</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="danger">A</Badge>
+                      </Col>
+                      <Col>
+                        <Badge color="warning">L</Badge>
+                      </Col>
+                    </Row>
                   </td>
                 </tr>
               </tbody>

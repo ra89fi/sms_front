@@ -1,9 +1,102 @@
 import React from "react";
+import { Table } from "reactstrap";
 
 export default props => {
   return (
-    <div>
-      <h1>hello world!</h1>
-    </div>
+    <Table responsive>
+      <thead>
+        <tr>
+          <th>Degree</th>
+          <th>Subject</th>
+          <th>Session</th>
+          <th>Roll No</th>
+          <th>Reg No</th>
+          <th>Name</th>
+          <th>Mobile No</th>
+          <th>Email</th>
+          <th>Attendance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Honors</td>
+          <td>Geography</td>
+          <td>2013-14</td>
+          <td>11152622</td>
+          <td>62389</td>
+          <td>saumik</td>
+          <td>9034704096</td>
+          <td>n.saumik333@gmail.com</td>
+          <td>
+            <strong>100%</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>Honors</td>
+          <td>Geography</td>
+          <td>2013-14</td>
+          <td>11152622</td>
+          <td>62389</td>
+          <td>saumik</td>
+          <td>9034704096</td>
+          <td>n.saumik333@gmail.com</td>
+          <td>
+            <strong>100%</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>Honors</td>
+          <td>Geography</td>
+          <td>2013-14</td>
+          <td>11152622</td>
+          <td>62389</td>
+          <td>saumik</td>
+          <td>9034704096</td>
+          <td>n.saumik333@gmail.com</td>
+          <td>
+            <strong>100%</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>Honors</td>
+          <td>Geography</td>
+          <td>2013-14</td>
+          <td>11152622</td>
+          <td>62389</td>
+          <td>saumik</td>
+          <td>9034704096</td>
+          <td>n.saumik333@gmail.com</td>
+          <td>
+            <strong>100%</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>Honors</td>
+          <td>Geography</td>
+          <td>2013-14</td>
+          <td>11152622</td>
+          <td>62389</td>
+          <td>saumik</td>
+          <td>9034704096</td>
+          <td>n.saumik333@gmail.com</td>
+          <td>
+            <strong>100%</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>Honors</td>
+          <td>Geography</td>
+          <td>2013-14</td>
+          <td>11152622</td>
+          <td>62389</td>
+          <td>saumik</td>
+          <td>9034704096</td>
+          <td>n.saumik333@gmail.com</td>
+          <td>
+            <strong>100%</strong>
+          </td>
+        </tr>
+      </tbody>
+    </Table>
   );
 };

@@ -1,7 +1,5 @@
 import React from "react";
 import DefaultLayout from "./containers/DefaultLayout";
-import OrganizationForm from "./components/organization/OrganizationForm";
-import OrganizationList from "./components/organization/OrganizationList";
 import StudentForm from "./components/student/StudentForm";
 import StudentList from "./components/student/StudentList";
 import AttendanceTake from "./components/common/AttendanceTake";

@@ -1,6 +1,6 @@
 import React from "react";
-import InputAddRemove from "../common/InputAddRemove";
 import { Card, CardBody, CardHeader } from "reactstrap";
+import InputAddRemove from "../common/InputAddRemove";
 
 export default props => {
   return (

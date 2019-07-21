@@ -9,19 +9,22 @@ export default props => {
     <div>
       <Row>
         <Col>
-          <InfoCard name="Sessions" data={4} />
+          <InfoCard name="Sessions" data={4} icon="icon-layers" />
         </Col>
         <Col>
-          <InfoCard name="Students" data={230} />
+          <InfoCard name="Students" data={230} icon="icon-people" />
         </Col>
         <Col>
-          <InfoCard name="Teachers" data={10} />
+          <InfoCard name="Teachers" data={10} icon="icon-people" />
         </Col>
       </Row>
       <Row>
         <Col>
           <Card>
-            <CardHeader>Quick Links</CardHeader>
+            <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
+              Quick Links
+              <i className="icon-link icons" />
+            </CardHeader>
             <CardBody>
               <Row>
                 <QuickLinks data={[{ name: "Take Attendance", to: "/attendance/take" }]} />
