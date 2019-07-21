@@ -12,58 +12,79 @@ export default props => {
       </CardHeader>
       <CardBody>
         <Row>
-          <Col>Details: {props.class}</Col>
+          <Col>
+            <div style={{ textAlign: "center" }}>
+              <p>Class: {props.class}</p>
+              <p>Subject: {props.subject}</p>
+              <p>Session: {props.session}</p>
+              <p>
+                From {props.from} To {props.to}
+              </p>
+              <p>
+                <Badge color="success">P</Badge> : Present, <Badge color="danger">P</Badge> :
+                Absent, <Badge color="warning">P</Badge> : Late
+              </p>
+            </div>
+            <hr />
+          </Col>
         </Row>
         <Row>
           <Col>
             <Table responsive>
               <thead>
                 <tr>
-                  <th>Username</th>
-                  <th>Date registered</th>
-                  <th>Role</th>
-                  <th>Status</th>
+                  <th>Roll No</th>
+                  <th>Student Name</th>
+                  <th>Percentage</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Samppa Nori</td>
-                  <td>2012/01/01</td>
-                  <td>Member</td>
+                  <td />
+                  <td />
                   <td>
-                    <Badge color="success">Active</Badge>
+                    <Badge color="success">%P</Badge> <Badge color="danger">%A</Badge>{" "}
+                    <Badge color="warning">%L</Badge>
                   </td>
                 </tr>
                 <tr>
-                  <td>Estavan Lykos</td>
-                  <td>2012/02/01</td>
-                  <td>Staff</td>
+                  <td>123456</td>
+                  <td>Sampa Noori</td>
                   <td>
-                    <Badge color="danger">Banned</Badge>
+                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
+                    <Badge color="warning">0%</Badge>
                   </td>
                 </tr>
                 <tr>
-                  <td>Chetan Mohamed</td>
-                  <td>2012/02/01</td>
-                  <td>Admin</td>
+                  <td>123456</td>
+                  <td>Sampa Noori</td>
                   <td>
-                    <Badge color="secondary">Inactive</Badge>
+                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
+                    <Badge color="warning">0%</Badge>
                   </td>
                 </tr>
                 <tr>
-                  <td>Derick Maximinus</td>
-                  <td>2012/03/01</td>
-                  <td>Member</td>
+                  <td>123456</td>
+                  <td>Sampa Noori</td>
                   <td>
-                    <Badge color="warning">Pending</Badge>
+                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
+                    <Badge color="warning">0%</Badge>
                   </td>
                 </tr>
                 <tr>
-                  <td>Friderik Dávid</td>
-                  <td>2012/01/21</td>
-                  <td>Staff</td>
+                  <td>123456</td>
+                  <td>Sampa Noori</td>
                   <td>
-                    <Badge color="success">Active</Badge>
+                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
+                    <Badge color="warning">0%</Badge>
+                  </td>
+                </tr>
+                <tr>
+                  <td>123456</td>
+                  <td>Sampa Noori</td>
+                  <td>
+                    <Badge color="success">0%</Badge> <Badge color="danger">0%</Badge>{" "}
+                    <Badge color="warning">0%</Badge>
                   </td>
                 </tr>
               </tbody>

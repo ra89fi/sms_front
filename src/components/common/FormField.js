@@ -58,8 +58,10 @@ export default props => {
             onChange={changeHandler}
             value={props.value}
           >
-            {props.values.map((val,i) => (
-              <option value={val} key={i}>{val}</option>
+            {props.values.map((val, i) => (
+              <option value={val} key={i}>
+                {val}
+              </option>
             ))}
           </Input>
         </FormGroup>
@@ -69,9 +71,11 @@ export default props => {
     case "radio":
       inputElement = (
         <FormGroup row>
-          <Col md="3">
-            <Label>{props.placeholder}</Label>
-          </Col>
+          {props.placeholder && (
+            <Col md="3">
+              <Label>{props.placeholder}</Label>
+            </Col>
+          )}
           <Col md="9">
             {props.values.map(val => (
               <FormGroup check inline>
