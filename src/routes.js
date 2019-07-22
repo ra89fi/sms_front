@@ -6,6 +6,10 @@ import AttendanceTake from "./components/common/AttendanceTake";
 import AttendanceReport from "./components/common/AttendanceReport";
 import ViewStudentProfile from "./components/student/ViewStudentProfile";
 import EditStudentProfile from "./components/student/EditStudentProfile";
+import ExamEntry from "./components/exam/ExamEntry";
+import ExamList from "./components/exam/ExamList";
+import ExamDetails from "./components/exam/ExamDetails";
+import ExamMarks from "./components/exam/ExamMarks";
 
 const Dashboard = React.lazy(() => import("./components/organization/OrganizationDashboard"));
 
@@ -48,6 +52,29 @@ const routes = [
     exact: true,
     name: "Attendance Report",
     component: AttendanceReport
+  },
+  {
+    path: "/exams/entry/",
+    name: "Exam Entry",
+    component: ExamEntry
+  },
+  {
+    path: "/exams/all",
+    exact: true,
+    name: "Exam List",
+    component: ExamList
+  },
+  {
+    path: "/exams/details/:id",
+    exact: true,
+    name: "Exam Details",
+    component: ExamDetails
+  },
+  {
+    path: "/exams/marks/:id",
+    exact: true,
+    name: "Exam Marks",
+    component: ExamMarks
   }
 ];
 

@@ -15,7 +15,7 @@ export default props => {
         <Table responsive>
           <thead>
             <tr>
-              <th>Role</th>
+              <th>Roll No</th>
               <th>Student Name</th>
               <th>Attendance</th>
               <th>Notes</th>
@@ -99,6 +99,16 @@ export default props => {
             </tr>
           </tbody>
         </Table>
+        <Row>
+          <Col style={{ minHeight: "30px" }} />
+        </Row>
+        <Row>
+          <Col>
+            <Button block color="primary">
+              Submit
+            </Button>
+          </Col>
+        </Row>
       </CardBody>
     </Card>
   );

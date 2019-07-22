@@ -42,6 +42,23 @@ export default {
           icon: "icon-people"
         }
       ]
+    },
+    {
+      name: "Exams",
+      url: "/exams",
+      icon: "icon-people",
+      children: [
+        {
+          name: "Exam Entry",
+          url: "/exams/entry",
+          icon: "icon-people"
+        },
+        {
+          name: "Exams List",
+          url: "/exams/all",
+          icon: "icon-people"
+        }
+      ]
     }
   ]
 };

@@ -39,9 +39,11 @@ export default props => {
               </Button>
             </Link>{" "}
             &nbsp;
-            <Button color="warning" size="sm" className="btn-pill">
-              Edit
-            </Button>{" "}
+            <Link to="/student/edit/123">
+              <Button color="warning" size="sm" className="btn-pill">
+                Edit
+              </Button>{" "}
+            </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
               Delete
@@ -67,9 +69,11 @@ export default props => {
               </Button>
             </Link>{" "}
             &nbsp;
-            <Button color="warning" size="sm" className="btn-pill">
-              Edit
-            </Button>{" "}
+            <Link to="/student/edit/123">
+              <Button color="warning" size="sm" className="btn-pill">
+                Edit
+              </Button>{" "}
+            </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
               Delete
@@ -95,9 +99,11 @@ export default props => {
               </Button>
             </Link>{" "}
             &nbsp;
-            <Button color="warning" size="sm" className="btn-pill">
-              Edit
-            </Button>{" "}
+            <Link to="/student/edit/123">
+              <Button color="warning" size="sm" className="btn-pill">
+                Edit
+              </Button>{" "}
+            </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
               Delete
@@ -123,9 +129,11 @@ export default props => {
               </Button>
             </Link>{" "}
             &nbsp;
-            <Button color="warning" size="sm" className="btn-pill">
-              Edit
-            </Button>{" "}
+            <Link to="/student/edit/123">
+              <Button color="warning" size="sm" className="btn-pill">
+                Edit
+              </Button>{" "}
+            </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
               Delete
@@ -151,9 +159,11 @@ export default props => {
               </Button>
             </Link>{" "}
             &nbsp;
-            <Button color="warning" size="sm" className="btn-pill">
-              Edit
-            </Button>{" "}
+            <Link to="/student/edit/123">
+              <Button color="warning" size="sm" className="btn-pill">
+                Edit
+              </Button>{" "}
+            </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
               Delete
@@ -179,9 +189,11 @@ export default props => {
               </Button>
             </Link>{" "}
             &nbsp;
-            <Button color="warning" size="sm" className="btn-pill">
-              Edit
-            </Button>{" "}
+            <Link to="/student/edit/123">
+              <Button color="warning" size="sm" className="btn-pill">
+                Edit
+              </Button>{" "}
+            </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
               Delete

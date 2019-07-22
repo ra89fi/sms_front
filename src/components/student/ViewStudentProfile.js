@@ -39,10 +39,10 @@ export default props => {
             </CardBody>
           </Card>
           <Link to="/student/edit/123">
-            <Button block color="primary">
-              Edit Profile
-            </Button>
+            <Button color="warning">Edit Profile</Button>
           </Link>
+          &nbsp;
+          <Button color="danger">Delete Student</Button>
         </Col>
         <Col xs="9">
           <Card>
