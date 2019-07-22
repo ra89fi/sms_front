@@ -10,6 +10,9 @@ import ExamEntry from "./components/exam/ExamEntry";
 import ExamList from "./components/exam/ExamList";
 import ExamDetails from "./components/exam/ExamDetails";
 import ExamMarks from "./components/exam/ExamMarks";
+import TeachersEntry from "./components/teacher/TeachersEntry";
+import TeachersList from "./components/teacher/TeachersList";
+import TeacherProfile from "./components/teacher/TeacherProfile";
 
 const Dashboard = React.lazy(() => import("./components/organization/OrganizationDashboard"));
 
@@ -75,6 +78,23 @@ const routes = [
     exact: true,
     name: "Exam Marks",
     component: ExamMarks
+  },
+  {
+    path: "/teachers/entry/",
+    name: "Teachers Form",
+    component: TeachersEntry
+  },
+  {
+    path: "/teachers/all",
+    exact: true,
+    name: " Teachers List",
+    component: TeachersList
+  },
+  {
+    path: "/teachers/profile/:id",
+    exact: true,
+    name: " Teachers Profile",
+    component: TeacherProfile
   }
 ];
 

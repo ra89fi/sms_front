@@ -59,6 +59,23 @@ export default {
           icon: "icon-people"
         }
       ]
+    },
+    {
+      name: "Teachers",
+      url: "/teachers",
+      icon: "icon-people",
+      children: [
+        {
+          name: "Teacher Entry",
+          url: "/teachers/entry",
+          icon: "icon-people"
+        },
+        {
+          name: "Teachers List",
+          url: "/teachers/all",
+          icon: "icon-people"
+        }
+      ]
     }
   ]
 };
