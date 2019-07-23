@@ -9,9 +9,14 @@ export default props => {
         <Col xs="3">
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-              Sumaya Akter Brishti <i className="icon-user-female icons" />
+              <strong>Sumaya Akter Brishti</strong> <i className="icon-user-female icons" />
             </CardHeader>
             <CardBody>
+              <Row>
+                <Col style={{ marginBottom: "20px" }}>
+                  <img src={"../../assets/img/avatars/5.jpg"} alt="" />
+                </Col>
+              </Row>
               <Row>
                 <Col>Roll No</Col>
                 <Col>: 1346345</Col>

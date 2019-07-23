@@ -3,11 +3,7 @@ export default {
     {
       name: "Dashboard",
       url: "/dashboard",
-      icon: "icon-speedometer",
-      badge: {
-        variant: "info",
-        text: "NEW"
-      }
+      icon: "icon-speedometer"
     },
     {
       name: "Student",
@@ -73,6 +69,18 @@ export default {
         {
           name: "Teachers List",
           url: "/teachers/all",
+          icon: "icon-people"
+        }
+      ]
+    },
+    {
+      name: "Users",
+      url: "/users",
+      icon: "icon-people",
+      children: [
+        {
+          name: "User List",
+          url: "/users/all",
           icon: "icon-people"
         }
       ]

@@ -7,7 +7,7 @@ class TeacherList extends Component {
     return (
       <Card>
         <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-          Teachers List <i className="icon-people icons" />
+          <strong>Teachers List</strong> <i className="icon-list icons" />
         </CardHeader>
         <CardBody>
           <Table responsive>
@@ -33,12 +33,12 @@ class TeacherList extends Component {
                     <Button color="success" size="sm" className="btn-pill">
                       View
                     </Button>
-                  </Link>{" "}
+                  </Link>
                   &nbsp;
                   <Link to="/teachers/entry/123">
                     <Button color="warning" size="sm" className="btn-pill">
                       Edit
-                    </Button>{" "}
+                    </Button>
                   </Link>
                   &nbsp;
                   <Button color="danger" size="sm" className="btn-pill">

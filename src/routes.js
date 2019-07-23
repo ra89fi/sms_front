@@ -13,6 +13,8 @@ import ExamMarks from "./components/exam/ExamMarks";
 import TeachersEntry from "./components/teacher/TeachersEntry";
 import TeachersList from "./components/teacher/TeachersList";
 import TeacherProfile from "./components/teacher/TeacherProfile";
+import UesrsList from "./components/common/UesrsList";
+import UserProfile from "./components/common/UserProfile";
 
 const Dashboard = React.lazy(() => import("./components/organization/OrganizationDashboard"));
 
@@ -95,6 +97,18 @@ const routes = [
     exact: true,
     name: " Teachers Profile",
     component: TeacherProfile
+  },
+  {
+    path: "/users/all",
+    exact: true,
+    name: " User List",
+    component: UesrsList
+  },
+  {
+    path: "/users/profile/:id",
+    exact: true,
+    name: " User Profile",
+    component: UserProfile
   }
 ];
 

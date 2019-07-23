@@ -7,7 +7,9 @@ export default props => {
     <Row>
       <Col>
         <Card>
-          <CardHeader>Entry Marks</CardHeader>
+          <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
+            <strong>Entry Marks</strong> <i className="icon-note icons" />
+          </CardHeader>
           <CardBody>
             <Row>
               <Col xs="4">

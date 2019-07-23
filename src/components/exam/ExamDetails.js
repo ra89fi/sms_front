@@ -10,7 +10,7 @@ export default props => {
         <Col>
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-              Exam Details <i className="icon-people icons" />
+              <strong>Exam Details</strong> <i className="icon-docs icons" />
             </CardHeader>
             <CardBody>
               <Row>
@@ -60,7 +60,9 @@ export default props => {
       <Row>
         <Col>
           <Card>
-            <CardHeader>Marks Details</CardHeader>
+            <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
+              <strong>Marks Details</strong> <i className="icon-list icons" />
+            </CardHeader>
             <CardBody>
               <Table responsive>
                 <thead>

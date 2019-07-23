@@ -6,7 +6,7 @@ export default props => {
   return (
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-        Exam List <i className="icon-people icons" />
+        <strong>Exam List</strong> <i className="icon-list icons" />
       </CardHeader>
       <CardBody>
         <Table responsive>
@@ -34,13 +34,13 @@ export default props => {
                   <Button color="success" size="sm" className="btn-pill">
                     View
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Link to="/exams/entry/123">
                   <Button color="warning" size="sm" className="btn-pill">
                     Edit
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Button color="danger" size="sm" className="btn-pill">
                   Delete
@@ -65,13 +65,13 @@ export default props => {
                   <Button color="success" size="sm" className="btn-pill">
                     View
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Link to="/exams/entry/123">
                   <Button color="warning" size="sm" className="btn-pill">
                     Edit
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Button color="danger" size="sm" className="btn-pill">
                   Delete
@@ -96,13 +96,13 @@ export default props => {
                   <Button color="success" size="sm" className="btn-pill">
                     View
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Link to="/exams/entry/123">
                   <Button color="warning" size="sm" className="btn-pill">
                     Edit
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Button color="danger" size="sm" className="btn-pill">
                   Delete
@@ -127,13 +127,13 @@ export default props => {
                   <Button color="success" size="sm" className="btn-pill">
                     View
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Link to="/exams/entry/123">
                   <Button color="warning" size="sm" className="btn-pill">
                     Edit
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Button color="danger" size="sm" className="btn-pill">
                   Delete
@@ -158,13 +158,13 @@ export default props => {
                   <Button color="success" size="sm" className="btn-pill">
                     View
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Link to="/exams/entry/123">
                   <Button color="warning" size="sm" className="btn-pill">
                     Edit
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Button color="danger" size="sm" className="btn-pill">
                   Delete
@@ -189,13 +189,13 @@ export default props => {
                   <Button color="success" size="sm" className="btn-pill">
                     View
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Link to="/exams/entry/123">
                   <Button color="warning" size="sm" className="btn-pill">
                     Edit
                   </Button>
-                </Link>{" "}
+                </Link>
                 &nbsp;
                 <Button color="danger" size="sm" className="btn-pill">
                   Delete

@@ -5,7 +5,9 @@ import FormField from "./FormField";
 export default props => {
   return (
     <Card>
-      <CardHeader>Attendance Report</CardHeader>
+      <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
+        <strong>Attendance Report</strong> <i className="icon-note icons" />
+      </CardHeader>
       <CardBody>
         <Row>
           <Col>

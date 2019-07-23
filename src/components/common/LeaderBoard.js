@@ -5,7 +5,7 @@ export default props => {
   return (
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-        {props.name} <i className="icon-chart icons" />
+        <strong>{props.name}</strong> <i className="icon-chart icons" />
       </CardHeader>
       <CardBody>
         <Table responsive>

@@ -65,7 +65,9 @@ export default props => {
               </Col>
             </Row>
           </Col>
-          <Col xs="3">Photo upload here</Col>
+          <Col xs="3">
+            <img src={"../../assets/img/avatars/5.jpg"} alt="" />
+          </Col>
         </Row>
         <Row>
           <Col>

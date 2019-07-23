@@ -36,17 +36,10 @@ export default props => {
             </CardBody>
           </Card>
           <div className="quickLink">
-            <Link to="/teachers/entry/123">
-              <Button block color="primary">
-                Edit Profile
-              </Button>
-            </Link>
+            <Button block color="danger">
+              Delete Profile
+            </Button>
           </div>
-        </Col>
-        <Col xs="9">
-          <Card>
-            <CardBody>Info here</CardBody>
-          </Card>
         </Col>
       </Row>
     </div>

@@ -7,7 +7,7 @@ class StudentList extends Component {
     return (
       <Card>
         <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-          Student List <i className="icon-people icons" />
+          <strong>Student List</strong> <i className="icon-list icons" />
         </CardHeader>
         <CardBody>
           <List />

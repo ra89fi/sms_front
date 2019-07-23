@@ -5,7 +5,7 @@ export default props => {
   return (
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-        Attendance Report
+        <strong>Attendance Report</strong>
         <Button color="primary" outline onClick={props.onClick}>
           Go Back
         </Button>
@@ -14,11 +14,17 @@ export default props => {
         <Row>
           <Col>
             <div style={{ textAlign: "center" }}>
-              <p>Class: {props.class}</p>
-              <p>Subject: {props.subject}</p>
-              <p>Session: {props.session}</p>
               <p>
-                From {props.from} To {props.to}
+                Class: <strong>{props.class}</strong>
+              </p>
+              <p>
+                Subject: <strong>{props.subject}</strong>
+              </p>
+              <p>
+                Session: <strong>{props.session}</strong>
+              </p>
+              <p>
+                From <strong>{props.from}</strong> To <strong>{props.to}</strong>
               </p>
               <p>
                 <Badge color="success">P</Badge> : Present, <Badge color="danger">P</Badge> :

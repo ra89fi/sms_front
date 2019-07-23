@@ -6,7 +6,7 @@ export default props => {
   return (
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-        Take Attendance
+        <strong>Take Attendance</strong>
         <Button color="primary" outline onClick={props.onClick}>
           Go Back
         </Button>
@@ -28,11 +28,11 @@ export default props => {
               <td>
                 <Button color="success" size="sm" className="btn-pill">
                   Present
-                </Button>{" "}
+                </Button>
                 &nbsp;
                 <Button color="danger" size="sm" className="btn-pill">
                   Absent
-                </Button>{" "}
+                </Button>
                 &nbsp;
                 <Button color="warning" size="sm" className="btn-pill">
                   Late

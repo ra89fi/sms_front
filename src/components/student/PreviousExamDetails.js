@@ -1,53 +1,21 @@
 import React from "react";
-import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
-import FormField from "../common/FormField";
+import { Button, Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import PreviousExamSingle from "./PreviousExamSingle";
 
 export default props => {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
         <strong>Previous Exam Details</strong>
+        <i className="icon-note icons" />
       </CardHeader>
       <CardBody>
         <Row>
-          <Col>
-            <FormField type="text" placeholder="Name Of Exam" />
-          </Col>
-
-          <Col>
-            <FormField type="text" placeholder="Group/Subject" />
-          </Col>
-
-          <Col>
-            <FormField type="text" placeholder="School" />
-          </Col>
-
-          <Col>
-            <FormField type="text" placeholder="Board" />
+          <Col style={{ marginBottom: "20px" }}>
+            <Button color="primary">Add Exam</Button>
           </Col>
         </Row>
-
-        <Row>
-          <Col>
-            <FormField type="text" placeholder="Roll No" />
-          </Col>
-
-          <Col>
-            <FormField type="text" placeholder="Registration No" />
-          </Col>
-
-          <Col>
-            <FormField type="text" placeholder="GPA/CGPA" />
-          </Col>
-
-          <Col>
-            <FormField type="text" placeholder="Out Of" />
-          </Col>
-
-          <Col>
-            <FormField type="text" placeholder="Passing Year" />
-          </Col>
-        </Row>
+        {false && <PreviousExamSingle />}
       </CardBody>
     </Card>
   );

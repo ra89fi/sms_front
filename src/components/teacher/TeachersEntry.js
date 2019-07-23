@@ -11,7 +11,7 @@ class TeachersEntry extends Component {
     return (
       <Card>
         <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-          <strong>Teachers Details</strong>
+          <strong>Teacher's Details</strong>
           <i className="icon-note icons" />
         </CardHeader>
         <CardBody>
@@ -36,15 +36,22 @@ class TeachersEntry extends Component {
                   <FormField type="text" placeholder="Mobile No" />
                 </Col>
               </Row>
-
               <Row>
-                <Col xs="2">
+                <Col>
+                  <FormField type="date" placeholder="Birth Date" />
+                </Col>
+                <Col>
+                  <FormField type="select" placeholder="Religion" values={["Option1", "Option2"]} />
+                </Col>
+                <Col>
                   <FormField
                     type="select"
                     placeholder="Blood Group"
                     values={["Option1", "Option2"]}
                   />
                 </Col>
+              </Row>
+              <Row>
                 <Col xs="5">
                   <FormField
                     type="radio"
@@ -53,7 +60,7 @@ class TeachersEntry extends Component {
                     values={["Male", "Female", "Other"]}
                   />
                 </Col>
-                <Col xs="5">
+                <Col xs="7">
                   <FormField
                     type="radio"
                     onChange={e => console.log(e.target.name, e.target.value)}
@@ -63,7 +70,9 @@ class TeachersEntry extends Component {
                 </Col>
               </Row>
             </Col>
-            <Col xs="3">Photo upload here</Col>
+            <Col xs="3">
+              <img src={"../../assets/img/avatars/8.jpg"} alt="" />
+            </Col>
           </Row>
           <Row>
             <Col>

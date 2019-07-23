@@ -5,7 +5,7 @@ export default props => {
   return (
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-        {props.name}
+        <strong>{props.name}</strong>
         <i className={["icons", props.icon].join(" ")} />
       </CardHeader>
       <CardBody>

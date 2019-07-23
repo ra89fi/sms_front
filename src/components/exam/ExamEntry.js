@@ -7,7 +7,7 @@ export default props => {
   return (
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-        Exam Entry <i className="icon-people icons" />
+        <strong>Exam Entry</strong> <i className="icon-note icons" />
       </CardHeader>
       <CardBody>
         <Row>

@@ -37,12 +37,12 @@ export default props => {
               <Button color="success" size="sm" className="btn-pill">
                 View
               </Button>
-            </Link>{" "}
+            </Link>
             &nbsp;
             <Link to="/student/edit/123">
               <Button color="warning" size="sm" className="btn-pill">
                 Edit
-              </Button>{" "}
+              </Button>
             </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
@@ -67,12 +67,12 @@ export default props => {
               <Button color="success" size="sm" className="btn-pill">
                 View
               </Button>
-            </Link>{" "}
+            </Link>
             &nbsp;
             <Link to="/student/edit/123">
               <Button color="warning" size="sm" className="btn-pill">
                 Edit
-              </Button>{" "}
+              </Button>
             </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
@@ -97,12 +97,12 @@ export default props => {
               <Button color="success" size="sm" className="btn-pill">
                 View
               </Button>
-            </Link>{" "}
+            </Link>
             &nbsp;
             <Link to="/student/edit/123">
               <Button color="warning" size="sm" className="btn-pill">
                 Edit
-              </Button>{" "}
+              </Button>
             </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
@@ -127,12 +127,12 @@ export default props => {
               <Button color="success" size="sm" className="btn-pill">
                 View
               </Button>
-            </Link>{" "}
+            </Link>
             &nbsp;
             <Link to="/student/edit/123">
               <Button color="warning" size="sm" className="btn-pill">
                 Edit
-              </Button>{" "}
+              </Button>
             </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
@@ -157,12 +157,12 @@ export default props => {
               <Button color="success" size="sm" className="btn-pill">
                 View
               </Button>
-            </Link>{" "}
+            </Link>
             &nbsp;
             <Link to="/student/edit/123">
               <Button color="warning" size="sm" className="btn-pill">
                 Edit
-              </Button>{" "}
+              </Button>
             </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
@@ -187,12 +187,12 @@ export default props => {
               <Button color="success" size="sm" className="btn-pill">
                 View
               </Button>
-            </Link>{" "}
+            </Link>
             &nbsp;
             <Link to="/student/edit/123">
               <Button color="warning" size="sm" className="btn-pill">
                 Edit
-              </Button>{" "}
+              </Button>
             </Link>
             &nbsp;
             <Button color="danger" size="sm" className="btn-pill">
