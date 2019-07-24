@@ -6,8 +6,8 @@ export default props => {
   return (
     <Col>
       {props.data.map((item, i) => (
-        <div style={{ marginBottom: "20px" }} className="quickLink">
-          <Link to={item.to} key={i}>
+        <div style={{ marginBottom: "20px" }} className="quickLink" key={i}>
+          <Link to={item.to}>
             <Button block color="primary">
               {item.name}
             </Button>

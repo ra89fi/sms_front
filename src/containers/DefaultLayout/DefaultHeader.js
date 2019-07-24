@@ -29,10 +29,7 @@ class DefaultHeader extends Component {
     return (
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
-        <span>&nbsp;</span>
-        <span>&nbsp;</span>
-        <h5>Dept. of Geography</h5>
-        <span>&nbsp;</span>
+        <h6 style={{ position: "relative", left: "40px", marginRight: "60px" }}>Geography</h6>
         <AppSidebarToggler className="d-md-down-none" display="lg" />
 
         <Nav className="ml-auto" navbar>

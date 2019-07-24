@@ -3,6 +3,10 @@ import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 import FormField from "../common/FormField";
 
 export default props => {
+  const { father = {}, mother = {} } = props;
+
+  const changeHandler = e => {};
+
   return (
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
@@ -18,22 +22,42 @@ export default props => {
         </Row>
         <Row>
           <Col>
-            <FormField type="text" placeholder="First Name" />
+            <FormField
+              type="text"
+              placeholder="First Name *"
+              name="firstName"
+              value={father.firstName}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Last Name" />
+            <FormField
+              type="text"
+              placeholder="Last Name *"
+              name="lastName"
+              value={father.lastName}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Profession" />
+            <FormField
+              type="text"
+              placeholder="Profession"
+              name="profession"
+              value={father.profession}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Mobile No" />
+            <FormField
+              type="text"
+              placeholder="Mobile No"
+              name="mobileNo"
+              value={father.mobileNo}
+              onChange={changeHandler}
+            />
           </Col>
         </Row>
-
         <Row>
           <Col>
             <strong>Mother</strong>
@@ -42,19 +66,40 @@ export default props => {
         </Row>
         <Row>
           <Col>
-            <FormField type="text" placeholder="First Name" />
+            <FormField
+              type="text"
+              placeholder="First Name *"
+              name="firstName"
+              value={mother.firstName}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Last Name" />
+            <FormField
+              type="text"
+              placeholder="Last Name *"
+              name="lastName"
+              value={mother.lastName}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Profession" />
+            <FormField
+              type="text"
+              placeholder="Profession"
+              name="profession"
+              value={mother.profession}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Mobile No" />
+            <FormField
+              type="text"
+              placeholder="Mobile No"
+              name="mobileNo"
+              value={mother.mobileNo}
+              onChange={changeHandler}
+            />
           </Col>
         </Row>
       </CardBody>

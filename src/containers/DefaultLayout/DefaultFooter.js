@@ -17,7 +17,7 @@ class DefaultFooter extends Component {
         <span>&copy; 2019</span>
         <span className="ml-auto">
           Powered by{" "}
-          <a href="https://utshabtech.com" target="_blank">
+          <a href="https://utshabtech.com" target="_blank" rel="noopener noreferrer">
             Utshab Technologies
           </a>
         </span>

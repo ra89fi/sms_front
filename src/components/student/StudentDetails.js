@@ -1,8 +1,19 @@
 import React from "react";
 import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 import FormField from "../common/FormField";
+// import { updateStudent } from "../../actions/student";
+// import configureStore from "../../store/configureStore";
+
+// const store = configureStore();
 
 export default props => {
+  const changeHandler = e => {
+    const values = {
+      [e.target.name]: e.target.value
+    };
+    // store.dispatch(updateStudent(values, "studentDetails"));
+  };
+
   return (
     <Card>
       <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
@@ -14,35 +25,81 @@ export default props => {
           <Col>
             <Row>
               <Col>
-                <FormField type="text" placeholder="First Name" />
+                <FormField
+                  type="text"
+                  placeholder="First Name *"
+                  name="firstName"
+                  value={props.firstName}
+                  onChange={changeHandler}
+                />
               </Col>
               <Col>
-                <FormField type="text" placeholder="Last Name" />
+                <FormField
+                  type="text"
+                  placeholder="Last Name *"
+                  name="lastName"
+                  value={props.lastName}
+                  onChange={changeHandler}
+                />
               </Col>
             </Row>
             <Row>
               <Col>
-                <FormField type="text" placeholder="Nationality" />
+                <FormField
+                  type="text"
+                  placeholder="Nationality *"
+                  name="nationality"
+                  value={props.nationality}
+                  onChange={changeHandler}
+                />
               </Col>
               <Col>
-                <FormField type="text" placeholder="Email" />
+                <FormField
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  value={props.email}
+                  onChange={changeHandler}
+                />
               </Col>
               <Col>
-                <FormField type="text" placeholder="Mobile No" />
+                <FormField
+                  type="text"
+                  placeholder="Mobile No *"
+                  name="mobileNo"
+                  value={props.mobileNo}
+                  onChange={changeHandler}
+                />
               </Col>
             </Row>
             <Row>
               <Col>
-                <FormField type="date" placeholder="Birth Date" />
+                <FormField
+                  type="date"
+                  placeholder="Birth Date *"
+                  name="birthDate"
+                  value={props.birthDate}
+                  onChange={changeHandler}
+                />
               </Col>
               <Col>
-                <FormField type="select" placeholder="Religion" values={["Option1", "Option2"]} />
+                <FormField
+                  type="select"
+                  placeholder="Religion *"
+                  values={["", "Islam", "Hinduism", "Christianity", "Buddism", "Other"]}
+                  name="religion"
+                  value={props.religion}
+                  onChange={changeHandler}
+                />
               </Col>
               <Col>
                 <FormField
                   type="select"
                   placeholder="Blood Group"
-                  values={["Option1", "Option2"]}
+                  values={["", "A+", "B+", "AB+", "O+", "A-", "B-", "AB-", "O-"]}
+                  name="bloodGroup"
+                  value={props.bloodGroup}
+                  onChange={changeHandler}
                 />
               </Col>
             </Row>
@@ -50,17 +107,21 @@ export default props => {
               <Col xs="5">
                 <FormField
                   type="radio"
-                  onChange={e => console.log(e.target.name, e.target.value)}
-                  placeholder="Gender"
+                  placeholder="Gender *"
                   values={["Male", "Female", "Other"]}
+                  name="gender"
+                  value={props.gender}
+                  onChange={changeHandler}
                 />
               </Col>
               <Col xs="7">
                 <FormField
                   type="radio"
-                  onChange={e => console.log(e.target.name, e.target.value)}
-                  placeholder="Marital Status"
+                  placeholder="Marital Status *"
                   values={["Single", "Married"]}
+                  name="maritalStatus"
+                  value={props.maritalStatus}
+                  onChange={changeHandler}
                 />
               </Col>
             </Row>
@@ -77,19 +138,40 @@ export default props => {
         </Row>
         <Row>
           <Col>
-            <FormField type="text" placeholder="Village/Road" />
+            <FormField
+              type="text"
+              placeholder="Village/Road *"
+              name="presAddVillage"
+              value={props.presAddVillage}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Post Office" />
+            <FormField
+              type="text"
+              placeholder="Post Office *"
+              name="presAddPO"
+              value={props.presAddPO}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Upazila" />
+            <FormField
+              type="text"
+              placeholder="Upazilla *"
+              name="presAddUpazilla"
+              value={props.presAddUpazilla}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="District" />
+            <FormField
+              type="text"
+              placeholder="District *"
+              name="presAddDistrict"
+              value={props.presAddDistrict}
+              onChange={changeHandler}
+            />
           </Col>
         </Row>
         <Row>
@@ -100,19 +182,40 @@ export default props => {
         </Row>
         <Row>
           <Col>
-            <FormField type="text" placeholder="Village/Road" />
+            <FormField
+              type="text"
+              placeholder="Village/Road *"
+              name="permAddVillage"
+              value={props.permAddVillage}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Post Office" />
+            <FormField
+              type="text"
+              placeholder="Post Office *"
+              name="permAddPO"
+              value={props.permAddPO}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="Upazila" />
+            <FormField
+              type="text"
+              placeholder="Upazilla *"
+              name="permAddUpazilla"
+              value={props.permAddUpazilla}
+              onChange={changeHandler}
+            />
           </Col>
-
           <Col>
-            <FormField type="text" placeholder="District" />
+            <FormField
+              type="text"
+              placeholder="District *"
+              name="permAddDistrict"
+              value={props.permAddDistrict}
+              onChange={changeHandler}
+            />
           </Col>
         </Row>
       </CardBody>

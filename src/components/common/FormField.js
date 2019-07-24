@@ -1,13 +1,14 @@
 import React from "react";
 import { FormGroup, Label, Col, FormText, Input } from "reactstrap";
 
-const style = {
-  border: "1px solid rgb(115,129,143, 0.4)"
-};
-
 export default props => {
+  const style = {
+    border: props.error ? "1px solid rgb(200,0,0, 0.4)" : "1px solid rgb(115,129,143, 0.4)"
+  };
+
   const changeHandler = e => props.onChange(e);
   let inputElement = null;
+
   switch (props.type) {
     case "text":
       inputElement = (
@@ -21,7 +22,7 @@ export default props => {
               onChange={changeHandler}
               value={props.value}
             />
-            {false && <FormText color="muted">This is a help text</FormText>}
+            {props.error ? <FormText color="danger">* {props.error}</FormText> : ""}
           </Col>
         </FormGroup>
       );
@@ -40,7 +41,7 @@ export default props => {
               onChange={changeHandler}
               value={props.value}
             />
-            {false && <FormText color="muted">This is a help text</FormText>}
+            {props.error ? <FormText color="danger">* {props.error}</FormText> : ""}
           </Col>
         </FormGroup>
       );
@@ -64,6 +65,7 @@ export default props => {
               </option>
             ))}
           </Input>
+          {props.error ? <FormText color="danger">* {props.error}</FormText> : ""}
         </FormGroup>
       );
       break;
@@ -77,21 +79,22 @@ export default props => {
             </Col>
           )}
           <Col md="9">
-            {props.values.map(val => (
-              <FormGroup check inline>
+            {props.values.map((val, i) => (
+              <FormGroup check inline key={i}>
                 <Input
                   className="form-check-input"
                   type="radio"
-                  id={props.placeholder}
-                  name={props.placeholder}
+                  id={val}
+                  name={props.name}
                   onChange={changeHandler}
                   value={val}
                 />
-                <Label className="form-check-label" check htmlFor={props.placeholder}>
+                <Label className="form-check-label" check htmlFor={val}>
                   {val}
                 </Label>
               </FormGroup>
             ))}
+            {props.error ? <FormText color="danger">* {props.error}</FormText> : ""}
           </Col>
         </FormGroup>
       );
