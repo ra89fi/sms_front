@@ -26,7 +26,7 @@ export default {
   },
   parentDetails: {
     father: {
-      firstName: "",
+      firstName: "hi",
       lastName: "",
       profession: "",
       mobileNo: ""

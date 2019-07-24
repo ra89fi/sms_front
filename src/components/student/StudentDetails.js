@@ -1,17 +1,56 @@
 import React from "react";
 import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import configureStore from "../../store/configureStore";
 import FormField from "../common/FormField";
-// import { updateStudent } from "../../actions/student";
-// import configureStore from "../../store/configureStore";
+import { updateStudentDetails } from "../../actions/student";
 
-// const store = configureStore();
+const store = configureStore();
 
 export default props => {
+  const {
+    firstName,
+    lastName,
+    nationality,
+    email,
+    mobileNo,
+    birthDate,
+    religion,
+    bloodGroup,
+    gender,
+    maritalStatus,
+    presAddVillage,
+    presAddPO,
+    presAddUpazilla,
+    presAddDistrict,
+    permAddVillage,
+    permAddPO,
+    permAddUpazilla,
+    permAddDistrict
+  } = props;
+
   const changeHandler = e => {
     const values = {
+      firstName,
+      lastName,
+      nationality,
+      email,
+      mobileNo,
+      birthDate,
+      religion,
+      bloodGroup,
+      gender,
+      maritalStatus,
+      presAddVillage,
+      presAddPO,
+      presAddUpazilla,
+      presAddDistrict,
+      permAddVillage,
+      permAddPO,
+      permAddUpazilla,
+      permAddDistrict,
       [e.target.name]: e.target.value
     };
-    // store.dispatch(updateStudent(values, "studentDetails"));
+    store.dispatch(updateStudentDetails(values, "studentDetails"));
   };
 
   return (
@@ -29,7 +68,7 @@ export default props => {
                   type="text"
                   placeholder="First Name *"
                   name="firstName"
-                  value={props.firstName}
+                  value={firstName}
                   onChange={changeHandler}
                 />
               </Col>
@@ -38,7 +77,7 @@ export default props => {
                   type="text"
                   placeholder="Last Name *"
                   name="lastName"
-                  value={props.lastName}
+                  value={lastName}
                   onChange={changeHandler}
                 />
               </Col>
@@ -49,7 +88,7 @@ export default props => {
                   type="text"
                   placeholder="Nationality *"
                   name="nationality"
-                  value={props.nationality}
+                  value={nationality}
                   onChange={changeHandler}
                 />
               </Col>
@@ -58,7 +97,7 @@ export default props => {
                   type="text"
                   placeholder="Email"
                   name="email"
-                  value={props.email}
+                  value={email}
                   onChange={changeHandler}
                 />
               </Col>
@@ -67,7 +106,7 @@ export default props => {
                   type="text"
                   placeholder="Mobile No *"
                   name="mobileNo"
-                  value={props.mobileNo}
+                  value={mobileNo}
                   onChange={changeHandler}
                 />
               </Col>
@@ -78,7 +117,7 @@ export default props => {
                   type="date"
                   placeholder="Birth Date *"
                   name="birthDate"
-                  value={props.birthDate}
+                  value={birthDate}
                   onChange={changeHandler}
                 />
               </Col>
@@ -88,7 +127,7 @@ export default props => {
                   placeholder="Religion *"
                   values={["", "Islam", "Hinduism", "Christianity", "Buddism", "Other"]}
                   name="religion"
-                  value={props.religion}
+                  value={religion}
                   onChange={changeHandler}
                 />
               </Col>
@@ -98,7 +137,7 @@ export default props => {
                   placeholder="Blood Group"
                   values={["", "A+", "B+", "AB+", "O+", "A-", "B-", "AB-", "O-"]}
                   name="bloodGroup"
-                  value={props.bloodGroup}
+                  value={bloodGroup}
                   onChange={changeHandler}
                 />
               </Col>
@@ -110,7 +149,7 @@ export default props => {
                   placeholder="Gender *"
                   values={["Male", "Female", "Other"]}
                   name="gender"
-                  value={props.gender}
+                  value={gender}
                   onChange={changeHandler}
                 />
               </Col>
@@ -120,7 +159,7 @@ export default props => {
                   placeholder="Marital Status *"
                   values={["Single", "Married"]}
                   name="maritalStatus"
-                  value={props.maritalStatus}
+                  value={maritalStatus}
                   onChange={changeHandler}
                 />
               </Col>
@@ -142,7 +181,7 @@ export default props => {
               type="text"
               placeholder="Village/Road *"
               name="presAddVillage"
-              value={props.presAddVillage}
+              value={presAddVillage}
               onChange={changeHandler}
             />
           </Col>
@@ -151,7 +190,7 @@ export default props => {
               type="text"
               placeholder="Post Office *"
               name="presAddPO"
-              value={props.presAddPO}
+              value={presAddPO}
               onChange={changeHandler}
             />
           </Col>
@@ -160,7 +199,7 @@ export default props => {
               type="text"
               placeholder="Upazilla *"
               name="presAddUpazilla"
-              value={props.presAddUpazilla}
+              value={presAddUpazilla}
               onChange={changeHandler}
             />
           </Col>
@@ -169,7 +208,7 @@ export default props => {
               type="text"
               placeholder="District *"
               name="presAddDistrict"
-              value={props.presAddDistrict}
+              value={presAddDistrict}
               onChange={changeHandler}
             />
           </Col>
@@ -186,7 +225,7 @@ export default props => {
               type="text"
               placeholder="Village/Road *"
               name="permAddVillage"
-              value={props.permAddVillage}
+              value={permAddVillage}
               onChange={changeHandler}
             />
           </Col>
@@ -195,7 +234,7 @@ export default props => {
               type="text"
               placeholder="Post Office *"
               name="permAddPO"
-              value={props.permAddPO}
+              value={permAddPO}
               onChange={changeHandler}
             />
           </Col>
@@ -204,7 +243,7 @@ export default props => {
               type="text"
               placeholder="Upazilla *"
               name="permAddUpazilla"
-              value={props.permAddUpazilla}
+              value={permAddUpazilla}
               onChange={changeHandler}
             />
           </Col>
@@ -213,7 +252,7 @@ export default props => {
               type="text"
               placeholder="District *"
               name="permAddDistrict"
-              value={props.permAddDistrict}
+              value={permAddDistrict}
               onChange={changeHandler}
             />
           </Col>

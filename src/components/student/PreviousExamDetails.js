@@ -15,7 +15,7 @@ export default props => {
             <Button color="primary">Add Exam</Button>
           </Col>
         </Row>
-        {false && <PreviousExamSingle />}
+        {true && <PreviousExamSingle />}
       </CardBody>
     </Card>
   );

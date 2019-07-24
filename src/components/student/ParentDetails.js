@@ -1,11 +1,29 @@
 import React from "react";
 import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import configureStore from "../../store/configureStore";
 import FormField from "../common/FormField";
+import { updateFatherDetails, updateMotherDetails } from "../../actions/student";
+
+const store = configureStore();
 
 export default props => {
   const { father = {}, mother = {} } = props;
 
-  const changeHandler = e => {};
+  const changeHandlerFather = e => {
+    const values = {
+      ...father,
+      [e.target.name]: e.target.value
+    };
+    store.dispatch(updateFatherDetails(values));
+  };
+
+  const changeHandlerMother = e => {
+    const values = {
+      ...mother,
+      [e.target.name]: e.target.value
+    };
+    store.dispatch(updateMotherDetails(values));
+  };
 
   return (
     <Card>
@@ -27,7 +45,7 @@ export default props => {
               placeholder="First Name *"
               name="firstName"
               value={father.firstName}
-              onChange={changeHandler}
+              onChange={changeHandlerFather}
             />
           </Col>
           <Col>
@@ -36,7 +54,7 @@ export default props => {
               placeholder="Last Name *"
               name="lastName"
               value={father.lastName}
-              onChange={changeHandler}
+              onChange={changeHandlerFather}
             />
           </Col>
           <Col>
@@ -45,7 +63,7 @@ export default props => {
               placeholder="Profession"
               name="profession"
               value={father.profession}
-              onChange={changeHandler}
+              onChange={changeHandlerFather}
             />
           </Col>
           <Col>
@@ -54,7 +72,7 @@ export default props => {
               placeholder="Mobile No"
               name="mobileNo"
               value={father.mobileNo}
-              onChange={changeHandler}
+              onChange={changeHandlerFather}
             />
           </Col>
         </Row>
@@ -71,7 +89,7 @@ export default props => {
               placeholder="First Name *"
               name="firstName"
               value={mother.firstName}
-              onChange={changeHandler}
+              onChange={changeHandlerMother}
             />
           </Col>
           <Col>
@@ -80,7 +98,7 @@ export default props => {
               placeholder="Last Name *"
               name="lastName"
               value={mother.lastName}
-              onChange={changeHandler}
+              onChange={changeHandlerMother}
             />
           </Col>
           <Col>
@@ -89,7 +107,7 @@ export default props => {
               placeholder="Profession"
               name="profession"
               value={mother.profession}
-              onChange={changeHandler}
+              onChange={changeHandlerMother}
             />
           </Col>
           <Col>
@@ -98,7 +116,7 @@ export default props => {
               placeholder="Mobile No"
               name="mobileNo"
               value={mother.mobileNo}
-              onChange={changeHandler}
+              onChange={changeHandlerMother}
             />
           </Col>
         </Row>

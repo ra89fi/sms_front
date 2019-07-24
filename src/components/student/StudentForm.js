@@ -26,6 +26,7 @@ class StudentForm extends Component {
   };
 
   submitHandler = () => {};
+  resetHandler = () => {};
 
   render() {
     return (
@@ -111,12 +112,12 @@ class StudentForm extends Component {
         </Row>
         <Row>
           <Col>
-            <StudentDetails />
+            <StudentDetails {...this.state.studentDetails} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <ParentDetails />
+            <ParentDetails {...this.state.parentDetails} />
           </Col>
         </Row>
         <Row>
@@ -126,7 +127,12 @@ class StudentForm extends Component {
         </Row>
         <Row>
           <Col style={{ marginBottom: "20px" }}>
-            <Button block color="primary" onClick={this.submitHandler}>
+            <Button block color="secondary" onClick={this.submitHandler}>
+              Clear
+            </Button>
+          </Col>
+          <Col style={{ marginBottom: "20px" }}>
+            <Button block color="primary" onClick={this.resetHandler}>
               Submit
             </Button>
           </Col>
