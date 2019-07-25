@@ -1,13 +1,31 @@
 import React from "react";
 import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import Joi from "@hapi/joi";
 import configureStore from "../../store/configureStore";
 import FormField from "../common/FormField";
 import { updateFatherDetails, updateMotherDetails } from "../../actions/student";
+import { parentDetailsSchema } from "../../validations/student";
 
 const store = configureStore();
 
 export default props => {
   const { father = {}, mother = {} } = props;
+
+  const fatherErrors = {};
+  let error = Joi.validate(father, parentDetailsSchema).error;
+  if (error) {
+    const err = error.details[0];
+    const name = err.path[0];
+    fatherErrors[name] = err.message;
+  }
+
+  const motherErrors = {};
+  error = Joi.validate(mother, parentDetailsSchema).error;
+  if (error) {
+    const err = error.details[0];
+    const name = err.path[0];
+    motherErrors[name] = err.message;
+  }
 
   const changeHandlerFather = e => {
     const values = {
@@ -46,6 +64,7 @@ export default props => {
               name="firstName"
               value={father.firstName}
               onChange={changeHandlerFather}
+              error={fatherErrors.firstName}
             />
           </Col>
           <Col>
@@ -55,6 +74,7 @@ export default props => {
               name="lastName"
               value={father.lastName}
               onChange={changeHandlerFather}
+              error={fatherErrors.lastName}
             />
           </Col>
           <Col>
@@ -64,6 +84,7 @@ export default props => {
               name="profession"
               value={father.profession}
               onChange={changeHandlerFather}
+              error={fatherErrors.profession}
             />
           </Col>
           <Col>
@@ -73,6 +94,7 @@ export default props => {
               name="mobileNo"
               value={father.mobileNo}
               onChange={changeHandlerFather}
+              error={fatherErrors.mobileNo}
             />
           </Col>
         </Row>
@@ -90,6 +112,7 @@ export default props => {
               name="firstName"
               value={mother.firstName}
               onChange={changeHandlerMother}
+              error={motherErrors.firstName}
             />
           </Col>
           <Col>
@@ -99,6 +122,7 @@ export default props => {
               name="lastName"
               value={mother.lastName}
               onChange={changeHandlerMother}
+              error={motherErrors.lastName}
             />
           </Col>
           <Col>
@@ -108,6 +132,7 @@ export default props => {
               name="profession"
               value={mother.profession}
               onChange={changeHandlerMother}
+              error={motherErrors.profession}
             />
           </Col>
           <Col>
@@ -117,6 +142,7 @@ export default props => {
               name="mobileNo"
               value={mother.mobileNo}
               onChange={changeHandlerMother}
+              error={motherErrors.mobileNo}
             />
           </Col>
         </Row>

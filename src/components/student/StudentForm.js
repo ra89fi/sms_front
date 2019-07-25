@@ -1,22 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Card, CardHeader, CardBody, Col, Row } from "reactstrap";
+import Joi from "@hapi/joi";
 import FormField from "../common/FormField";
 import ParentDetails from "./ParentDetails";
 import PreviousExamDetails from "./PreviousExamDetails";
 import student from "../../objects/student";
 import StudentDetails from "./StudentDetails";
 import { updateStudentRoot } from "../../actions/student";
+import { studentRootSchema } from "../../validations/student";
 
 class StudentForm extends Component {
   state = {
-    ...this.props.student
+    student: {
+      ...this.props.student
+    },
+    errors: {}
   };
 
-  static getDerivedStateFromProps(nextProps) {
-    return {
-      ...nextProps.student
-    };
+  componentWillReceiveProps(nextProps) {
+    const errors = {};
+    let error = Joi.validate(nextProps.student, studentRootSchema).error;
+    if (error) {
+      const err = error.details[0];
+      errors[err.path[0]] = err.message;
+    }
+    this.setState({
+      errors,
+      student: {
+        ...nextProps.student
+      }
+    });
   }
 
   changeHandler = e => {
@@ -27,9 +41,12 @@ class StudentForm extends Component {
   };
 
   submitHandler = () => {};
+
   resetHandler = () => {
     this.setState({
-      ...student
+      student: {
+        ...student
+      }
     });
     this.props.dispatch(updateStudentRoot(student));
   };
@@ -52,34 +69,36 @@ class StudentForm extends Component {
                       placeholder="Degree *"
                       values={["", "Honors", "Masters"]}
                       name="degree"
-                      value={this.state.degree}
+                      value={this.state.student.degree}
                       onChange={this.changeHandler}
+                      error={this.state.errors.degree}
                     />
                     <FormField
                       type="select"
                       placeholder="Subject *"
                       values={["", "Geography"]}
                       name="subject"
-                      value={this.state.subject}
+                      value={this.state.student.subject}
                       onChange={this.changeHandler}
+                      error={this.state.errors.subject}
                     />
                   </Col>
                   <Col xs="1" />
                   <Col xs="4" style={{ textAlign: "center" }}>
                     <h4>Department Of Geography</h4>
-                    {this.state.degree && (
+                    {this.state.student.degree && (
                       <p>
-                        Degree : <strong>{this.state.degree}</strong>
+                        Degree : <strong>{this.state.student.degree}</strong>
                       </p>
                     )}
-                    {this.state.subject && (
+                    {this.state.student.subject && (
                       <p>
-                        Subject : <strong>{this.state.subject}</strong>
+                        Subject : <strong>{this.state.student.subject}</strong>
                       </p>
                     )}
-                    {this.state.session && (
+                    {this.state.student.session && (
                       <p>
-                        Session : <strong>{this.state.session}</strong>
+                        Session : <strong>{this.state.student.session}</strong>
                       </p>
                     )}
                     <p>
@@ -93,22 +112,25 @@ class StudentForm extends Component {
                       placeholder="Session *"
                       values={["", "2019-20", "2020-21"]}
                       name="session"
-                      value={this.state.session}
+                      value={this.state.student.session}
                       onChange={this.changeHandler}
+                      error={this.state.errors.session}
                     />
                     <FormField
                       type="text"
                       placeholder="Roll No *"
                       name="rollNo"
-                      value={this.state.rollNo}
+                      value={this.state.student.rollNo}
                       onChange={this.changeHandler}
+                      error={this.state.errors.rollNo}
                     />
                     <FormField
                       type="text"
                       placeholder="Registration No *"
                       name="regNo"
-                      value={this.state.regNo}
+                      value={this.state.student.regNo}
                       onChange={this.changeHandler}
+                      error={this.state.errors.regNo}
                     />
                   </Col>
                 </Row>
@@ -118,17 +140,17 @@ class StudentForm extends Component {
         </Row>
         <Row>
           <Col>
-            <StudentDetails {...this.state.studentDetails} />
+            <StudentDetails {...this.state.student.studentDetails} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <ParentDetails {...this.state.parentDetails} />
+            <ParentDetails {...this.state.student.parentDetails} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <PreviousExamDetails {...this.state.previousExamDetails} />
+            <PreviousExamDetails {...this.state.student.previousExamDetails} />
           </Col>
         </Row>
         <Row>

@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Col, Row } from "reactstrap";
+import Joi from "@hapi/joi";
 import FormField from "../common/FormField";
 import configureStore from "../../store/configureStore";
 import { updateSingleExam } from "../../actions/student";
+import { previousExamSchema } from "../../validations/student";
 
 const store = configureStore();
 
@@ -31,14 +33,26 @@ export default props => {
     outOf
   });
 
+  const [errors, setErrors] = React.useState({});
+
   const changeHandler = e => {
     setState({
       ...state,
       [e.target.name]: e.target.value
     });
   };
+
   const addHandler = () => {
-    console.log(state);
+    let error = Joi.validate(state, previousExamSchema).error;
+    if (error) {
+      const err = error.details[0];
+      const name = err.path[0];
+      setErrors({
+        [name]: err.message
+      });
+      return;
+    }
+    setErrors({});
     store.dispatch(updateSingleExam(state));
     if (props.editClose) props.editClose();
     setState({
@@ -64,6 +78,7 @@ export default props => {
             name="nameOfExam"
             value={state.nameOfExam}
             onChange={changeHandler}
+            error={errors.nameOfExam}
           />
         </Col>
         <Col>
@@ -73,6 +88,7 @@ export default props => {
             name="group_subject"
             value={state.group_subject}
             onChange={changeHandler}
+            error={errors.group_subject}
           />
         </Col>
         <Col>
@@ -82,6 +98,7 @@ export default props => {
             name="institution"
             value={state.institution}
             onChange={changeHandler}
+            error={errors.institution}
           />
         </Col>
         <Col>
@@ -91,6 +108,7 @@ export default props => {
             name="board"
             value={state.board}
             onChange={changeHandler}
+            error={errors.board}
           />
         </Col>
       </Row>
@@ -102,6 +120,7 @@ export default props => {
             name="rollNo"
             value={state.rollNo}
             onChange={changeHandler}
+            error={errors.rollNo}
           />
         </Col>
         <Col>
@@ -111,6 +130,7 @@ export default props => {
             name="regNo"
             value={state.regNo}
             onChange={changeHandler}
+            error={errors.regNo}
           />
         </Col>
         <Col>
@@ -120,6 +140,7 @@ export default props => {
             name="gpa"
             value={state.gpa}
             onChange={changeHandler}
+            error={errors.gpa}
           />
         </Col>
         <Col>
@@ -129,6 +150,7 @@ export default props => {
             name="outOf"
             value={state.outOf}
             onChange={changeHandler}
+            error={errors.outOf}
           />
         </Col>
         <Col>
@@ -138,6 +160,7 @@ export default props => {
             name="passingYear"
             value={state.passingYear}
             onChange={changeHandler}
+            error={errors.passingYear}
           />
         </Col>
       </Row>

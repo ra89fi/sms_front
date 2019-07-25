@@ -1,8 +1,10 @@
 import React from "react";
 import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import Joi from "@hapi/joi";
 import configureStore from "../../store/configureStore";
 import FormField from "../common/FormField";
 import { updateStudentDetails } from "../../actions/student";
+import { studentDetailsSchema } from "../../validations/student";
 
 const store = configureStore();
 
@@ -28,26 +30,38 @@ export default props => {
     permAddDistrict
   } = props;
 
+  const data = {
+    firstName,
+    lastName,
+    nationality,
+    email,
+    mobileNo,
+    birthDate,
+    religion,
+    bloodGroup,
+    gender,
+    maritalStatus,
+    presAddVillage,
+    presAddPO,
+    presAddUpazilla,
+    presAddDistrict,
+    permAddVillage,
+    permAddPO,
+    permAddUpazilla,
+    permAddDistrict
+  };
+
+  const { error } = Joi.validate(data, studentDetailsSchema);
+  const errors = {};
+  if (error) {
+    const err = error.details[0];
+    const name = err.path[0];
+    errors[name] = err.message;
+  }
+
   const changeHandler = e => {
     const values = {
-      firstName,
-      lastName,
-      nationality,
-      email,
-      mobileNo,
-      birthDate,
-      religion,
-      bloodGroup,
-      gender,
-      maritalStatus,
-      presAddVillage,
-      presAddPO,
-      presAddUpazilla,
-      presAddDistrict,
-      permAddVillage,
-      permAddPO,
-      permAddUpazilla,
-      permAddDistrict,
+      ...data,
       [e.target.name]: e.target.value
     };
     store.dispatch(updateStudentDetails(values, "studentDetails"));
@@ -70,6 +84,7 @@ export default props => {
                   name="firstName"
                   value={firstName}
                   onChange={changeHandler}
+                  error={errors.firstName}
                 />
               </Col>
               <Col>
@@ -79,6 +94,7 @@ export default props => {
                   name="lastName"
                   value={lastName}
                   onChange={changeHandler}
+                  error={errors.lastName}
                 />
               </Col>
             </Row>
@@ -90,6 +106,7 @@ export default props => {
                   name="nationality"
                   value={nationality}
                   onChange={changeHandler}
+                  error={errors.nationality}
                 />
               </Col>
               <Col>
@@ -99,6 +116,7 @@ export default props => {
                   name="email"
                   value={email}
                   onChange={changeHandler}
+                  error={errors.email}
                 />
               </Col>
               <Col>
@@ -108,6 +126,7 @@ export default props => {
                   name="mobileNo"
                   value={mobileNo}
                   onChange={changeHandler}
+                  error={errors.mobileNo}
                 />
               </Col>
             </Row>
@@ -119,6 +138,7 @@ export default props => {
                   name="birthDate"
                   value={birthDate}
                   onChange={changeHandler}
+                  error={errors.birthDate}
                 />
               </Col>
               <Col>
@@ -129,6 +149,7 @@ export default props => {
                   name="religion"
                   value={religion}
                   onChange={changeHandler}
+                  error={errors.religion}
                 />
               </Col>
               <Col>
@@ -139,6 +160,7 @@ export default props => {
                   name="bloodGroup"
                   value={bloodGroup}
                   onChange={changeHandler}
+                  error={errors.bloodGroup}
                 />
               </Col>
             </Row>
@@ -151,6 +173,7 @@ export default props => {
                   name="gender"
                   value={gender}
                   onChange={changeHandler}
+                  error={errors.gender}
                 />
               </Col>
               <Col xs="7">
@@ -161,6 +184,7 @@ export default props => {
                   name="maritalStatus"
                   value={maritalStatus}
                   onChange={changeHandler}
+                  error={errors.maritalStatus}
                 />
               </Col>
             </Row>
@@ -183,6 +207,7 @@ export default props => {
               name="presAddVillage"
               value={presAddVillage}
               onChange={changeHandler}
+              error={errors.presAddVillage}
             />
           </Col>
           <Col>
@@ -192,6 +217,7 @@ export default props => {
               name="presAddPO"
               value={presAddPO}
               onChange={changeHandler}
+              error={errors.presAddPO}
             />
           </Col>
           <Col>
@@ -201,6 +227,7 @@ export default props => {
               name="presAddUpazilla"
               value={presAddUpazilla}
               onChange={changeHandler}
+              error={errors.presAddUpazilla}
             />
           </Col>
           <Col>
@@ -210,6 +237,7 @@ export default props => {
               name="presAddDistrict"
               value={presAddDistrict}
               onChange={changeHandler}
+              error={errors.presAddDistrict}
             />
           </Col>
         </Row>
@@ -227,6 +255,7 @@ export default props => {
               name="permAddVillage"
               value={permAddVillage}
               onChange={changeHandler}
+              error={errors.permAddVillage}
             />
           </Col>
           <Col>
@@ -236,6 +265,7 @@ export default props => {
               name="permAddPO"
               value={permAddPO}
               onChange={changeHandler}
+              error={errors.permAddPO}
             />
           </Col>
           <Col>
@@ -245,6 +275,7 @@ export default props => {
               name="permAddUpazilla"
               value={permAddUpazilla}
               onChange={changeHandler}
+              error={errors.permAddUpazilla}
             />
           </Col>
           <Col>
@@ -254,6 +285,7 @@ export default props => {
               name="permAddDistrict"
               value={permAddDistrict}
               onChange={changeHandler}
+              error={errors.permAddDistrict}
             />
           </Col>
         </Row>

@@ -22,7 +22,13 @@ export default props => {
               onChange={changeHandler}
               value={props.value}
             />
-            {props.error ? <FormText color="danger">* {props.error}</FormText> : ""}
+            {props.error ? (
+              <FormText color="danger">
+                {props.error.replace(props.name, props.placeholder)}
+              </FormText>
+            ) : (
+              ""
+            )}
           </Col>
         </FormGroup>
       );
@@ -41,7 +47,13 @@ export default props => {
               onChange={changeHandler}
               value={props.value}
             />
-            {props.error ? <FormText color="danger">* {props.error}</FormText> : ""}
+            {props.error ? (
+              <FormText color="danger">
+                {props.error.replace(props.name, props.placeholder)}
+              </FormText>
+            ) : (
+              ""
+            )}
           </Col>
         </FormGroup>
       );
@@ -65,7 +77,11 @@ export default props => {
               </option>
             ))}
           </Input>
-          {props.error ? <FormText color="danger">* {props.error}</FormText> : ""}
+          {props.error ? (
+            <FormText color="danger">{props.error.replace(props.name, props.placeholder)}</FormText>
+          ) : (
+            ""
+          )}
         </FormGroup>
       );
       break;
@@ -94,7 +110,13 @@ export default props => {
                 </Label>
               </FormGroup>
             ))}
-            {props.error ? <FormText color="danger">* {props.error}</FormText> : ""}
+            {props.error ? (
+              <FormText color="danger">
+                {props.error.replace(props.name, props.placeholder)}
+              </FormText>
+            ) : (
+              ""
+            )}
           </Col>
         </FormGroup>
       );
