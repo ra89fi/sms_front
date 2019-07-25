@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Badge, Button, Card, CardHeader, CardBody, Col, Row, Table } from "reactstrap";
-import FormField from "../common/FormField";
+import { Button, Card, CardHeader, CardBody, Col, Row, Table } from "reactstrap";
 
 export default props => {
   return (

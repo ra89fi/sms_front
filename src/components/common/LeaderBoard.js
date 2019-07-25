@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, Card, CardHeader, CardBody, Table } from "reactstrap";
+import { Card, CardHeader, CardBody, Table } from "reactstrap";
 
 export default props => {
   return (

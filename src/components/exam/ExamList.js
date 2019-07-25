@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Badge, Button, Card, CardHeader, CardBody, Table } from "reactstrap";
+import { Button, Card, CardHeader, CardBody, Table } from "reactstrap";
 
 export default props => {
   return (

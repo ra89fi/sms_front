@@ -7,7 +7,6 @@ export default (state = student, action) => {
         ...state,
         ...action.values
       };
-      break;
     case "UPDATE_STUDENT_DETAILS":
       return {
         ...state,
@@ -16,7 +15,6 @@ export default (state = student, action) => {
           ...action.values
         }
       };
-      break;
     case "UPDATE_FATHER_DETAILS":
       return {
         ...state,
@@ -28,7 +26,6 @@ export default (state = student, action) => {
           }
         }
       };
-      break;
     case "UPDATE_MOTHER_DETAILS":
       return {
         ...state,
@@ -40,7 +37,16 @@ export default (state = student, action) => {
           }
         }
       };
-      break;
+    case "UPDATE_SINGLE_EXAM":
+      return {
+        ...state,
+        previousExamDetails: {
+          ...state.previousExamDetails,
+          [action.values.nameOfExam.toLowerCase()]: {
+            ...action.values
+          }
+        }
+      };
     default:
       return state;
   }

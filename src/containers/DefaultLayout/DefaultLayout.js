@@ -4,7 +4,6 @@ import * as router from "react-router-dom";
 import { Container } from "reactstrap";
 
 import {
-  AppAside,
   AppFooter,
   AppHeader,
   AppSidebar,
@@ -20,7 +19,6 @@ import navigation from "../../_nav";
 // routes config
 import routes from "../../routes";
 
-const DefaultAside = React.lazy(() => import("./DefaultAside"));
 const DefaultFooter = React.lazy(() => import("./DefaultFooter"));
 const DefaultHeader = React.lazy(() => import("./DefaultHeader"));
 

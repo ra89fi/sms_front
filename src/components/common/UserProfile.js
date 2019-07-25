@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Button, Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 
 export default props => {

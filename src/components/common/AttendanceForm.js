@@ -1,6 +1,6 @@
 import React from "react";
 import FormField from "./FormField";
-import { Button, Card, CardHeader, CardBody, Row, Col, Table, Badge } from "reactstrap";
+import { Button, Card, CardHeader, CardBody, Row, Col, Table } from "reactstrap";
 
 export default props => {
   return (

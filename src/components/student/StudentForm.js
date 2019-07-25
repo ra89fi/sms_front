@@ -4,6 +4,7 @@ import { Button, Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import FormField from "../common/FormField";
 import ParentDetails from "./ParentDetails";
 import PreviousExamDetails from "./PreviousExamDetails";
+import student from "../../objects/student";
 import StudentDetails from "./StudentDetails";
 import { updateStudentRoot } from "../../actions/student";
 
@@ -26,7 +27,12 @@ class StudentForm extends Component {
   };
 
   submitHandler = () => {};
-  resetHandler = () => {};
+  resetHandler = () => {
+    this.setState({
+      ...student
+    });
+    this.props.dispatch(updateStudentRoot(student));
+  };
 
   render() {
     return (
@@ -122,18 +128,18 @@ class StudentForm extends Component {
         </Row>
         <Row>
           <Col>
-            <PreviousExamDetails />
+            <PreviousExamDetails {...this.state.previousExamDetails} />
           </Col>
         </Row>
         <Row>
           <Col style={{ marginBottom: "20px" }}>
-            <Button block color="secondary" onClick={this.submitHandler}>
-              Clear
+            <Button block color="secondary" onClick={this.resetHandler}>
+              All Clear
             </Button>
           </Col>
           <Col style={{ marginBottom: "20px" }}>
-            <Button block color="primary" onClick={this.resetHandler}>
-              Submit
+            <Button block color="primary" onClick={this.submitHandler}>
+              Register Student
             </Button>
           </Col>
         </Row>

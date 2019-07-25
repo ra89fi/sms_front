@@ -17,3 +17,8 @@ export const updateMotherDetails = values => ({
   type: "UPDATE_MOTHER_DETAILS",
   values
 });
+
+export const updateSingleExam = values => ({
+  type: "UPDATE_SINGLE_EXAM",
+  values
+});
