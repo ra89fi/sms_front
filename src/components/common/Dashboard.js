@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, CardHeader, CardBody, Col, Row } from "reactstrap";
-import InfoCard from "../common/InfoCard";
-import LeaderBoard from "../common/LeaderBoard";
-import QuickLinks from "../common/QuickLinks";
+import InfoCard from "./InfoCard";
+import LeaderBoard from "./LeaderBoard";
+import QuickLinks from "./QuickLinks";
 
 export default props => {
   return (
-    <div>
+    <div className="animated fadeIn">
       <Row>
         <Col>
           <InfoCard name="Users" data={4} icon="icon-people" />

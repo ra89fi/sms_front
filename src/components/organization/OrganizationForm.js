@@ -1,11 +1,11 @@
 import React from "react";
 import { Button, Row, Col } from "reactstrap";
 import FormField from "../common/FormField";
-import OrganizationDetails from "../organization/OrganizationDetails";
+import OrganizationDetails from "./OrganizationDetails";
 
 export default () => {
   return (
-    <div>
+    <div className="animated fadeIn">
       <Row>
         <Col xs="3">
           <FormField

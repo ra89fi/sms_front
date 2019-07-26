@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Col, Row } from "reactstrap";
 import Joi from "@hapi/joi";
-import FormField from "../common/FormField";
 import configureStore from "../../store/configureStore";
+import FormField from "../common/FormField";
 import { updateSingleExam } from "../../actions/student";
 import { previousExamSchema } from "../../validations/student";
 

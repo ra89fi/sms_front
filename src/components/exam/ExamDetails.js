@@ -4,7 +4,7 @@ import { Button, Card, CardHeader, CardBody, Col, Row, Table } from "reactstrap"
 
 export default props => {
   return (
-    <div>
+    <div className="animated fadeIn">
       <Row>
         <Col>
           <Card>
@@ -79,7 +79,6 @@ export default props => {
                     <td>30</td>
                     <td>Excellent</td>
                   </tr>
-
                   <tr>
                     <td>11152622</td>
                     <td>saumik</td>

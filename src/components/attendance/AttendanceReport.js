@@ -1,11 +1,11 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
 import AttendanceReportForm from "./AttendanceReportForm";
-import ShowAttendanceReport from "./ShowAttendanceReport";
+import AttendanceReportView from "./AttendanceReportView";
 
 class AttendanceReport extends React.Component {
   state = {
-    formOpen: false,
+    formOpen: true,
     selections: {
       class: "Honors",
       subject: "Geography",
@@ -19,13 +19,13 @@ class AttendanceReport extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="animated fadeIn">
         <Row>
           <Col>
             {this.state.formOpen ? (
               <AttendanceReportForm onClick={this.handleClick} {...this.state.selections} />
             ) : (
-              <ShowAttendanceReport onClick={this.handleClick} {...this.state.selections} />
+              <AttendanceReportView onClick={this.handleClick} {...this.state.selections} />
             )}
           </Col>
         </Row>

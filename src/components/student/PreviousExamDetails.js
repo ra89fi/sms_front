@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, CardHeader } from "reactstrap";
-import PreviousExamSingle from "./PreviousExamSingle";
+import PreviousExamSingleForm from "./PreviousExamSingleForm";
 import PreviousExamSingleView from "./PreviousExamSingleView";
 
 export default props => {
@@ -18,7 +18,7 @@ export default props => {
         {Object.keys(hsc).length ? <PreviousExamSingleView {...hsc} /> : ""}
         {Object.keys(honors).length ? <PreviousExamSingleView {...honors} /> : ""}
         {Object.keys(masters).length ? <PreviousExamSingleView {...masters} /> : ""}
-        <PreviousExamSingle />
+        <PreviousExamSingleForm />
       </CardBody>
     </Card>
   );

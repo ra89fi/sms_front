@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, CardBody, Col, Row } from "reactstrap";
-import PreviousExamSingle from "./PreviousExamSingle";
+import PreviousExamSingleForm from "./PreviousExamSingleForm";
 
 export default props => {
   const {
@@ -111,7 +111,7 @@ export default props => {
   else
     return (
       <div style={{ marginBottom: "20px" }}>
-        <PreviousExamSingle {...data} edit={true} editClose={() => setEdit(false)} />
+        <PreviousExamSingleForm {...data} edit={true} editClose={() => setEdit(false)} />
       </div>
     );
 };

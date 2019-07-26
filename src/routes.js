@@ -1,22 +1,22 @@
 import React from "react";
+import AttendanceReport from "./components/attendance/AttendanceReport";
+import AttendanceTake from "./components/attendance/AttendanceTake";
 import DefaultLayout from "./containers/DefaultLayout";
-import StudentForm from "./components/student/StudentForm";
-import StudentList from "./components/student/StudentList";
-import AttendanceTake from "./components/common/AttendanceTake";
-import AttendanceReport from "./components/common/AttendanceReport";
-import ViewStudentProfile from "./components/student/ViewStudentProfile";
-import EditStudentProfile from "./components/student/EditStudentProfile";
+import ExamDetails from "./components/exam/ExamDetails";
 import ExamEntry from "./components/exam/ExamEntry";
 import ExamList from "./components/exam/ExamList";
-import ExamDetails from "./components/exam/ExamDetails";
 import ExamMarks from "./components/exam/ExamMarks";
-import TeachersEntry from "./components/teacher/TeachersEntry";
-import TeachersList from "./components/teacher/TeachersList";
+import StudentForm from "./components/student/StudentForm";
+import StudentList from "./components/student/StudentList";
+import StudentProfileEdit from "./components/student/StudentProfileEdit";
+import StudentProfileView from "./components/student/StudentProfileView";
 import TeacherProfile from "./components/teacher/TeacherProfile";
-import UesrsList from "./components/common/UesrsList";
-import UserProfile from "./components/common/UserProfile";
+import TeacherEntry from "./components/teacher/TeacherEntry";
+import TeacherList from "./components/teacher/TeacherList";
+import UesrList from "./components/user/UesrList";
+import UserProfile from "./components/user/UserProfile";
 
-const Dashboard = React.lazy(() => import("./components/organization/OrganizationDashboard"));
+const Dashboard = React.lazy(() => import("./components/common/Dashboard"));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -38,13 +38,13 @@ const routes = [
     path: "/student/profile/:id",
     exact: true,
     name: "View Student Profile",
-    component: ViewStudentProfile
+    component: StudentProfileView
   },
   {
     path: "/student/edit/:id",
     exact: true,
     name: "Edit Student Profile",
-    component: EditStudentProfile
+    component: StudentProfileEdit
   },
   {
     path: "/attendance/take",
@@ -83,26 +83,26 @@ const routes = [
   },
   {
     path: "/teachers/entry/",
-    name: "Teachers Form",
-    component: TeachersEntry
+    name: "Teacher Entry",
+    component: TeacherEntry
   },
   {
     path: "/teachers/all",
     exact: true,
-    name: " Teachers List",
-    component: TeachersList
+    name: " Teacher List",
+    component: TeacherList
   },
   {
     path: "/teachers/profile/:id",
     exact: true,
-    name: " Teachers Profile",
+    name: " Teacher Profile",
     component: TeacherProfile
   },
   {
     path: "/users/all",
     exact: true,
     name: " User List",
-    component: UesrsList
+    component: UesrList
   },
   {
     path: "/users/profile/:id",
