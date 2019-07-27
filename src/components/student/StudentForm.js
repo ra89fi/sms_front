@@ -8,7 +8,7 @@ import PreviousExamDetails from "./PreviousExamDetails";
 import student from "../../objects/student";
 import StudentDetails from "./StudentDetails";
 import { updateStudentRoot } from "../../actions/student";
-import { studentRootSchema } from "../../validations/student";
+import { studentRootSchema, validateStudent } from "../../validations/student";
 
 class StudentForm extends Component {
   state = {
@@ -40,7 +40,12 @@ class StudentForm extends Component {
     this.props.dispatch(updateStudentRoot(values));
   };
 
-  submitHandler = () => {};
+  submitHandler = () => {
+    if (validateStudent(this.state.student)) {
+      console.log("student is OK");
+      // save in db and clear fields
+    }
+  };
 
   resetHandler = () => {
     this.setState({

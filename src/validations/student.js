@@ -125,3 +125,17 @@ export const previousExamSchema = {
   gpa: Joi.any().optional(),
   outOf: Joi.any().optional()
 };
+
+export const validateStudent = data => {
+  let error;
+  error = Joi.validate(data, studentRootSchema).error;
+  error = Joi.validate(data.studentDetails, studentDetailsSchema).error;
+  error = Joi.validate(data.parentDetails.father, parentDetailsSchema).error;
+  error = Joi.validate(data.parentDetails.mother, parentDetailsSchema).error;
+  for (let exam in data.previousExamDetails) {
+    if (Object.keys(data.previousExamDetails[exam]).length)
+      error = Joi.validate(data.previousExamDetails[exam], previousExamSchema).error;
+  }
+  if (error) return false;
+  else return true;
+};

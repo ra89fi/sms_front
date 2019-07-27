@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import { Card, CardBody, CardHeader, Col, FormGroup, Input, Label, Row } from "reactstrap";
 import Joi from "@hapi/joi";
 import configureStore from "../../store/configureStore";
 import FormField from "../common/FormField";
@@ -64,6 +64,28 @@ export default props => {
       ...data,
       [e.target.name]: e.target.value
     };
+    store.dispatch(updateStudentDetails(values, "studentDetails"));
+  };
+
+  const makePermAddrSameAsPresAdd = e => {
+    let values = {};
+    if (!e.target.checked) {
+      values = {
+        ...data,
+        permAddVillage: "",
+        permAddPO: "",
+        permAddUpazilla: "",
+        permAddDistrict: ""
+      };
+    } else {
+      values = {
+        ...data,
+        permAddVillage: data.presAddVillage,
+        permAddPO: data.presAddPO,
+        permAddUpazilla: data.presAddUpazilla,
+        permAddDistrict: data.presAddDistrict
+      };
+    }
     store.dispatch(updateStudentDetails(values, "studentDetails"));
   };
 
@@ -244,6 +266,20 @@ export default props => {
         <Row>
           <Col>
             <strong>Permanent Address</strong>
+            <span> </span>
+            <FormGroup check inline>
+              <Input
+                className="form-check-input"
+                type="checkbox"
+                id="checkbox1"
+                name="checkbox1"
+                value="option1"
+                onClick={makePermAddrSameAsPresAdd}
+              />
+              <Label check className="form-check-label" htmlFor="checkbox1">
+                same as above
+              </Label>
+            </FormGroup>
             <p />
           </Col>
         </Row>
