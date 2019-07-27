@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Button, Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 
 export default props => {
+  // get student id from props.match.params.id and load accordingly
+  console.log(props);
   return (
     <div className="animated fadeIn">
       <Row>
@@ -43,7 +45,7 @@ export default props => {
               </Row>
             </CardBody>
           </Card>
-          <Link to="/student/edit/123">
+          <Link to={`/student/edit/${props.match.params.id}`}>
             <Button color="warning">Edit Profile</Button>
           </Link>
           &nbsp;
