@@ -31,17 +31,10 @@ class AttendanceTake extends Component {
               <AttendanceTakeSelForm
                 onClick={this.handleClick}
                 onChange={this.changeHandler}
-<<<<<<< HEAD
-                values={this.state.selections}
-              />
-            ) : (
-              <AttendanceTakeAttForm onClick={this.handleClick} values={this.state.selections} />
-=======
                 {...this.state.selections}
               />
             ) : (
               <AttendanceTakeAttForm onClick={this.handleClick} {...this.state.selections} />
->>>>>>> student attendance form handling with status and notes
             )}
           </Col>
         </Row>
