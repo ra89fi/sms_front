@@ -5,11 +5,21 @@ import AttendanceTakeSelForm from "./AttendanceTakeSelForm";
 
 class AttendanceTake extends Component {
   state = {
-    formOpen: true
+    formOpen: true,
+    selections: {}
   };
 
   handleClick = () => {
     this.setState({ formOpen: !this.state.formOpen });
+  };
+
+  changeHandler = e => {
+    this.setState({
+      selections: {
+        ...this.state.selections,
+        [e.target.name]: e.target.value
+      }
+    });
   };
 
   render() {
@@ -18,9 +28,13 @@ class AttendanceTake extends Component {
         <Row>
           <Col>
             {this.state.formOpen ? (
-              <AttendanceTakeSelForm onClick={this.handleClick} />
+              <AttendanceTakeSelForm
+                onClick={this.handleClick}
+                onChange={this.changeHandler}
+                values={this.state.selections}
+              />
             ) : (
-              <AttendanceTakeAttForm onClick={this.handleClick} />
+              <AttendanceTakeAttForm onClick={this.handleClick} values={this.state.selections} />
             )}
           </Col>
         </Row>

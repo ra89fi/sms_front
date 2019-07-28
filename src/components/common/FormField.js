@@ -104,6 +104,7 @@ export default props => {
                   name={props.name}
                   onChange={changeHandler}
                   value={val}
+                  checked={props.value === val ? true : false}
                 />
                 <Label className="form-check-label" check htmlFor={val}>
                   {val}

@@ -12,24 +12,53 @@ export default props => {
       <CardBody>
         <Row>
           <Col>
-            <FormField type="select" placeholder="Class" values={["", "Hons"]} />
+            <FormField
+              type="select"
+              placeholder="Class"
+              name="class"
+              onChange={props.onChange}
+              value={props.class}
+              values={["", "Honors", "Masters"]}
+            />
           </Col>
           <Col>
-            <FormField type="select" placeholder="Subject" values={["", "Geography"]} />
+            <FormField
+              type="select"
+              placeholder="Subject"
+              name="subject"
+              onChange={props.onChange}
+              value={props.subject}
+              values={["", "Geography"]}
+            />
           </Col>
           <Col>
-            <FormField type="select" placeholder="Session" values={["", "2011-12", "2011-14"]} />
+            <FormField
+              type="select"
+              placeholder="Session"
+              name="session"
+              onChange={props.onChange}
+              value={props.session}
+              values={["", "2019-20", "2020-21"]}
+            />
           </Col>
           <Col>
-            <FormField type="date" placeholder="Date" />
+            <FormField
+              type="date"
+              placeholder="Date"
+              name="date"
+              onChange={props.onChange}
+              value={props.date}
+            />
           </Col>
         </Row>
         <Row>
+          <Col />
           <Col>
             <Button block color="primary" onClick={props.onClick}>
               Take Attendance
             </Button>
           </Col>
+          <Col />
         </Row>
       </CardBody>
     </Card>
