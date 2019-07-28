@@ -6,47 +6,43 @@ export default props => {
   return (
     <div className="animated fadeIn">
       <Row>
-        <Col xs="3">
+        <Col xs="4">
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
               <strong>Saumik Nondi</strong> <i className="icon-user icons" />
             </CardHeader>
             <CardBody>
               <Row>
-                <Col style={{ marginBottom: "20px" }}>
-                  <img src={"../../assets/img/avatars/8.jpg"} alt="" />
+                <Col>ID</Col>
+                <Col>
+                  : <strong>1346345</strong>
                 </Col>
               </Row>
               <Row>
-                <Col>ID</Col>
-                <Col>: 1346345</Col>
-              </Row>
-              <Row>
                 <Col>Degree</Col>
-                <Col>: Honors</Col>
+                <Col>
+                  : <strong>Honors</strong>
+                </Col>
               </Row>
               <Row>
                 <Col>Subject</Col>
-                <Col>: Geography</Col>
+                <Col>
+                  : <strong>Geography</strong>
+                </Col>
               </Row>
               <Row>
                 <Col>Mobile No</Col>
-                <Col>: 9034704096</Col>
+                <Col>
+                  : <strong>9034704096</strong>
+                </Col>
               </Row>
             </CardBody>
           </Card>
-          <div className="quickLink">
-            <Link to="/teachers/entry/123">
-              <Button block color="primary">
-                Edit Profile
-              </Button>
-            </Link>
-          </div>
-        </Col>
-        <Col xs="9">
-          <Card>
-            <CardBody>Info here</CardBody>
-          </Card>
+          <Link to="/teachers/entry/123">
+            <Button color="warning">Edit Profile</Button>
+          </Link>
+          &nbsp;
+          <Button color="danger">Delete Teacher</Button>
         </Col>
       </Row>
     </div>
