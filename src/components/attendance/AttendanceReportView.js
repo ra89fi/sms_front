@@ -24,7 +24,7 @@ export default props => {
                 Session: <strong>{props.session}</strong>
               </p>
               <p>
-                From <strong>{props.from}</strong> To <strong>{props.to}</strong>
+                From <strong>{props.dateFrom}</strong> To <strong>{props.dateTo}</strong>
               </p>
               <p>
                 <Badge color="success">P</Badge> : Present, <Badge color="danger">P</Badge> :

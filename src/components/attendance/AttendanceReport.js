@@ -6,16 +6,19 @@ import AttendanceReportView from "./AttendanceReportView";
 class AttendanceReport extends React.Component {
   state = {
     formOpen: true,
-    selections: {
-      class: "Honors",
-      subject: "Geography",
-      session: "2019-20",
-      from: "7/1/2019",
-      to: "7/12/2019"
-    }
+    selections: {}
   };
 
   handleClick = () => this.setState({ formOpen: !this.state.formOpen });
+
+  changeHandler = e => {
+    this.setState({
+      selections: {
+        ...this.state.selections,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
 
   render() {
     return (
@@ -23,7 +26,11 @@ class AttendanceReport extends React.Component {
         <Row>
           <Col>
             {this.state.formOpen ? (
-              <AttendanceReportForm onClick={this.handleClick} {...this.state.selections} />
+              <AttendanceReportForm
+                onClick={this.handleClick}
+                onChange={this.changeHandler}
+                {...this.state.selections}
+              />
             ) : (
               <AttendanceReportView onClick={this.handleClick} {...this.state.selections} />
             )}
