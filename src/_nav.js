@@ -84,6 +84,18 @@ export default {
           icon: "icon-people"
         }
       ]
+    },
+    {
+      name: "Results",
+      url: "/results",
+      icon: "icon-people",
+      children: [
+        {
+          name: "Coaching",
+          url: "/results/coaching",
+          icon: "icon-people"
+        }
+      ]
     }
   ]
 };

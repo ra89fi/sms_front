@@ -6,6 +6,7 @@ import ExamDetails from "./components/exam/ExamDetails";
 import ExamEntry from "./components/exam/ExamEntry";
 import ExamList from "./components/exam/ExamList";
 import ExamMarks from "./components/exam/ExamMarks";
+import ResultCoaching from "./components/result/ResultCoaching";
 import StudentForm from "./components/student/StudentForm";
 import StudentList from "./components/student/StudentList";
 import StudentProfileEdit from "./components/student/StudentProfileEdit";
@@ -109,6 +110,12 @@ const routes = [
     exact: true,
     name: " User Profile",
     component: UserProfile
+  },
+  {
+    path: "/results/coaching",
+    exact: true,
+    name: "Coaching Result",
+    component: ResultCoaching
   }
 ];
 
