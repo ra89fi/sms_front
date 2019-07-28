@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, CardHeader, CardBody, Col, Row, Table } from "reactstrap";
+import { Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import List from "../common/List";
 
 const teacherData = [

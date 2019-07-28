@@ -5,32 +5,35 @@ export default props => {
   return (
     <div className="animated fadeIn">
       <Row>
-        <Col xs="3">
+        <Col xs="4">
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
               <strong>Saumik Nondi</strong> <i className="icon-user icons" />
             </CardHeader>
             <CardBody>
               <Row>
-                <Col style={{ marginBottom: "20px" }}>
-                  <img src={"../../assets/img/avatars/8.jpg"} alt="" />
+                <Col>ID</Col>
+                <Col>
+                  : <strong>1346345</strong>
                 </Col>
               </Row>
               <Row>
-                <Col>ID</Col>
-                <Col>: 1346345</Col>
+                <Col>Name</Col>
+                <Col>
+                  : <strong>Raihan</strong>
+                </Col>
               </Row>
               <Row>
-                <Col>Degree</Col>
-                <Col>: Honors</Col>
-              </Row>
-              <Row>
-                <Col>Subject</Col>
-                <Col>: Geography</Col>
+                <Col>Email</Col>
+                <Col>
+                  : <strong>test@email.com</strong>
+                </Col>
               </Row>
               <Row>
                 <Col>Mobile No</Col>
-                <Col>: 9034704096</Col>
+                <Col>
+                  : <strong>9034704096</strong>
+                </Col>
               </Row>
             </CardBody>
           </Card>
