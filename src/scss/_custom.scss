@@ -15,3 +15,14 @@
 .quickLink a:hover {
   text-decoration: none;
 }
+
+.row-styles {
+  margin-top: 10px;
+  border-top: 1px solid teal;
+  // padding-top: 10px;
+}
+
+.col-styles {
+  border-left: 1px solid teal;
+  margin-top: 0;
+}
