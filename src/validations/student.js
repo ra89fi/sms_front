@@ -1,25 +1,22 @@
 import Joi from "@hapi/joi";
 
 export const studentRootSchema = {
-  degree: Joi.string()
+  class: Joi.string()
     .alphanum()
     .min(1)
     .required(),
-  subject: Joi.string()
-    .alphanum()
-    .min(1)
-    .required(),
-  session: Joi.string()
-    .min(1)
-    .required(),
+  group: Joi.any().optional(),
   rollNo: Joi.number()
     .integer()
     .min(1)
     .required(),
-  regNo: Joi.number()
-    .integer()
+  school: Joi.string()
+    .alphanum()
     .min(1)
-    .required()
+    .required(),
+  studentDetails: Joi.any().required(),
+  parentDetails: Joi.any().required(),
+  previousExamDetails: Joi.any().required()
 };
 
 export const studentDetailsSchema = {
@@ -127,15 +124,12 @@ export const previousExamSchema = {
 };
 
 export const validateStudent = data => {
-  let error;
-  error = Joi.validate(data, studentRootSchema).error;
-  error = Joi.validate(data.studentDetails, studentDetailsSchema).error;
-  error = Joi.validate(data.parentDetails.father, parentDetailsSchema).error;
-  error = Joi.validate(data.parentDetails.mother, parentDetailsSchema).error;
-  for (let exam in data.previousExamDetails) {
-    if (Object.keys(data.previousExamDetails[exam]).length)
-      error = Joi.validate(data.previousExamDetails[exam], previousExamSchema).error;
-  }
-  if (error) return false;
-  else return true;
+  let errors = [];
+  errors.push(Joi.validate(data, studentRootSchema).error);
+  errors.push(Joi.validate(data.studentDetails, studentDetailsSchema).error);
+  errors.push(Joi.validate(data.parentDetails.father, parentDetailsSchema).error);
+  errors.push(Joi.validate(data.parentDetails.mother, parentDetailsSchema).error);
+  console.log(errors);
+  errors = errors.filter(error => error);
+  return !errors.length;
 };

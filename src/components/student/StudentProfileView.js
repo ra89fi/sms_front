@@ -8,50 +8,67 @@ export default props => {
   return (
     <div className="animated fadeIn">
       <Row>
-        <Col xs="3">
+        <Col xs="4">
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
               <strong>Sumaya Akter Brishti</strong> <i className="icon-user-female icons" />
             </CardHeader>
             <CardBody>
               <Row>
-                <Col style={{ marginBottom: "20px" }}>
+                <Col style={{ marginBottom: "20px", textAlign: "center" }}>
                   <img src={"../../assets/img/avatars/5.jpg"} alt="" />
                 </Col>
               </Row>
               <Row>
-                <Col>Roll No</Col>
-                <Col>: 1346345</Col>
+                <Col xs="5">ID</Col>
+                <Col>: 234357478458</Col>
               </Row>
               <Row>
-                <Col>Registration No</Col>
-                <Col>: 16435634</Col>
+                <Col xs="5">Class</Col>
+                <Col>: Five</Col>
               </Row>
               <Row>
-                <Col>Degree</Col>
-                <Col>: Honors</Col>
+                <Col xs="5">Group</Col>
+                <Col>: </Col>
               </Row>
               <Row>
-                <Col>Subject</Col>
-                <Col>: Geography</Col>
+                <Col xs="5">Roll No</Col>
+                <Col>: 3476574</Col>
               </Row>
               <Row>
-                <Col>Session</Col>
-                <Col>: 2019-20</Col>
+                <Col xs="5">School</Col>
+                <Col>: World's Greatest School</Col>
               </Row>
               <Row>
-                <Col>Reg. Date</Col>
-                <Col>: 7/12/2019</Col>
+                <Col xs="5">Name</Col>
+                <Col>: Sumaya Akter Brishti</Col>
+              </Row>
+              <Row>
+                <Col xs="5">Mobile No</Col>
+                <Col>: 02857609218</Col>
+              </Row>
+              <Row>
+                <Col xs="5">Email</Col>
+                <Col>: test@email.com</Col>
               </Row>
             </CardBody>
           </Card>
-          <Link to={`/student/edit/${props.match.params.id}`}>
-            <Button color="warning">Edit Profile</Button>
-          </Link>
-          &nbsp;
-          <Button color="danger">Delete Student</Button>
+          <Row>
+            <Col className="quickLink">
+              <Link to={`/student/edit/${props.match.params.id}`}>
+                <Button block color="warning">
+                  Edit Profile
+                </Button>
+              </Link>
+            </Col>
+            <Col>
+              <Button block color="danger">
+                Delete Student
+              </Button>
+            </Col>
+          </Row>
         </Col>
-        <Col xs="9">
+        <Col xs="8">
           <Card>
             <CardBody>Info here</CardBody>
           </Card>

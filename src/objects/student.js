@@ -1,9 +1,8 @@
 export default {
-  degree: "",
-  subject: "",
-  session: "",
+  class: "",
+  group: "",
   rollNo: "",
-  regNo: "",
+  school: "",
   studentDetails: {
     firstName: "",
     lastName: "",
@@ -37,13 +36,5 @@ export default {
       profession: "",
       mobileNo: ""
     }
-  },
-  previousExamDetails: {
-    jsc: {},
-    psc: {},
-    ssc: {},
-    hsc: {},
-    honors: {},
-    masters: {}
   }
 };

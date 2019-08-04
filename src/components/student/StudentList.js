@@ -5,11 +5,10 @@ import List from "../common/List";
 const studentData = [
   {
     id: "29067429867473",
-    degree: "Honors",
-    subject: "Geography",
-    session: "2013-14",
+    class: "Five",
+    group: "",
     rollNo: "11152622",
-    regNo: "4685867",
+    school: "World's Greatest School",
     name: "Raihan",
     mobileNo: "9034704096",
     email: "test@email.com"

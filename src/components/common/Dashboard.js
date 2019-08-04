@@ -18,7 +18,7 @@ export default props => {
           <InfoCard name="Teachers" data={10} icon="icon-people" />
         </Col>
         <Col>
-          <InfoCard name="Sessions" data={4} icon="icon-layers" />
+          <InfoCard name="Batches" data={4} icon="icon-layers" />
         </Col>
       </Row>
       <Row>

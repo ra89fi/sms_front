@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Card, CardHeader, CardBody, Col, Row } from "reactstrap";
+import { Button, Col, Row } from "reactstrap";
 import Joi from "@hapi/joi";
 import FormField from "../common/FormField";
 import ParentDetails from "./ParentDetails";
@@ -60,87 +60,55 @@ class StudentForm extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
+          <Col />
+          <Col style={{ textAlign: "center" }}>
+            <h2>Picasso Coaching Centre</h2>
+            <h5>Student Registration</h5>
+          </Col>
+          <Col />
+        </Row>
+        <Row style={{ minHeight: "30px" }} />
+        <Row>
           <Col>
-            <Card>
-              <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-                <strong>Student Registration</strong>
-                <i className="icon-note icons" />
-              </CardHeader>
-              <CardBody>
-                <Row>
-                  <Col xs="3">
-                    <FormField
-                      type="select"
-                      placeholder="Degree *"
-                      values={["", "Honors", "Masters"]}
-                      name="degree"
-                      value={this.state.student.degree}
-                      onChange={this.changeHandler}
-                      error={this.state.errors.degree}
-                    />
-                    <FormField
-                      type="select"
-                      placeholder="Subject *"
-                      values={["", "Geography"]}
-                      name="subject"
-                      value={this.state.student.subject}
-                      onChange={this.changeHandler}
-                      error={this.state.errors.subject}
-                    />
-                  </Col>
-                  <Col xs="1" />
-                  <Col xs="4" style={{ textAlign: "center" }}>
-                    <h4>Department Of Geography</h4>
-                    {this.state.student.degree && (
-                      <p>
-                        Degree : <strong>{this.state.student.degree}</strong>
-                      </p>
-                    )}
-                    {this.state.student.subject && (
-                      <p>
-                        Subject : <strong>{this.state.student.subject}</strong>
-                      </p>
-                    )}
-                    {this.state.student.session && (
-                      <p>
-                        Session : <strong>{this.state.student.session}</strong>
-                      </p>
-                    )}
-                    <p>
-                      Date: <strong>{new Date().toLocaleDateString()}</strong>
-                    </p>
-                  </Col>
-                  <Col xs="1" />
-                  <Col xs="3">
-                    <FormField
-                      type="select"
-                      placeholder="Session *"
-                      values={["", "2019-20", "2020-21"]}
-                      name="session"
-                      value={this.state.student.session}
-                      onChange={this.changeHandler}
-                      error={this.state.errors.session}
-                    />
-                    <FormField
-                      type="text"
-                      placeholder="Roll No *"
-                      name="rollNo"
-                      value={this.state.student.rollNo}
-                      onChange={this.changeHandler}
-                      error={this.state.errors.rollNo}
-                    />
-                    <FormField
-                      type="text"
-                      placeholder="Registration No *"
-                      name="regNo"
-                      value={this.state.student.regNo}
-                      onChange={this.changeHandler}
-                      error={this.state.errors.regNo}
-                    />
-                  </Col>
-                </Row>
-              </CardBody>
-            </Card>
+            <FormField
+              type="text"
+              placeholder="Class *"
+              name="class"
+              value={this.state.student.class}
+              onChange={this.changeHandler}
+              error={this.state.errors.class}
+            />
+          </Col>
+          <Col>
+            <FormField
+              type="text"
+              placeholder="Group"
+              name="group"
+              value={this.state.student.group}
+              onChange={this.changeHandler}
+              error={this.state.errors.group}
+              disabled={this.state.student.class != "9" && this.state.student.class != "10"}
+            />
+          </Col>
+          <Col>
+            <FormField
+              type="text"
+              placeholder="Roll No *"
+              name="rollNo"
+              value={this.state.student.rollNo}
+              onChange={this.changeHandler}
+              error={this.state.errors.rollNo}
+            />
+          </Col>
+          <Col>
+            <FormField
+              type="text"
+              placeholder="School *"
+              name="school"
+              value={this.state.student.school}
+              onChange={this.changeHandler}
+              error={this.state.errors.school}
+            />
           </Col>
         </Row>
         <Row>
@@ -151,11 +119,6 @@ class StudentForm extends Component {
         <Row>
           <Col>
             <ParentDetails {...this.state.student.parentDetails} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <PreviousExamDetails {...this.state.student.previousExamDetails} />
           </Col>
         </Row>
         <Row>

@@ -21,6 +21,7 @@ export default props => {
               name={props.name}
               onChange={changeHandler}
               value={props.value}
+              disabled={props.disabled}
             />
             {props.error ? (
               <FormText color="danger">
@@ -46,6 +47,7 @@ export default props => {
               name={props.name}
               onChange={changeHandler}
               value={props.value}
+              disabled={props.disabled}
             />
             {props.error ? (
               <FormText color="danger">
@@ -70,6 +72,7 @@ export default props => {
             name={props.name}
             onChange={changeHandler}
             value={props.value}
+            disabled={props.disabled}
           >
             {props.values.map((val, i) => (
               <option value={val} key={i}>
@@ -105,6 +108,7 @@ export default props => {
                   onChange={changeHandler}
                   value={val}
                   checked={props.value === val ? true : false}
+                  disabled={props.disabled}
                 />
                 <Label className="form-check-label" check htmlFor={val}>
                   {val}

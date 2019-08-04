@@ -19,7 +19,7 @@ class DefaultHeader extends Component {
     return (
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
-        <h6 style={{ position: "relative", left: "40px", marginRight: "60px" }}>Geography</h6>
+        <h6 style={{ position: "relative", left: "40px", marginRight: "60px" }}>Picasso</h6>
         <AppSidebarToggler className="d-md-down-none" display="lg" />
 
         <Nav className="ml-auto" navbar>
