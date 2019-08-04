@@ -23,19 +23,15 @@ class AttendanceReport extends React.Component {
   render() {
     return (
       <div className="animated fadeIn">
-        <Row>
-          <Col>
-            {this.state.formOpen ? (
-              <AttendanceReportForm
-                onClick={this.handleClick}
-                onChange={this.changeHandler}
-                {...this.state.selections}
-              />
-            ) : (
-              <AttendanceReportView onClick={this.handleClick} {...this.state.selections} />
-            )}
-          </Col>
-        </Row>
+        {this.state.formOpen ? (
+          <AttendanceReportForm
+            onClick={this.handleClick}
+            onChange={this.changeHandler}
+            {...this.state.selections}
+          />
+        ) : (
+          <AttendanceReportView onClick={this.handleClick} {...this.state.selections} />
+        )}
       </div>
     );
   }

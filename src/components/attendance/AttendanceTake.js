@@ -25,19 +25,15 @@ class AttendanceTake extends Component {
   render() {
     return (
       <div className="animated fadeIn">
-        <Row>
-          <Col>
-            {this.state.formOpen ? (
-              <AttendanceTakeSelForm
-                onClick={this.handleClick}
-                onChange={this.changeHandler}
-                {...this.state.selections}
-              />
-            ) : (
-              <AttendanceTakeAttForm onClick={this.handleClick} {...this.state.selections} />
-            )}
-          </Col>
-        </Row>
+        {this.state.formOpen ? (
+          <AttendanceTakeSelForm
+            onClick={this.handleClick}
+            onChange={this.changeHandler}
+            {...this.state.selections}
+          />
+        ) : (
+          <AttendanceTakeAttForm onClick={this.handleClick} {...this.state.selections} />
+        )}
       </div>
     );
   }

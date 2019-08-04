@@ -12,25 +12,36 @@ export default props => {
       </CardHeader>
       <CardBody>
         <Row>
-          <Col>
-            <div style={{ textAlign: "center" }}>
-              <p>
-                Class: <strong>{props.class}</strong>
-              </p>
-              <p>
-                Subject: <strong>{props.subject}</strong>
-              </p>
-              <p>
-                Session: <strong>{props.session}</strong>
-              </p>
-              <p>
-                From <strong>{props.dateFrom}</strong> To <strong>{props.dateTo}</strong>
-              </p>
-              <p>
-                <Badge color="success">P</Badge> : Present, <Badge color="danger">P</Badge> :
-                Absent, <Badge color="warning">P</Badge> : Late
-              </p>
-            </div>
+          <Col xs="3">
+            <Row>
+              <Col>Class</Col>
+              <Col>
+                : <strong>{props.class}</strong>
+              </Col>
+            </Row>
+            <Row>
+              <Col>Group</Col>
+              <Col>
+                : <strong>{props.subject}</strong>
+              </Col>
+            </Row>
+            <Row>
+              <Col>From</Col>
+              <Col>
+                : <strong>{props.dateFrom}</strong>
+              </Col>
+            </Row>
+            <Row>
+              <Col>To</Col>
+              <Col>
+                : <strong>{props.dateTo}</strong>
+              </Col>
+            </Row>
+            <hr />
+            <p>
+              <Badge color="success">P</Badge> : Present, <Badge color="danger">P</Badge> : Absent,{" "}
+              <Badge color="warning">P</Badge> : Late
+            </p>
             <hr />
           </Col>
         </Row>

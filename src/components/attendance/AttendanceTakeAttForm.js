@@ -62,140 +62,148 @@ class AttendanceTakeAttForm extends React.Component {
 
   render() {
     return (
-      <Card>
-        <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-          <strong>Take Attendance</strong>
-          <Button color="primary" outline onClick={this.props.onClick}>
-            Go Back
-          </Button>
-        </CardHeader>
-        <CardBody>
-          <Row>
-            <Col>
-              <div style={{ textAlign: "center" }}>
-                <p>
-                  Class: <strong>{this.props.class}</strong>
-                </p>
-                <p>
-                  Subject: <strong>{this.props.subject}</strong>
-                </p>
-                <p>
-                  Session: <strong>{this.props.session}</strong>
-                </p>
-                <p>
-                  Date <strong>{this.props.date}</strong>
-                </p>
-              </div>
-              <hr />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>Roll No</th>
-                    <th>Student Name</th>
-                    <th>Attendance</th>
-                    <th>Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td />
-                    <td style={{ opacity: 0.6 }}>Select All</td>
-                    <td>
-                      <Button
-                        color="success"
-                        size="sm"
-                        className="btn-pill"
-                        onClick={() => this.setAttendanceAll("Present")}
-                      >
-                        Present
-                      </Button>
-                      &nbsp;
-                      <Button
-                        color="danger"
-                        size="sm"
-                        className="btn-pill"
-                        onClick={() => this.setAttendanceAll("Absent")}
-                      >
-                        Absent
-                      </Button>
-                      &nbsp;
-                      <Button
-                        color="warning"
-                        size="sm"
-                        className="btn-pill"
-                        onClick={() => this.setAttendanceAll("Late")}
-                      >
-                        Late
-                      </Button>
-                    </td>
-                    <td />
-                  </tr>
-                  <tr>
-                    <td>11152622</td>
-                    <td>saumik</td>
-                    <td>
-                      <FormField
-                        type="radio"
-                        values={["Present", "Absent", "Late"]}
-                        name="11152622"
-                        value={this.state.data["11152622"].status}
-                        onChange={this.radioHandler}
-                      />
-                    </td>
-                    <td className="removeMarginBottom">
-                      <FormField
-                        placeholder="Notes"
-                        type="text"
-                        name="notes"
-                        value={this.state.data["11152622"].notes}
-                        onChange={e => this.notesChange(e, "11152622")}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>11152623</td>
-                    <td>saumik</td>
-                    <td>
-                      <FormField
-                        type="radio"
-                        values={["Present", "Absent", "Late"]}
-                        name="11152623"
-                        value={this.state.data["11152623"].status}
-                        onChange={this.radioHandler}
-                      />
-                    </td>
-                    <td className="removeMarginBottom">
-                      <FormField
-                        placeholder="Notes"
-                        type="text"
-                        name="notes"
-                        value={this.state.data["11152623"].notes}
-                        onChange={e => this.notesChange(e, "11152623")}
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            </Col>
-          </Row>
-          <Row>
-            <Col style={{ minHeight: "30px" }} />
-          </Row>
-          <Row>
-            <Col />
-            <Col>
-              <Button block color="primary" onClick={this.submitHandler}>
-                Submit
+      <Row>
+        <Col>
+          <Card>
+            <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
+              <strong>Take Attendance</strong>
+              <Button color="primary" outline onClick={this.props.onClick}>
+                Go Back
               </Button>
-            </Col>
-            <Col />
-          </Row>
-        </CardBody>
-      </Card>
+            </CardHeader>
+            <CardBody>
+              <Row>
+                <Col xs="3">
+                  <Row>
+                    <Col>Class</Col>
+                    <Col>
+                      : <strong>{this.props.class}</strong>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>Group</Col>
+                    <Col>
+                      : <strong>{this.props.subject}</strong>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>Date</Col>
+                    <Col>
+                      : <strong>{this.props.date}</strong>
+                    </Col>
+                  </Row>
+                  <hr />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Table responsive>
+                    <thead>
+                      <tr>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Attendance</th>
+                        <th>Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td />
+                        <td style={{ opacity: 0.6 }}>Select All</td>
+                        <td>
+                          <Button
+                            color="success"
+                            size="sm"
+                            className="btn-pill"
+                            onClick={() => this.setAttendanceAll("Present")}
+                          >
+                            Present
+                          </Button>
+                          &nbsp;
+                          <Button
+                            color="danger"
+                            size="sm"
+                            className="btn-pill"
+                            onClick={() => this.setAttendanceAll("Absent")}
+                          >
+                            Absent
+                          </Button>
+                          &nbsp;
+                          <Button
+                            color="warning"
+                            size="sm"
+                            className="btn-pill"
+                            onClick={() => this.setAttendanceAll("Late")}
+                          >
+                            Late
+                          </Button>
+                        </td>
+                        <td />
+                      </tr>
+                      <tr>
+                        <td>11152622</td>
+                        <td>saumik</td>
+                        <td>
+                          <FormField
+                            type="radio"
+                            values={["Present", "Absent", "Late"]}
+                            name="11152622"
+                            value={this.state.data["11152622"].status}
+                            onChange={this.radioHandler}
+                          />
+                        </td>
+                        <td className="removeMarginBottom">
+                          <FormField
+                            placeholder="Notes"
+                            type="text"
+                            name="notes"
+                            value={this.state.data["11152622"].notes}
+                            onChange={e => this.notesChange(e, "11152622")}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>11152623</td>
+                        <td>saumik</td>
+                        <td>
+                          <FormField
+                            type="radio"
+                            values={["Present", "Absent", "Late"]}
+                            name="11152623"
+                            value={this.state.data["11152623"].status}
+                            onChange={this.radioHandler}
+                          />
+                        </td>
+                        <td className="removeMarginBottom">
+                          <FormField
+                            placeholder="Notes"
+                            type="text"
+                            name="notes"
+                            value={this.state.data["11152623"].notes}
+                            onChange={e => this.notesChange(e, "11152623")}
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Col>
+              </Row>
+              <Row>
+                <Col style={{ minHeight: "30px" }} />
+              </Row>
+              <Row>
+                <Col />
+                <Col>
+                  <Button block color="primary" onClick={this.submitHandler}>
+                    Save
+                  </Button>
+                </Col>
+                <Col />
+              </Row>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }
