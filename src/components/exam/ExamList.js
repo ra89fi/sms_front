@@ -5,9 +5,9 @@ import List from "../common/List";
 const examData = [
   {
     id: "29067429867473",
-    degree: "Honors",
-    subject: "Geography",
-    session: "2013-14",
+    class: "Five",
+    group: "",
+    subject: "English",
     name: "Exam Name",
     description: "Description",
     date: "12/7/2019"

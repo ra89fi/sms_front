@@ -4,9 +4,9 @@ import FormField from "../common/FormField";
 
 const exam = {
   id: "290674289367",
-  degree: "Honors",
-  subject: "Geography",
-  session: "2019-20",
+  class: "Five",
+  group: "",
+  subject: "English",
   date: "7/12/2019",
   name: "Exam Name",
   description: "Description",
@@ -67,21 +67,21 @@ class ExamMarks extends React.Component {
                 <Row>
                   <Col xs="4">
                     <Row>
-                      <Col>Degree</Col>
+                      <Col>Class</Col>
                       <Col>
-                        : <strong>{exam.degree}</strong>
+                        : <strong>{exam.class}</strong>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>Group</Col>
+                      <Col>
+                        : <strong>{exam.group}</strong>
                       </Col>
                     </Row>
                     <Row>
                       <Col>Subject</Col>
                       <Col>
                         : <strong>{exam.subject}</strong>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>Session</Col>
-                      <Col>
-                        : <strong>{exam.session}</strong>
                       </Col>
                     </Row>
                     <Row>
@@ -102,27 +102,26 @@ class ExamMarks extends React.Component {
                         : <strong>{exam.description}</strong>
                       </Col>
                     </Row>
-                  </Col>
-                  <Col />
-                </Row>
-                <Row style={{ marginTop: "20px" }}>
-                  <Col>
-                    <FormField
-                      type="text"
-                      placeholder="Total Marks"
-                      name="total"
-                      value={this.state.total}
-                      onChange={this.changeHandler}
-                    />
-                  </Col>
-                  <Col>
-                    <FormField
-                      type="text"
-                      placeholder="Highest"
-                      name="highest"
-                      value={this.state.value}
-                      onChange={this.changeHandler}
-                    />
+                    <Row style={{ marginTop: "20px" }}>
+                      <Col>
+                        <FormField
+                          type="text"
+                          placeholder="Total Marks"
+                          name="total"
+                          value={this.state.total}
+                          onChange={this.changeHandler}
+                        />
+                      </Col>
+                      <Col>
+                        <FormField
+                          type="text"
+                          placeholder="Highest"
+                          name="highest"
+                          value={this.state.value}
+                          onChange={this.changeHandler}
+                        />
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
                 <Row>

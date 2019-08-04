@@ -20,7 +20,7 @@ export default props => {
   return (
     <div className="animated fadeIn">
       <Row>
-        <Col>
+        <Col xs="4">
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
               <strong>Exam Entry</strong> <i className="icon-note icons" />
@@ -29,46 +29,34 @@ export default props => {
               <Row>
                 <Col>
                   <FormField
-                    type="select"
-                    placeholder="Degree"
-                    name="degree"
-                    value={state.degree}
-                    onChange={changeHandler}
-                    values={["", "Honors", "Masters"]}
-                  />
-                </Col>
-                <Col>
-                  <FormField
-                    type="select"
-                    placeholder="Subject"
-                    name="subject"
-                    value={state.subject}
-                    onChange={changeHandler}
-                    values={["", "Geography"]}
-                  />
-                </Col>
-                <Col>
-                  <FormField
-                    type="select"
-                    placeholder="Session"
-                    name="session"
-                    value={state.session}
-                    onChange={changeHandler}
-                    values={["", "2019-20", "2020-21"]}
-                  />
-                </Col>
-                <Col>
-                  <FormField
                     type="date"
                     placeholder="Date"
                     name="date"
                     value={state.date}
                     onChange={changeHandler}
                   />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+                  <FormField
+                    type="text"
+                    placeholder="Class *"
+                    name="class"
+                    value={state.class}
+                    onChange={changeHandler}
+                  />
+                  <FormField
+                    type="text"
+                    placeholder="Group"
+                    name="group"
+                    value={state.group}
+                    onChange={changeHandler}
+                    disabled={state.class != "9" && state.class != "10"}
+                  />
+                  <FormField
+                    type="text"
+                    placeholder="Subject *"
+                    name="subject"
+                    value={state.subject}
+                    onChange={changeHandler}
+                  />
                   <FormField
                     type="text"
                     placeholder="Exam Name"
@@ -76,8 +64,6 @@ export default props => {
                     value={state.name}
                     onChange={changeHandler}
                   />
-                </Col>
-                <Col>
                   <FormField
                     type="text"
                     placeholder="Exam Description"
@@ -85,16 +71,10 @@ export default props => {
                     value={state.description}
                     onChange={changeHandler}
                   />
-                </Col>
-              </Row>
-              <Row>
-                <Col />
-                <Col>
                   <Button block color="primary" onClick={clickHandler}>
                     Submit
                   </Button>
                 </Col>
-                <Col />
               </Row>
             </CardBody>
           </Card>
