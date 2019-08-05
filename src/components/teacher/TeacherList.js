@@ -8,7 +8,7 @@ const teacherData = [
     name: "Raihan",
     email: "test@email.com",
     mobileNo: "67592746873",
-    subject: "Geography",
+    subject: "English",
     gender: "Male"
   }
 ];

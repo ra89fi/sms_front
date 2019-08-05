@@ -19,21 +19,33 @@ export default props => {
                 </Col>
               </Row>
               <Row>
-                <Col>Degree</Col>
+                <Col>Name</Col>
                 <Col>
-                  : <strong>Honors</strong>
+                  : <strong>Saumik Nondi</strong>
                 </Col>
               </Row>
               <Row>
-                <Col>Subject</Col>
+                <Col>Email</Col>
                 <Col>
-                  : <strong>Geography</strong>
+                  : <strong>test@email.com</strong>
                 </Col>
               </Row>
               <Row>
                 <Col>Mobile No</Col>
                 <Col>
                   : <strong>9034704096</strong>
+                </Col>
+              </Row>
+              <Row>
+                <Col>Subject</Col>
+                <Col>
+                  : <strong>English</strong>
+                </Col>
+              </Row>
+              <Row>
+                <Col>Gender</Col>
+                <Col>
+                  : <strong>Male</strong>
                 </Col>
               </Row>
             </CardBody>
