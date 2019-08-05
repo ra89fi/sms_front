@@ -12,8 +12,72 @@ import {
   InputGroupText,
   Row
 } from "reactstrap";
+import Joi from "@hapi/joi";
+
+// use this in server too
+const userSchema = {
+  username: Joi.string()
+    .alphanum()
+    .min(3)
+    .max(30),
+  email: Joi.string().email({ minDomainSegments: 2 }),
+  password: Joi.string()
+    .min(6)
+    .max(30),
+  password2: Joi.string()
+    .min(6)
+    .max(30)
+};
 
 class Register extends Component {
+  state = {
+    user: {
+      username: "",
+      email: "",
+      password: "",
+      password2: ""
+    },
+    errors: {}
+  };
+
+  changeHandler = ({ target: { name, value } }) => {
+    const user = {
+      ...this.state.user,
+      [name]: value
+    };
+    this.setState({ user });
+    const error = Joi.validate(user, userSchema).error;
+    if (error) {
+      const err = error.details[0];
+      const name = err.path[0];
+      this.setState({
+        errors: {
+          [name]: err.message
+        }
+      });
+      return;
+    }
+    this.setState({
+      errors: {}
+    });
+  };
+
+  submitHandler = () => {
+    const { password, password2 } = this.state.user;
+    if (password !== password2) {
+      this.setState({
+        errors: {
+          password2: "passwords must match"
+        }
+      });
+      return;
+    }
+    let errors = Object.keys(this.state.errors).map(key => !!this.state.errors[key]);
+    if (errors.length === 0 && password === password2) {
+      console.log("user OK");
+    }
+  };
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -31,13 +95,33 @@ class Register extends Component {
                           <i className="icon-user" />
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Username" autoComplete="username" />
+                      <Input
+                        type="text"
+                        placeholder="Username"
+                        name="username"
+                        value={this.state.user.username}
+                        onChange={this.changeHandler}
+                        style={
+                          this.state.errors.username
+                            ? { border: "1px solid red" }
+                            : { border: "none" }
+                        }
+                      />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>@</InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Email" autoComplete="email" />
+                      <Input
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        value={this.state.user.email}
+                        onChange={this.changeHandler}
+                        style={
+                          this.state.errors.email ? { border: "1px solid red" } : { border: "none" }
+                        }
+                      />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
@@ -45,7 +129,18 @@ class Register extends Component {
                           <i className="icon-lock" />
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="password" placeholder="Password" autoComplete="new-password" />
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={this.state.user.password}
+                        onChange={this.changeHandler}
+                        style={
+                          this.state.errors.password
+                            ? { border: "1px solid red" }
+                            : { border: "none" }
+                        }
+                      />
                     </InputGroup>
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
@@ -56,10 +151,17 @@ class Register extends Component {
                       <Input
                         type="password"
                         placeholder="Repeat password"
-                        autoComplete="new-password"
+                        name="password2"
+                        value={this.state.user.password2}
+                        onChange={this.changeHandler}
+                        style={
+                          this.state.errors.password2
+                            ? { border: "1px solid red" }
+                            : { border: "none" }
+                        }
                       />
                     </InputGroup>
-                    <Button color="success" block>
+                    <Button color="success" block onClick={this.submitHandler}>
                       Create Account
                     </Button>
                   </Form>
