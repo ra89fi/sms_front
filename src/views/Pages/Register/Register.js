@@ -104,8 +104,9 @@ class Register extends Component {
           if (response.status === 200) {
             if (text === "OK") {
               console.log("register OK");
-              return;
               // redirect to /login using history
+              this.props.history.push("/login");
+              return;
             }
           }
           // error

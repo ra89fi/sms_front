@@ -19,6 +19,13 @@ import navigation from "../../_nav";
 // routes config
 import routes from "../../routes";
 
+import configureStore from "../../store/configureStore";
+import { logout } from "../../actions/auth";
+import PrivateRoute from "../../routes/PrivateRoute";
+import PublicRoute from "../../routes/PublicRoute";
+
+const store = configureStore();
+
 const DefaultFooter = React.lazy(() => import("./DefaultFooter"));
 const DefaultHeader = React.lazy(() => import("./DefaultHeader"));
 
@@ -27,6 +34,8 @@ class DefaultLayout extends Component {
 
   signOut(e) {
     e.preventDefault();
+    console.log("logout");
+    store.dispatch(logout());
     this.props.history.push("/login");
   }
 
@@ -63,13 +72,23 @@ class DefaultLayout extends Component {
                 <Switch>
                   {routes.map((route, idx) => {
                     return route.component ? (
-                      <Route
-                        key={idx}
-                        path={route.path}
-                        exact={route.exact}
-                        name={route.name}
-                        render={props => <route.component {...props} />}
-                      />
+                      route.private ? (
+                        <PrivateRoute
+                          key={idx}
+                          path={route.path}
+                          exact={route.exact}
+                          name={route.name}
+                          component={route.component}
+                        />
+                      ) : (
+                        <PublicRoute
+                          key={idx}
+                          path={route.path}
+                          exact={route.exact}
+                          name={route.name}
+                          component={route.component}
+                        />
+                      )
                     ) : null;
                   })}
                   <Redirect from="/" to="/dashboard" />

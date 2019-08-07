@@ -95,8 +95,9 @@ class Login extends Component {
               this.setState({ user: { username: "", password: "" } });
               const token = response.headers.get("Auth-Token");
               store.dispatch(login(token));
-              return;
               // redirect to /dashboard using history
+              this.props.history.push("/");
+              return;
             }
           }
           // error

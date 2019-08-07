@@ -21,101 +21,117 @@ const Dashboard = React.lazy(() => import("./components/common/Dashboard"));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-  { path: "/", exact: true, name: "Home", component: DefaultLayout },
-  { path: "/dashboard", exact: true, name: "Dashboard", component: Dashboard },
+  { path: "/", exact: true, name: "Home", component: DefaultLayout, private: true },
+  { path: "/dashboard", exact: true, name: "Dashboard", component: Dashboard, private: true },
   {
     path: "/student/registration",
     exact: true,
     name: "Student Registration Form",
-    component: StudentForm
+    component: StudentForm,
+    private: true
   },
   {
     path: "/student/all",
     exact: true,
     name: "Student List",
-    component: StudentList
+    component: StudentList,
+    private: true
   },
   {
     path: "/student/profile/:id",
     exact: true,
     name: "View Student Profile",
-    component: StudentProfileView
+    component: StudentProfileView,
+    private: true
   },
   {
     path: "/student/edit/:id",
     exact: true,
     name: "Edit Student Profile",
-    component: StudentProfileEdit
+    component: StudentProfileEdit,
+    private: true
   },
   {
     path: "/attendance/take",
     exact: true,
     name: "Take Attendance",
-    component: AttendanceTake
+    component: AttendanceTake,
+    private: true
   },
   {
     path: "/attendance/report",
     exact: true,
     name: "Attendance Report",
-    component: AttendanceReport
+    component: AttendanceReport,
+    private: true
   },
   {
     path: "/exams/entry/",
     name: "Exam Entry",
-    component: ExamEntry
+    component: ExamEntry,
+    private: true
   },
   {
     path: "/exams/all",
     exact: true,
     name: "Exam List",
-    component: ExamList
+    component: ExamList,
+    private: true
   },
   {
     path: "/exams/details/:id",
     exact: true,
     name: "Exam Details",
-    component: ExamDetails
+    component: ExamDetails,
+    private: true
   },
   {
     path: "/exams/marks/:id",
     exact: true,
     name: "Exam Marks",
-    component: ExamMarks
+    component: ExamMarks,
+    private: true
   },
   {
     path: "/teachers/entry/",
     name: "Teacher Entry",
-    component: TeacherEntry
+    component: TeacherEntry,
+    private: true
   },
   {
     path: "/teachers/all",
     exact: true,
     name: " Teacher List",
-    component: TeacherList
+    component: TeacherList,
+    private: true
   },
   {
     path: "/teachers/profile/:id",
     exact: true,
     name: " Teacher Profile",
-    component: TeacherProfile
+    component: TeacherProfile,
+    private: true
   },
   {
     path: "/users/all",
     exact: true,
     name: " User List",
-    component: UesrList
+    component: UesrList,
+    private: true
   },
   {
     path: "/users/profile/:id",
     exact: true,
     name: " User Profile",
-    component: UserProfile
+    component: UserProfile,
+    private: true
   },
   {
     path: "/results/coaching",
     exact: true,
     name: "Coaching Result",
-    component: ResultCoaching
+    component: ResultCoaching,
+    private: true
   }
 ];
 
