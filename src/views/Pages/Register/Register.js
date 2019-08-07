@@ -19,14 +19,19 @@ const userSchema = {
   username: Joi.string()
     .alphanum()
     .min(3)
-    .max(30),
-  email: Joi.string().email({ minDomainSegments: 2 }),
+    .max(30)
+    .required(),
+  email: Joi.string()
+    .email({ minDomainSegments: 2 })
+    .required(),
   password: Joi.string()
     .min(6)
-    .max(30),
+    .max(30)
+    .required(),
   password2: Joi.string()
     .min(6)
     .max(30)
+    .required()
 };
 
 class Register extends Component {
@@ -63,6 +68,17 @@ class Register extends Component {
   };
 
   submitHandler = () => {
+    const error = Joi.validate(this.state.user, userSchema).error;
+    if (error) {
+      const err = error.details[0];
+      const name = err.path[0];
+      this.setState({
+        errors: {
+          [name]: err.message
+        }
+      });
+      return;
+    }
     const { password, password2 } = this.state.user;
     if (password !== password2) {
       this.setState({
@@ -75,6 +91,30 @@ class Register extends Component {
     let errors = Object.keys(this.state.errors).map(key => !!this.state.errors[key]);
     if (errors.length === 0 && password === password2) {
       console.log("user OK");
+      fetch("http://localhost:3001/user/register", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(this.state.user)
+      })
+        .then(async response => {
+          const text = await response.text();
+          if (response.status === 200) {
+            if (text === "OK") {
+              console.log("register OK");
+              return;
+              // redirect to /login using history
+            }
+          }
+          // error
+          console.log(text);
+          this.setState({
+            errors: JSON.parse(text)
+          });
+        })
+        .catch(err => console.log(err.message));
     }
   };
 

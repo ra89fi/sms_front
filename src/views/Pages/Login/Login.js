@@ -14,8 +14,101 @@ import {
   InputGroupText,
   Row
 } from "reactstrap";
+import Joi from "@hapi/joi";
+import configureStore from "../../../store/configureStore";
+import { login } from "../../../actions/auth";
+
+const store = configureStore();
+
+// use this in server too
+const userSchema = {
+  username: Joi.string()
+    .alphanum()
+    .min(3)
+    .max(30)
+    .required(),
+  password: Joi.string()
+    .min(6)
+    .max(30)
+    .required()
+};
 
 class Login extends Component {
+  state = {
+    user: {
+      username: "",
+      password: ""
+    },
+    errors: {}
+  };
+
+  changeHandler = ({ target: { name, value } }) => {
+    const user = {
+      ...this.state.user,
+      [name]: value
+    };
+    this.setState({ user });
+    const error = Joi.validate(user, userSchema).error;
+    if (error) {
+      const err = error.details[0];
+      const name = err.path[0];
+      this.setState({
+        errors: {
+          [name]: err.message
+        }
+      });
+      return;
+    }
+    this.setState({
+      errors: {}
+    });
+  };
+
+  submitHandler = () => {
+    const error = Joi.validate(this.state.user, userSchema).error;
+    if (error) {
+      const err = error.details[0];
+      const name = err.path[0];
+      this.setState({
+        errors: {
+          [name]: err.message
+        }
+      });
+      return;
+    }
+    let errors = Object.keys(this.state.errors).map(key => !!this.state.errors[key]);
+    if (errors.length === 0) {
+      console.log("user OK");
+      fetch("http://localhost:3001/user/login", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(this.state.user)
+      })
+        .then(async response => {
+          const text = await response.text();
+          if (response.status === 200) {
+            if (text === "OK") {
+              console.log("login OK");
+              this.setState({ user: { username: "", password: "" } });
+              const token = response.headers.get("Auth-Token");
+              store.dispatch(login(token));
+              return;
+              // redirect to /dashboard using history
+            }
+          }
+          // error
+          console.log(text);
+          this.setState({
+            errors: JSON.parse(text)
+          });
+        })
+        .catch(err => console.log(err.message));
+    }
+  };
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -34,7 +127,18 @@ class Login extends Component {
                             <i className="icon-user" />
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" />
+                        <Input
+                          type="text"
+                          placeholder="Username"
+                          name="username"
+                          value={this.state.user.username}
+                          onChange={this.changeHandler}
+                          style={
+                            this.state.errors.username
+                              ? { border: "1px solid red" }
+                              : { border: "none" }
+                          }
+                        />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -45,12 +149,19 @@ class Login extends Component {
                         <Input
                           type="password"
                           placeholder="Password"
-                          autoComplete="current-password"
+                          name="password"
+                          value={this.state.user.password}
+                          onChange={this.changeHandler}
+                          style={
+                            this.state.errors.password
+                              ? { border: "1px solid red" }
+                              : { border: "none" }
+                          }
                         />
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4">
+                          <Button color="primary" className="px-4" onClick={this.submitHandler}>
                             Login
                           </Button>
                         </Col>
