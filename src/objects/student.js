@@ -14,14 +14,14 @@ export default {
     bloodGroup: "",
     gender: "",
     maritalStatus: "",
-    presAddVillage: "",
-    presAddPO: "",
-    presAddUpazilla: "",
-    presAddDistrict: "",
-    permAddVillage: "",
-    permAddPO: "",
-    permAddUpazilla: "",
-    permAddDistrict: ""
+    presVillage: "",
+    presPO: "",
+    presUpazilla: "",
+    presDistrict: "",
+    permVillage: "",
+    permPO: "",
+    permUpazilla: "",
+    permDistrict: ""
   },
   parentDetails: {
     father: {

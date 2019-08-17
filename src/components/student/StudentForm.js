@@ -4,11 +4,11 @@ import { Button, Col, Row } from "reactstrap";
 import Joi from "@hapi/joi";
 import FormField from "../common/FormField";
 import ParentDetails from "./ParentDetails";
-import PreviousExamDetails from "./PreviousExamDetails";
 import student from "../../objects/student";
 import StudentDetails from "./StudentDetails";
 import { updateStudentRoot } from "../../actions/student";
 import { studentRootSchema, validateStudent } from "../../validations/student";
+import URI from "../../objects/uri";
 
 class StudentForm extends Component {
   state = {
@@ -24,6 +24,11 @@ class StudentForm extends Component {
     if (error) {
       const err = error.details[0];
       errors[err.path[0]] = err.message;
+    }
+    if (nextProps.student.class == "9" || nextProps.student.class == "10") {
+      if (!nextProps.student.group) {
+        errors.group = `"Group" is not allowed to be empty`;
+      }
     }
     this.setState({
       errors,
@@ -41,9 +46,21 @@ class StudentForm extends Component {
   };
 
   submitHandler = () => {
+    console.log(this.state.student);
     if (validateStudent(this.state.student)) {
       console.log("student is OK");
       // save in db and clear fields
+      fetch(`${URI}/api/student_details`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(this.state.student)
+      })
+        .then(response => response.text())
+        .then(msg => console.log(msg))
+        .catch(err => console.log(err.message));
     }
   };
 
@@ -60,37 +77,16 @@ class StudentForm extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col />
-          <Col style={{ textAlign: "center" }}>
-            <h2>Picasso Coaching Centre</h2>
-            <h5>Student Registration</h5>
-          </Col>
-          <Col />
-        </Row>
-        <Row style={{ minHeight: "30px" }} />
-        <Row>
           <Col>
             <FormField
-              type="text"
+              type="select"
               placeholder="Class *"
               name="class"
+              values={["", "6", "7", "8", "9", "10"]}
               value={this.state.student.class}
               onChange={this.changeHandler}
               error={this.state.errors.class}
             />
-          </Col>
-          <Col>
-            <FormField
-              type="text"
-              placeholder="Group"
-              name="group"
-              value={this.state.student.group}
-              onChange={this.changeHandler}
-              error={this.state.errors.group}
-              disabled={this.state.student.class != "9" && this.state.student.class != "10"}
-            />
-          </Col>
-          <Col>
             <FormField
               type="text"
               placeholder="Roll No *"
@@ -100,7 +96,21 @@ class StudentForm extends Component {
               error={this.state.errors.rollNo}
             />
           </Col>
+          <Col xs="6" style={{ textAlign: "center" }}>
+            <h2>Picasso Coaching Centre</h2>
+            <h5>Student Registration</h5>
+          </Col>
           <Col>
+            <FormField
+              type="select"
+              placeholder="Group"
+              name="group"
+              values={["", "B. Studies", "Humanities", "Science"]}
+              value={this.state.student.group}
+              onChange={this.changeHandler}
+              error={this.state.errors.group}
+              disabled={this.state.student.class != "9" && this.state.student.class != "10"}
+            />
             <FormField
               type="text"
               placeholder="School *"
@@ -111,6 +121,7 @@ class StudentForm extends Component {
             />
           </Col>
         </Row>
+        <Row style={{ minHeight: "30px" }} />
         <Row>
           <Col>
             <StudentDetails {...this.state.student.studentDetails} />

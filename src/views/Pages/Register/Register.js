@@ -13,6 +13,7 @@ import {
   Row
 } from "reactstrap";
 import Joi from "@hapi/joi";
+import URI from "../../../objects/uri";
 
 // use this in server too
 const userSchema = {
@@ -91,7 +92,7 @@ class Register extends Component {
     let errors = Object.keys(this.state.errors).map(key => !!this.state.errors[key]);
     if (errors.length === 0 && password === password2) {
       console.log("user OK");
-      fetch("http://localhost:3001/user/register", {
+      fetch(`${URI}/user/register`, {
         method: "POST",
         mode: "cors",
         headers: {

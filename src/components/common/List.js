@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { Button, Table } from "reactstrap";
 
 export default props => {
+  if (props.data.length === 0) return <p>No data.</p>;
   return (
     <Table responsive>
       <thead>
         <tr>
-          {Object.keys(props.data[0]).map((header, i) => {
-            return <th key={i}>{header}</th>;
+          {props.headersAllow.map((header, i) => {
+            return <th key={i}>{props.headerNames[header]}</th>;
           })}
           {props.buttons ? <th>Actions</th> : ""}
         </tr>
@@ -17,7 +18,7 @@ export default props => {
         {props.data.map((row, i) => {
           return (
             <tr key={i}>
-              {Object.keys(row).map((header, i) => {
+              {props.headersAllow.map((header, i) => {
                 return <td key={i}>{row[header]}</td>;
               })}
               <td>

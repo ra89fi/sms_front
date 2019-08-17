@@ -17,6 +17,7 @@ import {
 import Joi from "@hapi/joi";
 import configureStore from "../../../store/configureStore";
 import { login } from "../../../actions/auth";
+import URI from "../../../objects/uri";
 
 const store = configureStore();
 
@@ -79,7 +80,7 @@ class Login extends Component {
     let errors = Object.keys(this.state.errors).map(key => !!this.state.errors[key]);
     if (errors.length === 0) {
       console.log("user OK");
-      fetch("http://localhost:3001/user/login", {
+      fetch(`${URI}/user/login`, {
         method: "POST",
         mode: "cors",
         headers: {

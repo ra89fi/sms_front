@@ -20,14 +20,14 @@ export default props => {
     bloodGroup,
     gender,
     maritalStatus,
-    presAddVillage,
-    presAddPO,
-    presAddUpazilla,
-    presAddDistrict,
-    permAddVillage,
-    permAddPO,
-    permAddUpazilla,
-    permAddDistrict
+    presVillage,
+    presPO,
+    presUpazilla,
+    presDistrict,
+    permVillage,
+    permPO,
+    permUpazilla,
+    permDistrict
   } = props;
 
   const data = {
@@ -41,14 +41,14 @@ export default props => {
     bloodGroup,
     gender,
     maritalStatus,
-    presAddVillage,
-    presAddPO,
-    presAddUpazilla,
-    presAddDistrict,
-    permAddVillage,
-    permAddPO,
-    permAddUpazilla,
-    permAddDistrict
+    presVillage,
+    presPO,
+    presUpazilla,
+    presDistrict,
+    permVillage,
+    permPO,
+    permUpazilla,
+    permDistrict
   };
 
   const { error } = Joi.validate(data, studentDetailsSchema);
@@ -72,18 +72,18 @@ export default props => {
     if (!e.target.checked) {
       values = {
         ...data,
-        permAddVillage: "",
-        permAddPO: "",
-        permAddUpazilla: "",
-        permAddDistrict: ""
+        permVillage: "",
+        permPO: "",
+        permUpazilla: "",
+        permDistrict: ""
       };
     } else {
       values = {
         ...data,
-        permAddVillage: data.presAddVillage,
-        permAddPO: data.presAddPO,
-        permAddUpazilla: data.presAddUpazilla,
-        permAddDistrict: data.presAddDistrict
+        permVillage: data.presVillage,
+        permPO: data.presPO,
+        permUpazilla: data.presUpazilla,
+        permDistrict: data.presDistrict
       };
     }
     store.dispatch(updateStudentDetails(values, "studentDetails"));
@@ -226,40 +226,40 @@ export default props => {
             <FormField
               type="text"
               placeholder="Village/Road *"
-              name="presAddVillage"
-              value={presAddVillage}
+              name="presVillage"
+              value={presVillage}
               onChange={changeHandler}
-              error={errors.presAddVillage}
+              error={errors.presVillage}
             />
           </Col>
           <Col>
             <FormField
               type="text"
               placeholder="Post Office *"
-              name="presAddPO"
-              value={presAddPO}
+              name="presPO"
+              value={presPO}
               onChange={changeHandler}
-              error={errors.presAddPO}
+              error={errors.presPO}
             />
           </Col>
           <Col>
             <FormField
               type="text"
               placeholder="Upazilla *"
-              name="presAddUpazilla"
-              value={presAddUpazilla}
+              name="presUpazilla"
+              value={presUpazilla}
               onChange={changeHandler}
-              error={errors.presAddUpazilla}
+              error={errors.presUpazilla}
             />
           </Col>
           <Col>
             <FormField
               type="text"
               placeholder="District *"
-              name="presAddDistrict"
-              value={presAddDistrict}
+              name="presDistrict"
+              value={presDistrict}
               onChange={changeHandler}
-              error={errors.presAddDistrict}
+              error={errors.presDistrict}
             />
           </Col>
         </Row>
@@ -288,40 +288,40 @@ export default props => {
             <FormField
               type="text"
               placeholder="Village/Road *"
-              name="permAddVillage"
-              value={permAddVillage}
+              name="permVillage"
+              value={permVillage}
               onChange={changeHandler}
-              error={errors.permAddVillage}
+              error={errors.permVillage}
             />
           </Col>
           <Col>
             <FormField
               type="text"
               placeholder="Post Office *"
-              name="permAddPO"
-              value={permAddPO}
+              name="permPO"
+              value={permPO}
               onChange={changeHandler}
-              error={errors.permAddPO}
+              error={errors.permPO}
             />
           </Col>
           <Col>
             <FormField
               type="text"
               placeholder="Upazilla *"
-              name="permAddUpazilla"
-              value={permAddUpazilla}
+              name="permUpazilla"
+              value={permUpazilla}
               onChange={changeHandler}
-              error={errors.permAddUpazilla}
+              error={errors.permUpazilla}
             />
           </Col>
           <Col>
             <FormField
               type="text"
               placeholder="District *"
-              name="permAddDistrict"
-              value={permAddDistrict}
+              name="permDistrict"
+              value={permDistrict}
               onChange={changeHandler}
-              error={errors.permAddDistrict}
+              error={errors.permDistrict}
             />
           </Col>
         </Row>

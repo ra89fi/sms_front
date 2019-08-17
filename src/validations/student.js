@@ -15,8 +15,8 @@ export const studentRootSchema = {
     .min(1)
     .required(),
   studentDetails: Joi.any().required(),
-  parentDetails: Joi.any().required(),
-  previousExamDetails: Joi.any().required()
+  parentDetails: Joi.any().required()
+  // previousExamDetails: Joi.any().required()
 };
 
 export const studentDetailsSchema = {
@@ -52,35 +52,35 @@ export const studentDetailsSchema = {
     .alphanum()
     .min(1)
     .required(),
-  presAddVillage: Joi.string()
+  presVillage: Joi.string()
     .alphanum()
     .min(1)
     .required(),
-  presAddPO: Joi.string()
+  presPO: Joi.string()
     .alphanum()
     .min(1)
     .required(),
-  presAddUpazilla: Joi.string()
+  presUpazilla: Joi.string()
     .alphanum()
     .min(1)
     .required(),
-  presAddDistrict: Joi.string()
+  presDistrict: Joi.string()
     .alphanum()
     .min(1)
     .required(),
-  permAddVillage: Joi.string()
+  permVillage: Joi.string()
     .alphanum()
     .min(1)
     .required(),
-  permAddPO: Joi.string()
+  permPO: Joi.string()
     .alphanum()
     .min(1)
     .required(),
-  permAddUpazilla: Joi.string()
+  permUpazilla: Joi.string()
     .alphanum()
     .min(1)
     .required(),
-  permAddDistrict: Joi.string()
+  permDistrict: Joi.string()
     .alphanum()
     .min(1)
     .required()

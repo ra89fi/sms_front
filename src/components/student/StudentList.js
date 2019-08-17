@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import { Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import List from "../common/List";
+import URI from "../../objects/uri";
+import studentListHeaders from "../../objects/studentListHeaders";
 
-const studentData = [
-  {
-    id: "29067429867473",
-    class: "Five",
-    group: "",
-    rollNo: "11152622",
-    school: "World's Greatest School",
-    name: "Raihan",
-    mobileNo: "9034704096",
-    email: "test@email.com"
-  }
+const headersAllow = [
+  "id",
+  "class",
+  "group",
+  "rollNo",
+  "school",
+  "firstName",
+  "lastName",
+  "mobileNo",
+  "email"
 ];
+
 const buttons = [
   {
     name: "View",
@@ -32,6 +34,26 @@ const buttons = [
 ];
 
 class StudentList extends Component {
+  state = {
+    students: []
+  };
+
+  componentDidMount() {
+    fetch(`${URI}/api/student_details`, {
+      method: "GET",
+      mode: "cors"
+    })
+      .then(response => {
+        if (response.status === 200) return response.json();
+        else return response.text();
+      })
+      .then(msg => {
+        console.log(msg);
+        if (typeof msg === "object") this.setState({ students: msg });
+      })
+      .catch(err => console.log(err.message));
+  }
+
   render() {
     return (
       <div className="animated fadeIn">
@@ -42,7 +64,12 @@ class StudentList extends Component {
                 <strong>Student List</strong> <i className="icon-list icons" />
               </CardHeader>
               <CardBody>
-                <List data={studentData} buttons={buttons} />
+                <List
+                  data={this.state.students}
+                  headerNames={studentListHeaders}
+                  headersAllow={headersAllow}
+                  buttons={buttons}
+                />
               </CardBody>
             </Card>
           </Col>
