@@ -46,6 +46,20 @@ class Register extends Component {
     errors: {}
   };
 
+  componentDidMount() {
+    this.enterHandler = e => {
+      if (e.keyCode == "13" || e.charCode == "13") {
+        e.preventDefault();
+        this.submitHandler();
+      }
+    };
+    document.addEventListener("keypress", this.enterHandler);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keypress", this.enterHandler);
+  }
+
   changeHandler = ({ target: { name, value } }) => {
     const user = {
       ...this.state.user,
