@@ -24,7 +24,13 @@ export default props => {
               <td>
                 {props.buttons.map((btn, i) => {
                   return btn.link ? (
-                    <Link to={`${btn.link}/${row.id}`} key={i}>
+                    <Link
+                      to={{
+                        pathname: `${btn.link}/${row.id}`,
+                        data: row
+                      }}
+                      key={i}
+                    >
                       <Button color={btn.color} size="sm" className="btn-pill">
                         {btn.name}
                       </Button>

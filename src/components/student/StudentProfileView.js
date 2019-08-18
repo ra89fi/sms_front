@@ -1,10 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, CardHeader, CardBody, Col, Row } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  Col,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Row
+} from "reactstrap";
+import headerNames from "../../objects/studentListHeaders";
+
+const allowHeaders = ["id", "class", "group", "rollNo", "school"];
 
 export default props => {
-  // get student id from props.match.params.id and load accordingly
   console.log(props);
+  const { data: student } = props.location;
   return (
     <div className="animated fadeIn">
       <Row>
@@ -19,38 +33,12 @@ export default props => {
                   <img src={"../../assets/img/avatars/5.jpg"} alt="" />
                 </Col>
               </Row>
-              <Row>
-                <Col xs="5">ID</Col>
-                <Col>: 234357478458</Col>
-              </Row>
-              <Row>
-                <Col xs="5">Class</Col>
-                <Col>: Five</Col>
-              </Row>
-              <Row>
-                <Col xs="5">Group</Col>
-                <Col>: </Col>
-              </Row>
-              <Row>
-                <Col xs="5">Roll No</Col>
-                <Col>: 3476574</Col>
-              </Row>
-              <Row>
-                <Col xs="5">School</Col>
-                <Col>: World's Greatest School</Col>
-              </Row>
-              <Row>
-                <Col xs="5">Name</Col>
-                <Col>: Sumaya Akter Brishti</Col>
-              </Row>
-              <Row>
-                <Col xs="5">Mobile No</Col>
-                <Col>: 02857609218</Col>
-              </Row>
-              <Row>
-                <Col xs="5">Email</Col>
-                <Col>: test@email.com</Col>
-              </Row>
+              {allowHeaders.map((key, i) => (
+                <Row key={i}>
+                  <Col xs="4">{headerNames[key]}</Col>
+                  <Col>: {student[key]}</Col>
+                </Row>
+              ))}
             </CardBody>
           </Card>
           <Row>
@@ -70,7 +58,204 @@ export default props => {
         </Col>
         <Col xs="8">
           <Card>
-            <CardBody>Info here</CardBody>
+            <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
+              <strong>Student Details</strong>
+              <i className="icon-note icons" />
+            </CardHeader>
+            <CardBody>
+              <Row>
+                <Col>
+                  <Row>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>First Name</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.firstName} disabled />
+                      </InputGroup>
+                    </Col>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Last Name</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.lastName} disabled />
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <p />
+                  <Row>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Nationality</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.nationality} disabled />
+                      </InputGroup>
+                    </Col>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Email</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.email} disabled />
+                      </InputGroup>
+                    </Col>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Mobile No</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.mobileNo} disabled />
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <p />
+                  <Row>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Birth Date</InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          type="text"
+                          placeholder={new Date()
+                            .toDateString()
+                            .split(" ")
+                            .slice(1)
+                            .join(" ")}
+                          disabled
+                        />
+                      </InputGroup>
+                    </Col>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Religion</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.religion} disabled />
+                      </InputGroup>
+                    </Col>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Blood Group</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.bloodGroup} disabled />
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <p />
+                  <Row>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Gender</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.gender} disabled />
+                      </InputGroup>
+                    </Col>
+                    <Col>
+                      <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>Marital Status</InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder={student.maritalStatus} disabled />
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <p />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <strong>Present Address</strong>
+                </Col>
+              </Row>
+              <p />
+              <Row>
+                <Col>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>Village/Road</InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="text" placeholder={student.presVillage} disabled />
+                  </InputGroup>
+                </Col>
+                <Col>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>Upazilla</InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="text" placeholder={student.presUpazilla} disabled />
+                  </InputGroup>
+                </Col>
+              </Row>
+              <p />
+              <Row>
+                <Col>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>Post Office</InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="text" placeholder={student.presPO} disabled />
+                  </InputGroup>
+                </Col>
+                <Col>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>District</InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="text" placeholder={student.presDistrict} disabled />
+                  </InputGroup>
+                </Col>
+              </Row>
+              <p />
+              <Row>
+                <Col>
+                  <strong>Permanent Address</strong>
+                </Col>
+              </Row>
+              <p />
+              <Row>
+                <Col>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>Village/Road</InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="text" placeholder={student.permVillage} disabled />
+                  </InputGroup>
+                </Col>
+                <Col>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>Upazilla</InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="text" placeholder={student.permUpazilla} disabled />
+                  </InputGroup>
+                </Col>
+              </Row>
+              <p />
+              <Row>
+                <Col>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>Post Office</InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="text" placeholder={student.permPO} disabled />
+                  </InputGroup>
+                </Col>
+                <Col>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>District</InputGroupText>
+                    </InputGroupAddon>
+                    <Input type="text" placeholder={student.permDistrict} disabled />
+                  </InputGroup>
+                </Col>
+              </Row>
+              <p />
+            </CardBody>
           </Card>
         </Col>
       </Row>
