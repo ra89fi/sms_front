@@ -27,7 +27,10 @@ export default props => {
                     <Link
                       to={{
                         pathname: `${btn.link}/${row.id}`,
-                        data: row
+                        data: {
+                          reducerName: props.reducerName,
+                          values: row
+                        }
                       }}
                       key={i}
                     >

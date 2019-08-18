@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import List from "../common/List";
-import URI from "../../objects/uri";
 import studentListHeaders from "../../objects/studentListHeaders";
+import { fetchStudentsDetails } from "../../actions/studentsDetails";
 
 const headersAllow = [
   "id",
@@ -35,23 +36,15 @@ const buttons = [
 
 class StudentList extends Component {
   state = {
-    students: []
+    students: this.props.studentsDetails
   };
 
+  static getDerivedStateFromProps(nextProps) {
+    return { students: nextProps.studentsDetails };
+  }
+
   componentDidMount() {
-    fetch(`${URI}/api/student_details`, {
-      method: "GET",
-      mode: "cors"
-    })
-      .then(response => {
-        if (response.status === 200) return response.json();
-        else return response.text();
-      })
-      .then(msg => {
-        console.log(msg);
-        if (typeof msg === "object") this.setState({ students: msg });
-      })
-      .catch(err => console.log(err.message));
+    if (this.state.students.length === 0) this.props.fetchStudentsDetails();
   }
 
   render() {
@@ -64,11 +57,13 @@ class StudentList extends Component {
                 <strong>Student List</strong> <i className="icon-list icons" />
               </CardHeader>
               <CardBody>
+                {this.state.students.length === 0 ? <p>Loading...</p> : ""}
                 <List
                   data={this.state.students}
                   headerNames={studentListHeaders}
                   headersAllow={headersAllow}
                   buttons={buttons}
+                  reducerName={"studentsDetails"}
                 />
               </CardBody>
             </Card>
@@ -79,4 +74,9 @@ class StudentList extends Component {
   }
 }
 
-export default StudentList;
+export default connect(
+  state => ({
+    studentsDetails: state.studentsDetails
+  }),
+  { fetchStudentsDetails }
+)(StudentList);

@@ -12,20 +12,22 @@ import {
   InputGroupText,
   Row
 } from "reactstrap";
+import { connect } from "react-redux";
 import headerNames from "../../objects/studentListHeaders";
 
 const allowHeaders = ["id", "class", "group", "rollNo", "school"];
 
-export default props => {
-  console.log(props);
-  const { data: student } = props.location;
+const StudentProfileView = props => {
+  const { student } = props;
+
   return (
     <div className="animated fadeIn">
       <Row>
         <Col xs="4">
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-              <strong>Sumaya Akter Brishti</strong> <i className="icon-user-female icons" />
+              <strong>{student.firstName + " " + student.lastName}</strong>{" "}
+              <i className="icon-user-female icons" />
             </CardHeader>
             <CardBody>
               <Row>
@@ -119,7 +121,7 @@ export default props => {
                         </InputGroupAddon>
                         <Input
                           type="text"
-                          placeholder={new Date()
+                          placeholder={new Date(student.birthDate)
                             .toDateString()
                             .split(" ")
                             .slice(1)
@@ -262,3 +264,7 @@ export default props => {
     </div>
   );
 };
+
+export default connect((state, props) => ({
+  student: state.studentsDetails.filter(item => item.id == props.match.params.id)[0]
+}))(StudentProfileView);
