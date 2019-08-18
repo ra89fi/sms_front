@@ -1,7 +1,9 @@
 import student from "../objects/student";
 
-export default (state = student, action) => {
+export default (state = Object.assign({}, student), action) => {
   switch (action.type) {
+    case "RESET_STUDENT":
+      return Object.assign({}, student);
     case "UPDATE_STUDENT_ROOT":
       return {
         ...state,

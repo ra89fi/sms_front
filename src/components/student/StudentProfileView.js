@@ -119,15 +119,7 @@ const StudentProfileView = props => {
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>Birth Date</InputGroupText>
                         </InputGroupAddon>
-                        <Input
-                          type="text"
-                          placeholder={new Date(student.birthDate)
-                            .toDateString()
-                            .split(" ")
-                            .slice(1)
-                            .join(" ")}
-                          disabled
-                        />
+                        <Input type="text" placeholder={student.birthDate.split("T")[0]} disabled />
                       </InputGroup>
                     </Col>
                     <Col>
@@ -266,5 +258,5 @@ const StudentProfileView = props => {
 };
 
 export default connect((state, props) => ({
-  student: state.studentsDetails.filter(item => item.id == props.match.params.id)[0]
+  student: state.studentsDetails.filter(item => item.id == props.match.params.id)[0] || {}
 }))(StudentProfileView);

@@ -1,3 +1,7 @@
+export const resetStudent = () => ({
+  type: "RESET_STUDENT"
+});
+
 export const updateStudentRoot = values => ({
   type: "UPDATE_STUDENT_ROOT",
   values

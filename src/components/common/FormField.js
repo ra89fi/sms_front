@@ -1,5 +1,14 @@
 import React from "react";
-import { FormGroup, Label, Col, FormText, Input } from "reactstrap";
+import {
+  FormGroup,
+  Label,
+  Col,
+  FormText,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText
+} from "reactstrap";
 
 export default props => {
   const style = {
@@ -14,18 +23,25 @@ export default props => {
       inputElement = (
         <FormGroup row>
           <Col>
-            <Input
-              type="text"
-              placeholder={props.placeholder}
-              style={style}
-              name={props.name}
-              onChange={changeHandler}
-              value={props.value}
-              disabled={props.disabled}
-            />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>{props.placeholder}</InputGroupText>
+              </InputGroupAddon>
+              <Input
+                type="text"
+                style={style}
+                name={props.name}
+                onChange={changeHandler}
+                value={props.value}
+                disabled={props.disabled}
+              />
+            </InputGroup>
             {props.error ? (
               <FormText color="danger">
-                {props.error.replace(props.name, props.placeholder)}
+                {props.error
+                  .replace(props.name, props.placeholder)
+                  .replace(" *", "")
+                  .replace(" *", "")}
               </FormText>
             ) : (
               ""
@@ -39,19 +55,22 @@ export default props => {
       inputElement = (
         <FormGroup row>
           <Col>
-            <Label htmlFor={props.placeholder}>{props.placeholder}</Label>
-            <Input
-              type="date"
-              id={props.placeholder}
-              style={style}
-              name={props.name}
-              onChange={changeHandler}
-              value={props.value}
-              disabled={props.disabled}
-            />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>{props.placeholder}</InputGroupText>
+              </InputGroupAddon>
+              <Input
+                type="date"
+                style={style}
+                name={props.name}
+                onChange={changeHandler}
+                value={props.value.split("T")[0]}
+                disabled={props.disabled}
+              />
+            </InputGroup>
             {props.error ? (
               <FormText color="danger">
-                {props.error.replace(props.name, props.placeholder)}
+                {props.error.replace(props.name, props.placeholder).replace(" *", "")}
               </FormText>
             ) : (
               ""
@@ -64,24 +83,29 @@ export default props => {
     case "select":
       inputElement = (
         <FormGroup>
-          <Label htmlFor={props.placeholder}>{props.placeholder}</Label>
-          <Input
-            type="select"
-            id={props.placeholder}
-            style={style}
-            name={props.name}
-            onChange={changeHandler}
-            value={props.value}
-            disabled={props.disabled}
-          >
-            {props.values.map((val, i) => (
-              <option value={val} key={i}>
-                {val}
-              </option>
-            ))}
-          </Input>
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>{props.placeholder}</InputGroupText>
+            </InputGroupAddon>
+            <Input
+              type="select"
+              style={style}
+              name={props.name}
+              onChange={changeHandler}
+              value={props.value}
+              disabled={props.disabled}
+            >
+              {props.values.map((val, i) => (
+                <option value={val} key={i}>
+                  {val}
+                </option>
+              ))}
+            </Input>
+          </InputGroup>
           {props.error ? (
-            <FormText color="danger">{props.error.replace(props.name, props.placeholder)}</FormText>
+            <FormText color="danger">
+              {props.error.replace(props.name, props.placeholder).replace(" *", "")}
+            </FormText>
           ) : (
             ""
           )}
@@ -117,7 +141,7 @@ export default props => {
             ))}
             {props.error ? (
               <FormText color="danger">
-                {props.error.replace(props.name, props.placeholder)}
+                {props.error.replace(props.name, props.placeholder).replace(" *", "")}
               </FormText>
             ) : (
               ""
