@@ -60,9 +60,10 @@ export default props => {
   }
 
   const changeHandler = e => {
+    let { name, value } = e.target;
     const values = {
       ...data,
-      [e.target.name]: e.target.value
+      [name]: value
     };
     store.dispatch(updateStudentDetails(values, "studentDetails"));
   };

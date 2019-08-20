@@ -10,6 +10,14 @@ import {
   InputGroupText
 } from "reactstrap";
 
+const formatDate = dateStr => {
+  if (!dateStr) return "";
+  const arr = new Date(dateStr).toLocaleDateString().split("/");
+  if (arr[0].length == 1) arr[0] = "0" + arr[0];
+  if (arr[1].length == 1) arr[1] = "0" + arr[1];
+  return `${arr[2]}-${arr[0]}-${arr[1]}`;
+};
+
 export default props => {
   const style = {
     border: props.error ? "1px solid rgb(200,0,0, 0.4)" : "1px solid rgb(115,129,143, 0.4)"
@@ -64,7 +72,7 @@ export default props => {
                 style={style}
                 name={props.name}
                 onChange={changeHandler}
-                value={props.value.split("T")[0]}
+                value={formatDate(props.value)}
                 disabled={props.disabled}
               />
             </InputGroup>

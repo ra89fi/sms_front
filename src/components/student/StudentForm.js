@@ -6,8 +6,9 @@ import FormField from "../common/FormField";
 import ParentDetails from "./ParentDetails";
 import student from "../../objects/student";
 import StudentDetails from "./StudentDetails";
-import { updateStudentRoot } from "../../actions/student";
+import { resetStudent, updateStudentRoot } from "../../actions/student";
 import { studentRootSchema, validateStudent } from "../../validations/student";
+import { fetchStudentsDetails } from "../../actions/studentsDetails";
 import URI from "../../objects/uri";
 
 class StudentForm extends Component {
@@ -42,7 +43,7 @@ class StudentForm extends Component {
     const values = {
       [e.target.name]: e.target.value
     };
-    this.props.dispatch(updateStudentRoot(values));
+    this.props.updateStudentRoot(values);
   };
 
   submitHandler = () => {
@@ -59,18 +60,19 @@ class StudentForm extends Component {
         body: JSON.stringify(this.state.student)
       })
         .then(response => response.text())
-        .then(msg => console.log(msg))
+        .then(msg => {
+          if (msg == "OK") {
+            this.props.fetchStudentsDetails();
+            this.props.resetStudent();
+            this.props.history.push("/student/all");
+          }
+        })
         .catch(err => console.log(err.message));
     }
   };
 
   resetHandler = () => {
-    this.setState({
-      student: {
-        ...student
-      }
-    });
-    this.props.dispatch(updateStudentRoot(student));
+    this.props.resetStudent();
   };
 
   render() {
@@ -149,6 +151,9 @@ class StudentForm extends Component {
   }
 }
 
-export default connect(state => ({
-  student: state.student
-}))(StudentForm);
+export default connect(
+  state => ({
+    student: state.student
+  }),
+  { resetStudent, updateStudentRoot, fetchStudentsDetails }
+)(StudentForm);

@@ -49,7 +49,11 @@ class EditStudentProfile extends React.Component {
       })
       .then(msg => {
         console.log(msg);
-        if (msg == "OK") this.props.fetchStudentsDetails();
+        if (msg == "OK") {
+          this.props.fetchStudentsDetails();
+          // redirct to student list
+          this.props.history.push(`/student/profile/${this.props.student.id}`);
+        }
       })
       .catch(err => console.log(err.message));
   };

@@ -11,7 +11,7 @@ export default props => {
           {props.headersAllow.map((header, i) => {
             return <th key={i}>{props.headerNames[header]}</th>;
           })}
-          {props.buttons ? <th>Actions</th> : ""}
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -22,28 +22,30 @@ export default props => {
                 return <td key={i}>{row[header]}</td>;
               })}
               <td>
-                {props.buttons.map((btn, i) => {
-                  return btn.link ? (
-                    <Link
-                      to={{
-                        pathname: `${btn.link}/${row.id}`,
-                        data: {
-                          reducerName: props.reducerName,
-                          values: row
-                        }
-                      }}
-                      key={i}
-                    >
-                      <Button color={btn.color} size="sm" className="btn-pill">
-                        {btn.name}
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Button color={btn.color} size="sm" className="btn-pill" key={i}>
-                      {btn.name}
-                    </Button>
-                  );
-                })}
+                {props.buttons
+                  ? props.buttons.map((btn, i) => {
+                      return btn.link ? (
+                        <Link
+                          to={{
+                            pathname: `${btn.link}/${row.id}`,
+                            data: {
+                              reducerName: props.reducerName,
+                              values: row
+                            }
+                          }}
+                          key={i}
+                        >
+                          <Button color={btn.color} size="sm" className="btn-pill">
+                            {btn.name}
+                          </Button>
+                        </Link>
+                      ) : (
+                        <Button color={btn.color} size="sm" className="btn-pill" key={i}>
+                          {btn.name}
+                        </Button>
+                      );
+                    })
+                  : ""}
               </td>
             </tr>
           );

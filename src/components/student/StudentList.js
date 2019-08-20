@@ -4,6 +4,7 @@ import { Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import List from "../common/List";
 import studentListHeaders from "../../objects/studentListHeaders";
 import { fetchStudentsDetails } from "../../actions/studentsDetails";
+import { fetchLatestAdmissions } from "../../actions/admissions";
 
 const headersAllow = [
   "id",
@@ -44,10 +45,17 @@ class StudentList extends Component {
   }
 
   componentDidMount() {
-    if (this.state.students.length === 0) this.props.fetchStudentsDetails();
+    if (this.state.students.length === 0) {
+      this.props.fetchStudentsDetails();
+      this.props.fetchLatestAdmissions();
+    }
   }
 
   render() {
+    let students = this.state.students;
+    students = students.map(student =>
+      Object.assign({}, this.props.admissions[student.id] || {}, student)
+    );
     return (
       <div className="animated fadeIn">
         <Row>
@@ -57,9 +65,9 @@ class StudentList extends Component {
                 <strong>Student List</strong> <i className="icon-list icons" />
               </CardHeader>
               <CardBody>
-                {this.state.students.length === 0 ? <p>Loading...</p> : ""}
+                {students.length === 0 ? <p>Loading...</p> : ""}
                 <List
-                  data={this.state.students}
+                  data={students}
                   headerNames={studentListHeaders}
                   headersAllow={headersAllow}
                   buttons={buttons}
@@ -76,7 +84,8 @@ class StudentList extends Component {
 
 export default connect(
   state => ({
-    studentsDetails: state.studentsDetails
+    studentsDetails: state.studentsDetails,
+    admissions: state.latestAdmissions
   }),
-  { fetchStudentsDetails }
+  { fetchStudentsDetails, fetchLatestAdmissions }
 )(StudentList);
