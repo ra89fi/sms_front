@@ -40,7 +40,13 @@ export default props => {
                           </Button>
                         </Link>
                       ) : (
-                        <Button color={btn.color} size="sm" className="btn-pill" key={i}>
+                        <Button
+                          color={btn.color}
+                          size="sm"
+                          className="btn-pill"
+                          key={i}
+                          onClick={() => props[btn.onClick](row.id)}
+                        >
                           {btn.name}
                         </Button>
                       );

@@ -15,3 +15,13 @@ export const fetchLatestAdmissions = () => dispatch => {
     })
     .catch(err => console.log(err.message));
 };
+
+export const deleteAdmissions = id => dispatch => {
+  fetch(`${URI}/api/admissions/delete/${id}`, {
+    method: "POST",
+    mode: "cors"
+  })
+    .then(response => response.text())
+    .then(msg => console.log(msg))
+    .catch(err => console.log(err.message));
+};

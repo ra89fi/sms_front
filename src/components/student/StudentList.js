@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import List from "../common/List";
 import studentListHeaders from "../../objects/studentListHeaders";
-import { fetchStudentsDetails } from "../../actions/studentsDetails";
-import { fetchLatestAdmissions } from "../../actions/admissions";
+import { fetchStudentsDetails, deleteStudentDetails } from "../../actions/studentsDetails";
+import { fetchLatestAdmissions, deleteAdmissions } from "../../actions/admissions";
 
 const headersAllow = [
   "id",
@@ -31,7 +31,8 @@ const buttons = [
   },
   {
     name: "Delete",
-    color: "danger"
+    color: "danger",
+    onClick: "delete"
   }
 ];
 
@@ -65,13 +66,18 @@ class StudentList extends Component {
                 <strong>Student List</strong> <i className="icon-list icons" />
               </CardHeader>
               <CardBody>
-                {students.length === 0 ? <p>Loading...</p> : ""}
                 <List
                   data={students}
                   headerNames={studentListHeaders}
                   headersAllow={headersAllow}
                   buttons={buttons}
                   reducerName={"studentsDetails"}
+                  delete={id => {
+                    this.props.deleteAdmissions(id);
+                    this.props.deleteStudentDetails(id, () => {
+                      this.props.fetchStudentsDetails();
+                    });
+                  }}
                 />
               </CardBody>
             </Card>
@@ -87,5 +93,5 @@ export default connect(
     studentsDetails: state.studentsDetails,
     admissions: state.latestAdmissions
   }),
-  { fetchStudentsDetails, fetchLatestAdmissions }
+  { fetchStudentsDetails, deleteStudentDetails, fetchLatestAdmissions, deleteAdmissions }
 )(StudentList);

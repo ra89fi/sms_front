@@ -14,6 +14,8 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import List from "../common/List";
+import { fetchStudentsDetails, deleteStudentDetails } from "../../actions/studentsDetails";
+import { deleteAdmissions } from "../../actions/admissions";
 import headerNames from "../../objects/studentListHeaders";
 import URI from "../../objects/uri";
 
@@ -83,7 +85,17 @@ class StudentProfileView extends React.Component {
                 </Link>
               </Col>
               <Col>
-                <Button block color="danger">
+                <Button
+                  block
+                  color="danger"
+                  onClick={() => {
+                    this.props.deleteAdmissions(this.props.match.params.id);
+                    this.props.deleteStudentDetails(this.props.match.params.id, () => {
+                      this.props.fetchStudentsDetails();
+                      this.props.history.push("/student/all");
+                    });
+                  }}
+                >
                   Delete Student
                 </Button>
               </Col>
@@ -308,7 +320,10 @@ class StudentProfileView extends React.Component {
   }
 }
 
-export default connect((state, props) => ({
-  student: state.studentsDetails.filter(item => item.id == props.match.params.id)[0] || {},
-  admission: state.latestAdmissions[props.match.params.id]
-}))(StudentProfileView);
+export default connect(
+  (state, props) => ({
+    student: state.studentsDetails.filter(item => item.id == props.match.params.id)[0] || {},
+    admission: state.latestAdmissions[props.match.params.id]
+  }),
+  { fetchStudentsDetails, deleteStudentDetails, deleteAdmissions }
+)(StudentProfileView);

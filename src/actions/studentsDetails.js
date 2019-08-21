@@ -15,3 +15,16 @@ export const fetchStudentsDetails = () => dispatch => {
     })
     .catch(err => console.log(err.message));
 };
+
+export const deleteStudentDetails = (id, fn) => dispatch => {
+  fetch(`${URI}/api/student_details/delete/${id}`, {
+    method: "POST",
+    mode: "cors"
+  })
+    .then(response => response.text())
+    .then(msg => {
+      console.log(msg);
+      if (msg == "OK") fn();
+    })
+    .catch(err => console.log(err.message));
+};
