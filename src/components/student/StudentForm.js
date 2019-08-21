@@ -9,6 +9,7 @@ import StudentDetails from "./StudentDetails";
 import { resetStudent, updateStudentRoot } from "../../actions/student";
 import { studentRootSchema, validateStudent } from "../../validations/student";
 import { fetchStudentsDetails } from "../../actions/studentsDetails";
+import { fetchLatestAdmissions } from "../../actions/admissions";
 import URI from "../../objects/uri";
 
 class StudentForm extends Component {
@@ -63,6 +64,7 @@ class StudentForm extends Component {
         .then(msg => {
           if (msg == "OK") {
             this.props.fetchStudentsDetails();
+            this.props.fetchLatestAdmissions();
             this.props.resetStudent();
             this.props.history.push("/student/all");
           }
@@ -105,7 +107,7 @@ class StudentForm extends Component {
           <Col>
             <FormField
               type="select"
-              placeholder="Group"
+              placeholder="Group *"
               name="group"
               values={["", "B. Studies", "Humanities", "Science"]}
               value={this.state.student.group}
@@ -155,5 +157,5 @@ export default connect(
   state => ({
     student: state.student
   }),
-  { resetStudent, updateStudentRoot, fetchStudentsDetails }
+  { resetStudent, updateStudentRoot, fetchStudentsDetails, fetchLatestAdmissions }
 )(StudentForm);

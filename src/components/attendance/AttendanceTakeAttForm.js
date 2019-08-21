@@ -1,23 +1,51 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Button, Card, CardHeader, CardBody, Row, Col, Table } from "reactstrap";
 import FormField from "../common/FormField";
+import { fetchLatestAdmissions } from "../../actions/admissions";
+import URI from "../../objects/uri";
 
 class AttendanceTakeAttForm extends React.Component {
   // read props.values and students accordingly
   // for each student create a row in table
   // take their attendance
   state = {
-    data: {
-      11152622: {
-        status: "",
-        notes: ""
-      },
-      11152623: {
-        status: "",
-        notes: ""
-      }
-    }
+    data: {}
+    // data: {
+    //   11152622: {
+    //     status: "",
+    //     notes: ""
+    //   },
+    //   11152623: {
+    //     status: "",
+    //     notes: ""
+    //   }
+    // }
   };
+
+  componentDidMount() {
+    // get latest admissions
+    this.props.fetchLatestAdmissions();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // filter by selected class and group
+    const data = {};
+    const className = this.props.class;
+    const group = this.props.group || "";
+    const ad = nextProps.latestAdmissions;
+    Object.keys(ad).forEach(studentId => {
+      if (ad[studentId]["class"] == className && ad[studentId]["group"] == group)
+        data[ad[studentId]["rollNo"]] = {
+          status: "",
+          notes: "",
+          rollNo: ad[studentId]["rollNo"],
+          studentId
+        };
+    });
+    console.log("data", data);
+    this.setState({ data });
+  }
 
   setAttendanceAll = value => {
     const newData = Object.assign({}, this.state.data);
@@ -55,19 +83,46 @@ class AttendanceTakeAttForm extends React.Component {
   };
 
   submitHandler = () => {
-    console.log(this.state.data);
-    // validate that each student has valid attendance values
+    console.log({
+      data: this.state.data,
+      class: this.props.class,
+      group: this.props.group || "",
+      subject: this.props.subject,
+      date: this.props.date
+    });
     // send data to server
+    fetch(`${URI}/api/attendances`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        data: this.state.data,
+        class: this.props.class,
+        group: this.props.group || "",
+        subject: this.props.subject,
+        date: this.props.date
+      })
+    })
+      .then(response => response.text())
+      .then(msg => {
+        console.log(msg, this.props);
+        this.props.backClick();
+      })
+      .catch(err => console.log(err.message));
   };
 
   render() {
+    // console.log(this.props);
+    const students = Object.values(this.state.data);
     return (
       <Row>
         <Col>
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
               <strong>Take Attendance</strong>
-              <Button color="primary" outline onClick={this.props.onClick}>
+              <Button color="primary" outline onClick={this.props.backClick}>
                 Go Back
               </Button>
             </CardHeader>
@@ -83,6 +138,12 @@ class AttendanceTakeAttForm extends React.Component {
                   <Row>
                     <Col>Group</Col>
                     <Col>
+                      : <strong>{this.props.group}</strong>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>Subject</Col>
+                    <Col>
                       : <strong>{this.props.subject}</strong>
                     </Col>
                   </Row>
@@ -92,16 +153,15 @@ class AttendanceTakeAttForm extends React.Component {
                       : <strong>{this.props.date}</strong>
                     </Col>
                   </Row>
-                  <hr />
                 </Col>
               </Row>
+              <p></p>
               <Row>
                 <Col>
                   <Table responsive>
                     <thead>
                       <tr>
                         <th>Roll No</th>
-                        <th>Student Name</th>
                         <th>Attendance</th>
                         <th>Notes</th>
                       </tr>
@@ -109,8 +169,8 @@ class AttendanceTakeAttForm extends React.Component {
                     <tbody>
                       <tr>
                         <td />
-                        <td style={{ opacity: 0.6 }}>Select All</td>
                         <td>
+                          <span style={{ opacity: 0.6 }}>Select All</span> &nbsp;
                           <Button
                             color="success"
                             size="sm"
@@ -140,50 +200,29 @@ class AttendanceTakeAttForm extends React.Component {
                         </td>
                         <td />
                       </tr>
-                      <tr>
-                        <td>11152622</td>
-                        <td>saumik</td>
-                        <td>
-                          <FormField
-                            type="radio"
-                            values={["Present", "Absent", "Late"]}
-                            name="11152622"
-                            value={this.state.data["11152622"].status}
-                            onChange={this.radioHandler}
-                          />
-                        </td>
-                        <td className="removeMarginBottom">
-                          <FormField
-                            placeholder="Notes"
-                            type="text"
-                            name="notes"
-                            value={this.state.data["11152622"].notes}
-                            onChange={e => this.notesChange(e, "11152622")}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>11152623</td>
-                        <td>saumik</td>
-                        <td>
-                          <FormField
-                            type="radio"
-                            values={["Present", "Absent", "Late"]}
-                            name="11152623"
-                            value={this.state.data["11152623"].status}
-                            onChange={this.radioHandler}
-                          />
-                        </td>
-                        <td className="removeMarginBottom">
-                          <FormField
-                            placeholder="Notes"
-                            type="text"
-                            name="notes"
-                            value={this.state.data["11152623"].notes}
-                            onChange={e => this.notesChange(e, "11152623")}
-                          />
-                        </td>
-                      </tr>
+                      {students.map(stu => (
+                        <tr key={stu.rollNo}>
+                          <td>{stu.rollNo}</td>
+                          <td>
+                            <FormField
+                              type="radio"
+                              values={["Present", "Absent", "Late"]}
+                              name={stu.rollNo}
+                              value={this.state.data[stu.rollNo].status}
+                              onChange={this.radioHandler}
+                            />
+                          </td>
+                          <td className="removeMarginBottom">
+                            <FormField
+                              placeholder="Notes"
+                              type="text"
+                              name="notes"
+                              value={this.state.data[stu.rollNo].notes}
+                              onChange={e => this.notesChange(e, stu.rollNo)}
+                            />
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </Table>
                 </Col>
@@ -208,4 +247,9 @@ class AttendanceTakeAttForm extends React.Component {
   }
 }
 
-export default AttendanceTakeAttForm;
+export default connect(
+  state => ({
+    latestAdmissions: state.latestAdmissions
+  }),
+  { fetchLatestAdmissions }
+)(AttendanceTakeAttForm);

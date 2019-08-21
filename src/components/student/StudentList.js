@@ -4,7 +4,7 @@ import { Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import List from "../common/List";
 import studentListHeaders from "../../objects/studentListHeaders";
 import { fetchStudentsDetails, deleteStudentDetails } from "../../actions/studentsDetails";
-import { fetchLatestAdmissions, deleteAdmissions } from "../../actions/admissions";
+import { fetchLatestAdmissions } from "../../actions/admissions";
 
 const headersAllow = [
   "id",
@@ -73,7 +73,6 @@ class StudentList extends Component {
                   buttons={buttons}
                   reducerName={"studentsDetails"}
                   delete={id => {
-                    this.props.deleteAdmissions(id);
                     this.props.deleteStudentDetails(id, () => {
                       this.props.fetchStudentsDetails();
                     });
@@ -93,5 +92,5 @@ export default connect(
     studentsDetails: state.studentsDetails,
     admissions: state.latestAdmissions
   }),
-  { fetchStudentsDetails, deleteStudentDetails, fetchLatestAdmissions, deleteAdmissions }
+  { fetchStudentsDetails, deleteStudentDetails, fetchLatestAdmissions }
 )(StudentList);
