@@ -1,15 +1,54 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
+import Joi from "@hapi/joi";
 import AttendanceReportForm from "./AttendanceReportForm";
 import AttendanceReportView from "./AttendanceReportView";
+
+const attendanceSelectionSchema = {
+  class: Joi.string()
+    .alphanum()
+    .min(1)
+    .required(),
+  group: Joi.any().optional(),
+  subject: Joi.string()
+    .alphanum()
+    .min(1)
+    .required(),
+  dateFrom: Joi.string()
+    .min(1)
+    .required(),
+  dateTo: Joi.string()
+    .min(1)
+    .required()
+};
 
 class AttendanceReport extends React.Component {
   state = {
     formOpen: true,
-    selections: {}
+    selections: {},
+    errors: {}
   };
 
-  handleClick = () => this.setState({ formOpen: !this.state.formOpen });
+  handleSubmit = () => {
+    // validate selections here
+    console.log(this.state.selections);
+    let error = Joi.validate(this.state.selections, attendanceSelectionSchema).error;
+    if (error) {
+      const err = error.details[0];
+      this.setState({ errors: { [err.path[0]]: err.message } });
+      return;
+    }
+    const className = this.state.selections.class;
+    if (className == "9" || className == "10") {
+      if (!this.state.selections.group) {
+        this.setState({ errors: { group: '"Group" is required' } });
+        return;
+      }
+    }
+    this.setState({ formOpen: !this.state.formOpen, errors: {} });
+  };
+
+  handleBackClick = () => this.setState({ formOpen: !this.state.formOpen });
 
   changeHandler = e => {
     this.setState({
@@ -25,12 +64,17 @@ class AttendanceReport extends React.Component {
       <div className="animated fadeIn">
         {this.state.formOpen ? (
           <AttendanceReportForm
-            onClick={this.handleClick}
+            onSubmit={this.handleSubmit}
             onChange={this.changeHandler}
+            errors={this.state.errors}
             {...this.state.selections}
           />
         ) : (
-          <AttendanceReportView onClick={this.handleClick} {...this.state.selections} />
+          <AttendanceReportView
+            backClick={this.handleBackClick}
+            {...this.state.selections}
+            history={this.props.history}
+          />
         )}
       </div>
     );
