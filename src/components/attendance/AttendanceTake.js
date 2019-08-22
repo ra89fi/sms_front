@@ -29,29 +29,20 @@ class AttendanceTake extends Component {
 
   handleSubmit = () => {
     // validate selections here
-    // console.log(this.state.selections);
-    // let error = Joi.validate(this.state.selections, attendanceSelectionSchema).error;
-    // if (error) {
-    //   const err = error.details[0];
-    //   this.setState({ errors: { [err.path[0]]: err.message } });
-    //   return;
-    // }
-    // const className = this.state.selections.class;
-    // if (className == "9" || className == "10") {
-    //   if (!this.state.selections.group) {
-    //     this.setState({ errors: { group: '"Group" is required' } });
-    //     return;
-    //   }
-    // }
-    // save attendance in db
-    // fetch(`${URI}/api/attendances`, {
-    //   method: "POST",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-type": "applications/json"
-    //   },
-    //   data: JSON.stringify(this.state.selections)
-    // }).then(response => response.text()).then(msg => console.log(msg)).catch(err => console.log(err.message));
+    console.log(this.state.selections);
+    let error = Joi.validate(this.state.selections, attendanceSelectionSchema).error;
+    if (error) {
+      const err = error.details[0];
+      this.setState({ errors: { [err.path[0]]: err.message } });
+      return;
+    }
+    const className = this.state.selections.class;
+    if (className == "9" || className == "10") {
+      if (!this.state.selections.group) {
+        this.setState({ errors: { group: '"Group" is required' } });
+        return;
+      }
+    }
     this.setState({ formOpen: !this.state.formOpen, errors: {} });
   };
 
