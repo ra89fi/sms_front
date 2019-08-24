@@ -1,30 +1,80 @@
 import React, { Component } from "react";
 import { Button, Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import Joi from "@hapi/joi";
 import FormField from "../common/FormField";
+import URI from "../../objects/uri";
+
+const teacherSchema = {
+  name: Joi.string().required(),
+  mobileNo: Joi.string()
+    .regex(/^[0-9]+$/, "numbers")
+    .min(11)
+    .max(11)
+    .required(),
+  email: Joi.string().email({ minDomainSegments: 2 }),
+  subject: Joi.string().required(),
+  gender: Joi.string().required(),
+  addVillage: Joi.string().required(),
+  addPO: Joi.string().required(),
+  addUpazilla: Joi.string().required(),
+  addDistrict: Joi.string().required()
+};
 
 class TeachersEntry extends Component {
   state = {
-    name: "",
-    email: "",
-    mobileNo: "",
-    subject: "",
-    gender: "",
-    addVillage: "",
-    addPO: "",
-    addUpazilla: "",
-    addDistrict: ""
+    teacher: {
+      name: "",
+      mobileNo: "",
+      email: "",
+      subject: "",
+      gender: "",
+      addVillage: "",
+      addPO: "",
+      addUpazilla: "",
+      addDistrict: ""
+    },
+    errors: {}
   };
 
   changeHandler = e => {
+    const { name, value } = e.target;
+    const teacher = {
+      ...this.state.teacher,
+      [name]: value
+    };
+    const errors = {};
+    let error = Joi.validate(teacher, teacherSchema).error;
+    if (error) {
+      const err = error.details[0];
+      errors[err.path[0]] = err.message;
+    }
     this.setState({
-      [e.target.name]: e.target.value
+      teacher,
+      errors
     });
   };
 
   onClickHandler = () => {
     console.log(this.state);
     // validate and send to server
-    // redirect to /teachers/all
+    let error = Joi.validate(this.state.teacher, teacherSchema).error;
+    if (error) return;
+    console.log("teacher ok");
+    fetch(`${URI}/api/teachers`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(this.state.teacher)
+    })
+      .then(response => response.text())
+      .then(msg => {
+        console.log(msg);
+        // redirect to /teachers/all
+        if (msg == "OK") this.props.history.push("/teachers/all");
+      })
+      .catch(err => console.log(err.message));
   };
 
   render() {
@@ -44,27 +94,30 @@ class TeachersEntry extends Component {
                       <Col>
                         <FormField
                           type="text"
-                          placeholder="Name"
+                          placeholder="Name *"
+                          error={this.state.errors.name}
                           name="name"
-                          value={this.state.name}
+                          value={this.state.teacher.name}
                           onChange={this.changeHandler}
                         />
                       </Col>
                       <Col>
                         <FormField
                           type="text"
-                          placeholder="Mobile No"
+                          placeholder="Mobile No *"
+                          error={this.state.errors.mobileNo}
                           name="mobileNo"
-                          value={this.state.mobileNo}
+                          value={this.state.teacher.mobileNo}
                           onChange={this.changeHandler}
                         />
                       </Col>
                       <Col>
                         <FormField
                           type="text"
-                          placeholder="Email"
+                          placeholder="Email *"
+                          error={this.state.errors.email}
                           name="email"
-                          value={this.state.email}
+                          value={this.state.teacher.email}
                           onChange={this.changeHandler}
                         />
                       </Col>
@@ -73,9 +126,10 @@ class TeachersEntry extends Component {
                       <Col>
                         <FormField
                           type="text"
-                          placeholder="Subject"
+                          placeholder="Subject *"
+                          error={this.state.errors.subject}
                           name="subject"
-                          value={this.state.subject}
+                          value={this.state.teacher.subject}
                           onChange={this.changeHandler}
                         />
                       </Col>
@@ -83,10 +137,11 @@ class TeachersEntry extends Component {
                         <FormField
                           type="radio"
                           onChange={this.changeHandler}
-                          placeholder="Gender"
+                          placeholder="Gender *"
+                          error={this.state.errors.gender}
                           values={["Male", "Female", "Other"]}
                           name="gender"
-                          value={this.state.gender}
+                          value={this.state.teacher.gender}
                         />
                       </Col>
                       <Col />
@@ -103,36 +158,40 @@ class TeachersEntry extends Component {
                   <Col>
                     <FormField
                       type="text"
-                      placeholder="Village/Road"
+                      placeholder="Village/Road *"
+                      error={this.state.errors.addVillage}
                       name="addVillage"
-                      value={this.state.addVillage}
+                      value={this.state.teacher.addVillage}
                       onChange={this.changeHandler}
                     />
                   </Col>
                   <Col>
                     <FormField
                       type="text"
-                      placeholder="Post Office"
+                      placeholder="Post Office *"
+                      error={this.state.errors.addPO}
                       name="addPO"
-                      value={this.state.addPO}
+                      value={this.state.teacher.addPO}
                       onChange={this.changeHandler}
                     />
                   </Col>
                   <Col>
                     <FormField
                       type="text"
-                      placeholder="Upazilla"
+                      placeholder="Upazilla *"
+                      error={this.state.errors.addUpazilla}
                       name="addUpazilla"
-                      value={this.state.addUpazilla}
+                      value={this.state.teacher.addUpazilla}
                       onChange={this.changeHandler}
                     />
                   </Col>
                   <Col>
                     <FormField
                       type="text"
-                      placeholder="District"
+                      placeholder="District *"
+                      error={this.state.errors.addDistrict}
                       name="addDistrict"
-                      value={this.state.addDistrict}
+                      value={this.state.teacher.addDistrict}
                       onChange={this.changeHandler}
                     />
                   </Col>
