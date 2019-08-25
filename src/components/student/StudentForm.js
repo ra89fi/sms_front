@@ -4,7 +4,6 @@ import { Button, Col, Row } from "reactstrap";
 import Joi from "@hapi/joi";
 import FormField from "../common/FormField";
 import ParentDetails from "./ParentDetails";
-import student from "../../objects/student";
 import StudentDetails from "./StudentDetails";
 import { resetStudent, updateStudentRoot } from "../../actions/student";
 import { studentRootSchema, validateStudent } from "../../validations/student";

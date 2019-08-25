@@ -8,6 +8,14 @@ import { studentDetailsSchema } from "../../validations/student";
 import URI from "../../objects/uri";
 import { fetchStudentsDetails } from "../../actions/studentsDetails";
 
+const formatDate = dateStr => {
+  if (!dateStr) return "";
+  const arr = new Date(dateStr).toLocaleDateString().split("/");
+  if (arr[0].length == 1) arr[0] = "0" + arr[0];
+  if (arr[1].length == 1) arr[1] = "0" + arr[1];
+  return `${arr[2]}-${arr[0]}-${arr[1]}`;
+};
+
 class EditStudentProfile extends React.Component {
   state = {
     student: this.props.studentDetails
@@ -36,6 +44,10 @@ class EditStudentProfile extends React.Component {
     }
     // send to server for update
     console.log(this.state.student);
+    const student = this.state.student;
+    if (student.birthDate) {
+      student.birthDate = formatDate(student.birthDate);
+    }
     fetch(`${URI}/api/student_details/${this.props.student.id}`, {
       method: "POST",
       mode: "cors",

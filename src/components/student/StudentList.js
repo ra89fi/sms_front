@@ -46,10 +46,8 @@ class StudentList extends Component {
   }
 
   componentDidMount() {
-    if (this.state.students.length === 0) {
-      this.props.fetchStudentsDetails();
-      this.props.fetchLatestAdmissions();
-    }
+    this.props.fetchStudentsDetails();
+    this.props.fetchLatestAdmissions();
   }
 
   render() {

@@ -135,7 +135,7 @@ export default props => {
               <Col>
                 <FormField
                   type="text"
-                  placeholder="Email"
+                  placeholder="Email *"
                   name="email"
                   value={email}
                   onChange={changeHandler}

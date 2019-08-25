@@ -1,5 +1,4 @@
 import React from "react";
-import { Row, Col } from "reactstrap";
 import Joi from "@hapi/joi";
 import AttendanceReportForm from "./AttendanceReportForm";
 import AttendanceReportView from "./AttendanceReportView";
