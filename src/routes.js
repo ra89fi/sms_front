@@ -12,6 +12,7 @@ import StudentList from "./components/student/StudentList";
 import StudentProfileEdit from "./components/student/StudentProfileEdit";
 import StudentProfileView from "./components/student/StudentProfileView";
 import TeacherProfile from "./components/teacher/TeacherProfile";
+import TeacherProfileEdit from "./components/teacher/TeacherProfileEdit";
 import TeacherEntry from "./components/teacher/TeacherEntry";
 import TeacherList from "./components/teacher/TeacherList";
 import UesrList from "./components/user/UesrList";
@@ -101,28 +102,35 @@ const routes = [
   {
     path: "/teachers/all",
     exact: true,
-    name: " Teacher List",
+    name: "Teacher List",
     component: TeacherList,
+    private: true
+  },
+  {
+    path: "/teachers/edit/:id",
+    exact: true,
+    name: "Edit Teacher Profile",
+    component: TeacherProfileEdit,
     private: true
   },
   {
     path: "/teachers/profile/:id",
     exact: true,
-    name: " Teacher Profile",
+    name: "Teacher Profile",
     component: TeacherProfile,
     private: true
   },
   {
     path: "/users/all",
     exact: true,
-    name: " User List",
+    name: "User List",
     component: UesrList,
     private: true
   },
   {
     path: "/users/profile/:id",
     exact: true,
-    name: " User Profile",
+    name: "User Profile",
     component: UserProfile,
     private: true
   },
