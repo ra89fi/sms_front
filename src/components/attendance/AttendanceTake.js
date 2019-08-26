@@ -4,18 +4,10 @@ import AttendanceTakeAttForm from "./AttendanceTakeAttForm";
 import AttendanceTakeSelForm from "./AttendanceTakeSelForm";
 
 const attendanceSelectionSchema = {
-  class: Joi.string()
-    .alphanum()
-    .min(1)
-    .required(),
+  class: Joi.string().required(),
   group: Joi.any().optional(),
-  subject: Joi.string()
-    .alphanum()
-    .min(1)
-    .required(),
-  date: Joi.string()
-    .min(1)
-    .required()
+  subject: Joi.string().required(),
+  date: Joi.string().required()
 };
 
 class AttendanceTake extends Component {

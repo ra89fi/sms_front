@@ -4,21 +4,11 @@ import AttendanceReportForm from "./AttendanceReportForm";
 import AttendanceReportView from "./AttendanceReportView";
 
 const attendanceSelectionSchema = {
-  class: Joi.string()
-    .alphanum()
-    .min(1)
-    .required(),
+  class: Joi.string().required(),
   group: Joi.any().optional(),
-  subject: Joi.string()
-    .alphanum()
-    .min(1)
-    .required(),
-  dateFrom: Joi.string()
-    .min(1)
-    .required(),
-  dateTo: Joi.string()
-    .min(1)
-    .required()
+  subject: Joi.string().required(),
+  dateFrom: Joi.string().required(),
+  dateTo: Joi.string().required()
 };
 
 class AttendanceReport extends React.Component {
