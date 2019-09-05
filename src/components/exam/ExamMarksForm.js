@@ -1,26 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Card, CardHeader, CardBody, Row, Col, Table } from "reactstrap";
+import Joi from "@hapi/joi";
 import FormField from "../common/FormField";
 import { fetchLatestAdmissions } from "../../actions/admissions";
 import URI from "../../objects/uri";
 
-class AttendanceTakeAttForm extends React.Component {
+class ExamMarksForm extends React.Component {
   // read props.values and students accordingly
   // for each student create a row in table
   // take their attendance
   state = {
-    data: {}
-    // data: {
-    //   11152622: {
-    //     status: "",
-    //     notes: ""
-    //   },
-    //   11152623: {
-    //     status: "",
-    //     notes: ""
-    //   }
-    // }
+    data: {},
+    total: "",
+    highest: "",
+    errors: {}
   };
 
   componentDidMount() {
@@ -37,61 +31,85 @@ class AttendanceTakeAttForm extends React.Component {
     Object.keys(ad).forEach(studentId => {
       if (ad[studentId]["class"] == className && ad[studentId]["group"] == group)
         data[ad[studentId]["rollNo"]] = {
-          status: "",
-          notes: "",
+          marks: "",
           rollNo: ad[studentId]["rollNo"],
-          studentId
+          studentId,
+          yxid: this.props.yxid
         };
     });
     console.log("data", data);
     this.setState({ data });
   }
 
-  setAttendanceAll = value => {
-    const newData = Object.assign({}, this.state.data);
-    for (let key in newData) newData[key].status = value;
-    this.setState({
-      data: newData
-    });
-  };
-
-  radioHandler = e => {
-    const row = this.state.data[e.target.name];
-    this.setState({
-      data: {
-        ...this.state.data,
-        [e.target.name]: {
-          ...row,
-          status: e.target.value
+  marksChange = (e, rollNo) => {
+    if (!this.state.total) {
+      this.setState({
+        ...this.state,
+        errors: {
+          total: '"Total" must be a valid number'
         }
-      }
-    });
-  };
-
-  notesChange = (e, id) => {
-    const str = e.target.value;
-    const row = this.state.data[id];
+      });
+      return;
+    }
+    const marks = e.target.value;
+    let error = Joi.validate(marks, Joi.number().integer()).error;
+    if (error || parseInt(marks) > parseInt(this.state.total)) {
+      e.target.style.border = "1px solid red";
+    } else e.target.style.border = "1px solid rgba(115, 129, 143, 0.4)";
+    const row = this.state.data[rollNo];
     this.setState({
       data: {
         ...this.state.data,
-        [id]: {
+        [rollNo]: {
           ...row,
-          notes: str
+          marks
         }
       }
     });
   };
 
   submitHandler = () => {
-    console.log({
-      data: this.state.data,
-      class: this.props.class,
-      group: this.props.group || "",
-      subject: this.props.subject,
-      date: this.props.date
+    // validate total and highest
+    let error;
+    error = Joi.validate(
+      this.state.total,
+      Joi.number()
+        .integer()
+        .required()
+    ).error;
+    if (error) {
+      this.setState({
+        ...this.state,
+        errors: {
+          total: '"Total" must be a valid number'
+        }
+      });
+      return;
+    }
+    error = Joi.validate(
+      this.state.highest,
+      Joi.number()
+        .integer()
+        .required()
+    ).error;
+    if (error) {
+      this.setState({
+        ...this.state,
+        errors: {
+          highest: '"Highest Marks" must be a valid number'
+        }
+      });
+      return;
+    }
+    this.setState({ errors: {} });
+    const errors = [];
+    Object.values(this.state.data).forEach(d => {
+      if (!d.marks) errors.push(1);
     });
+    if (errors.length) return;
+    console.log(this.state, this.props.yxid);
     // send data to server
-    fetch(`${URI}/api/attendances`, {
+    fetch(`${URI}/api/exams/sxid`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -102,12 +120,15 @@ class AttendanceTakeAttForm extends React.Component {
         class: this.props.class,
         group: this.props.group || "",
         subject: this.props.subject,
-        date: this.props.date
+        date: this.props.date,
+        marks: this.state.total,
+        highest: this.state.highest,
+        yxid: this.props.yxid
       })
     })
       .then(response => response.text())
       .then(msg => {
-        console.log(msg, this.props);
+        console.log(msg);
         this.props.backClick();
       })
       .catch(err => console.log(err.message));
@@ -121,14 +142,14 @@ class AttendanceTakeAttForm extends React.Component {
         <Col>
           <Card>
             <CardHeader style={{ display: "flex", justifyContent: "space-between" }}>
-              <strong>Take Attendance</strong>
+              <strong>Marks Entry</strong>
               <Button color="primary" outline onClick={this.props.backClick}>
                 Go Back
               </Button>
             </CardHeader>
             <CardBody>
               <Row>
-                <Col xs="3">
+                <Col xs="4">
                   <Row>
                     <Col>Class</Col>
                     <Col>
@@ -154,70 +175,51 @@ class AttendanceTakeAttForm extends React.Component {
                     </Col>
                   </Row>
                 </Col>
+                <Col>
+                  <Row>
+                    <Col>
+                      <FormField
+                        type="text"
+                        placeholder="Total Marks *"
+                        name="total"
+                        value={this.state.total}
+                        onChange={e => this.setState({ total: e.target.value })}
+                        error={this.state.errors.total}
+                      />
+                    </Col>
+                    <Col>
+                      <FormField
+                        type="text"
+                        placeholder="Highest *"
+                        name="highest"
+                        value={this.state.highest}
+                        onChange={e => this.setState({ highest: e.target.value })}
+                        error={this.state.errors.highest}
+                      />
+                    </Col>
+                  </Row>
+                </Col>
               </Row>
               <p></p>
               <Row>
-                <Col>
+                <Col xs="4">
                   <Table responsive>
                     <thead>
                       <tr>
                         <th>Roll No</th>
-                        <th>Attendance</th>
-                        <th>Notes</th>
+                        <th>Marks</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td />
-                        <td>
-                          <span style={{ opacity: 0.6 }}>Select All</span> &nbsp;
-                          <Button
-                            color="success"
-                            size="sm"
-                            className="btn-pill"
-                            onClick={() => this.setAttendanceAll("Present")}
-                          >
-                            Present
-                          </Button>
-                          &nbsp;
-                          <Button
-                            color="danger"
-                            size="sm"
-                            className="btn-pill"
-                            onClick={() => this.setAttendanceAll("Absent")}
-                          >
-                            Absent
-                          </Button>
-                          &nbsp;
-                          <Button
-                            color="warning"
-                            size="sm"
-                            className="btn-pill"
-                            onClick={() => this.setAttendanceAll("Late")}
-                          >
-                            Late
-                          </Button>
-                        </td>
-                        <td />
-                      </tr>
                       {students.map(stu => (
                         <tr key={stu.rollNo}>
                           <td>{stu.rollNo}</td>
-                          <td>
-                            <FormField
-                              type="radio"
-                              values={["Present", "Absent", "Late"]}
-                              name={stu.rollNo}
-                              value={this.state.data[stu.rollNo].status}
-                              onChange={this.radioHandler}
-                            />
-                          </td>
                           <td className="removeMarginBottom">
                             <input
                               type="text"
-                              name="notes"
-                              value={this.state.data[stu.rollNo].notes}
-                              onChange={e => this.notesChange(e, stu.rollNo)}
+                              name="marks"
+                              value={this.state.data[stu.rollNo].marks}
+                              onChange={e => this.marksChange(e, stu.rollNo)}
                               style={{ width: "100%" }}
                             />
                           </td>
@@ -225,6 +227,7 @@ class AttendanceTakeAttForm extends React.Component {
                       ))}
                     </tbody>
                   </Table>
+                  {students.length == 0 ? <p>No students in this class.</p> : ""}
                 </Col>
               </Row>
               <Row>
@@ -252,4 +255,4 @@ export default connect(
     latestAdmissions: state.latestAdmissions
   }),
   { fetchLatestAdmissions }
-)(AttendanceTakeAttForm);
+)(ExamMarksForm);
